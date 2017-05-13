@@ -782,6 +782,8 @@ print("your list:", your_list)
 
 **LIVE DEMO**
 
+![progress check](images/red_green_sticky.png)
+
 ## Nested `list`s
 
 * `list`s can contain any datatype, even other `list`s
