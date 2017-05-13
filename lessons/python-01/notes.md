@@ -178,7 +178,7 @@ jupyter notebook
 * Press `Shift + Enter` to execute a cell
 * The cell is rendered, and a new cell appears beneath the executed cell
 
-```text
+```markdown
 # Variables in Python
 
 ## Python as a calculator
@@ -230,7 +230,7 @@ We will enter the statement $1 + 2$ to see the result.
 * **TYPE THE MARKDOWN IN A CELL AND EXECUTE**
   * This is to keep the notebook as an example of literate programming (and a handy reference for the students)
 
-```text
+```markdown
 ## Variables
 
 * Variables are like *named boxes*
@@ -342,85 +342,121 @@ print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
 ----
 **SLIDE** START A NEW NOTEBOOK
 
-* Create a new notebook, and give it the name `analysis`
+* **Create a new notebook, and give it the name `analysis`**
+* For this, you can introduce `File -> New Notebook -> Python 3` as a way to create a new notebook
+
+```markdown
+# Data analysis
+
+This notebook introduces the use of `Jupyter` and `Python` for data analysis
+```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** EXAMINE THE DATA
 
+* **SHOW THE TERMINAL ON SCREEN**
 * Use the terminal (`head` from this morning)
  
 ```bash
 head data/inflammation-01.csv
 ```
 
-* Describe plain text, csv format
-* State that we'll use the `numpy` library
+* **Describe the data**: plain text, csv format
+  * One row per patient
+  * One column per day
+  * Values separated by commas
+* **State that we'll use the `numpy` library** to work with this in Python
 
 ----
 **SLIDE** `PYTHON` LIBRARIES
 
-* `Python` contains many basic and general functions and tools
-* Specialised tools are packaged in *libraries*
-* We can call on libraries with the `import` statement, when we need them
+* Most programming languages have **libraries** (or **modules**, or **packages**).
+* **Libraries contain code that's not in the main language** but is useful for something specific - they can define **functions**, **data types**, and whole programs
+* **Libraries add specific functionality to the language** - you import as many as you neeed
+* `Python` has libraries for many types of work and operations
+* **In `Python`, we call on libraries with the `import` statement, when we need them**
 * Importing a library is like getting a new piece of equipment out of the locker and onto the lab bench
-* Libraries add functionality to your current `Python` instance
+* **Import and describe libraries**
 
-----
-**SLIDE** `JUPYTER` MAGIC
-
-* `Jupyter` provides another way to load libraries, through *magics*
-* **Do the `pylab` magic**
-* **Import `numpy` and `seaborn`**
-* Note that warnings about fonts may be normal.
-
-----
-**SLIDE** `NUMPY`, `SEABORN`, `PYLAB`
+```python
+import numpy
+import seaborn
+```
 
 * `numpy` is a library that provides functions and pethods to work with arrays and matrices, such as those in your dataset
 * `seaborn` is a library that enables attractive graphs and statistical summaries
-* `pylab` is a library that mimics `MatLab` in `Python`, providing a number of useful tools for numerical operations and visualisation
 
 ----
 **SLIDE** LOAD DATA
 
-* The `numpy` library gives us a function called `loadtxt()` that loads tabular data from a file
-* It's used as `numpy.loadtxt()`
-* *Dotted notation* tells us that `loadtxt()` belongs to `numpy`
-* `loadtxt()` expects two *arguments* or *parameters*
-* The parameter `fname` takes the path to the file we want to load
-* The parameter `delimiter` takes the character that we think separates columns in that file
-* `Python` will accept double- or single-quotes around strings
-* **Execute the line in a cell**
+```markdown
+## Load data
+
+Load comma-separated data from a file
+```
+
+* The `numpy` library gives us a function called **`loadtxt()` that loads tabular data from a file**
+* To use a `function` from a `library`, **the format is usually `library.function()`: *dotted notation***
+* **`loadtxt()` expects two *arguments* or *parameters*** - values it needs to know to work
+* The parameter `fname` takes the **path to the file we want to load**
+* The parameter `delimiter` takes the **character that we think separates columns** in that file
+
+```python
+numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+```
+
+* **NOTE: This can be a good place to introduce tab-completion!**
+* Here, our function is `numpy.loadtxt()`, and  *Dotted notation* tells us that `loadtxt()` belongs to `numpy`
+* `Python` will accept **double- or single-quotes** around strings
+* **EXECUTE THE CELL**
 
 ----
 **SLIDE** LOADED DATA
 
-* Since we didn't ask `Python` to do anything with the data, it just shows it to us.
+* We didn't ask `Python` to do anything with the data, so it it just shows the data to us.
 * The data display is truncated by default - *ellipses* (`...`) show rows and columns that were excluded for space 
 * Significant digits are not shown
 * **NOTE that integers in the file have been converted to floating point numbers**
-* **Ask the learners to assign the matrix to a variable called `data`**
+* **Ask the learners to assign the matrix to a variable called `data`: MAKE THIS CHANGE IN-PLACE**
+
+```python
+data = numpy.loadtxt(fname="data/inflammation-01.csv", delimiter=",")
+```
+
+* Now when we execute the cell **we see no output**, but `data` now contains the array, which we can see by **printing the variable**
+
+```python
+print(data)
+```
 
 ----
 **SLIDE** WHAT IS OUR DATA? **LIVE DEMO**
 
-* Take the learners through the code:
+* We've loaded some data, but **what is it?**
 
 ```python
 type(data)
-print(data.dtype)
-print(data.shape)
 ```
-
-* `type(data)` is a `numpy.ndarray` - an *n*-dimensional array
-* `print(data.dtype)` tells us that the values in the array are 64-bit floating point numbers
-* `print(data.shape)` tells us that there are 60 rows and 40 columns in the dataset
+* **`Python` sees our data as a special `type`: `numpy.ndarray`**
+* From *dotted notation* we see that `ndarray` belongs to (was defined in) the `numpy` library
+* `ndarray` stands for "n-dimensional array" - so this is **an n-dimensional array from the `numpy` library**
 
 ----
 **SLIDE** MEMBERS AND ATTRIBUTES
 
-* When we created `data` we didn't just create the array, we also created information about the array, called *members* or *attributes*
-* This information belongs to `data` so is accessed in the same way as a module function, through *dotted notation*
+* **Creating our `data` array created a lot of information, too**
+* We created **information about the array** called *attributes*
+* This information belongs to `data` so is **accessed in the same way as a module function**, through *dotted notation*
+
+```python
+print(data.dtype)
+print(data.shape)
+```
+
+* `print(data.dtype)` tells us that the **data type for values in the array** is: 64-bit floating point numbers
+* `print(data.shape)` tells us that there are **60 rows and 40 columns** in the dataset
 
 ----
 **SLIDE** INDEXING ARRAYS
@@ -551,6 +587,14 @@ print(data.mean(axis=0))
 * **Start a new `markdown` cell**
 * Outline how visualisation is a large topic that deserves more attention
 * Show off the SSI course materials
+
+----
+**SLIDE** `JUPYTER` MAGIC
+
+* **`Jupyter` provides another way to load libraries, through *magics***
+* **Do the `matplotlib` magic**
+* **Import `numpy` and `seaborn`**
+* Note that warnings about fonts may be normal.
 
 ----
 **SLIDE** `MATPLOTLIB`

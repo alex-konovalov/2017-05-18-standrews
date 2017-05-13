@@ -300,28 +300,6 @@ import numpy
 import seaborn
 ```
 
-## `JUPYTER` MAGIC
-
-* Another way to get use of some libraries in `Jupyter` is through *magic*
-
-```python
-%pylab inline
-import numpy
-import seaborn
-```
-
-* **This only works in `Jupyter` notebooks**
-
-<img src="images/interactive_namespace.png" />
-
-## `numpy`, `seaborn`, `pylab`
-
-* `numpy`: work with matrices and arrays in `Python`
-* `seaborn`: attractive statistical summary graphs
-* `pylab`: numerical operations and visualisation in `Python`
-
-* Calling `%pylab inline` shows graphics within the notebook itself
-
 ## Load data
 
 * `numpy` provides a function `loadtxt()` to load tabular data:
@@ -346,8 +324,6 @@ numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 
 ```python
 type(data)
-print(data.dtype)
-print(data.shape)
 ```
 
 **LIVE DEMO**
@@ -357,6 +333,11 @@ print(data.shape)
 * Creating the array created information, too
 * Info stored in *members* or *attributes* that belong to `data`
 * `data.<attribute>` e.g. `data.shape`
+
+```python
+print(data.dtype)
+print(data.shape)
+```
 
 ## Indexing arrays
 
