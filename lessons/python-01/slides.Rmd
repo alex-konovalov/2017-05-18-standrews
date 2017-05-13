@@ -109,6 +109,9 @@ unzip python-novice-inflammation-code.zip
 
 ([http://pad.software-carpentry.org/2017-03-23-standrews](http://pad.software-carpentry.org/2017-03-23-standrews))
 
+![progress check](images/red_green_sticky.png)
+
+
 **LIVE DEMO**
 
 # Getting Started
@@ -120,6 +123,8 @@ At the command-line, start `Jupyter` notebook:
 ```bash
 jupyter notebook
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ## `Jupyter` landing page
 
@@ -165,6 +170,8 @@ jupyter notebook
 * Execute a cell with `Shift + Enter`
 
 <img src="images/code_post_execution.png" />
+
+![progress check](images/red_green_sticky.png)
 
 ## <img src="images/exercise.png" height="75px" /> Exercise 01 (5min)
 

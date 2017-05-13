@@ -2,6 +2,12 @@
 
 These notes are a guide to the speaker, as they present the material.
 
+## Before you start
+
+* Test your `Jupyter` installation and make sure you can connect to the kernel.
+
+## Slides
+
 ----
 **SLIDE** Building Programs With Python (1)
 
@@ -99,7 +105,7 @@ cd python-novice-inflammation
 * **Go to Etherpad in browser** [http://pad.software-carpentry.org/2017-05-18-standrews](http://pad.software-carpentry.org/2017-05-18-standrews)
 * **Point out file links** [http://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip](http://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip)
 * **Click on file links to download**
-* **Move files to `python-novice-inflammation` directory
+* **Move files** to `python-novice-inflammation` directory
 * **Extract files** - this will create a subdirectory called `data` in that folder
 * **CHECK WHETHER EVERYONE HAS EXTRACTED THE DATA**
 
@@ -111,18 +117,23 @@ cd python-novice-inflammation
 ----
 **SLIDE** STARTING `JUPYTER` **DEMO**
 
-* Start `Jupyter` from the command-line
+* Make sure you're in the project directory `python-novice-inflammation`
+* **Start `Jupyter`** from the command-line
 * **CHECK WHETHER EVERYONE SEES A WORKING JUPYTER NOTEBOOK**
+
+```bash
+jupyter notebook
+```
 
 ![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** `JUPYTER` LANDING PAGE **DEMO**
 
-* Landing page is a file browser, like Explorer/Finder
+* **`Jupyter` landing page is a file browser**, like Explorer/Finder
 * Point out `Python` (`.py`) files, `.zip` files, and directories)
-* Point out directory (`data`), and how the file symbols are different.
-* Point out `New` button.
+* Point out directory (`data`), and how the file symbols are different. (*the triangle by the check box gives a key*)
+* **Point out `New` button.**
 
 ----
 **SLIDE** CREATE A NEW NOTEBOOK **DEMO**
@@ -130,52 +141,68 @@ cd python-novice-inflammation
 * Click on `New -> Python 3`
 * Point out that there may or may not be other options in the student's installation
 * Indicate the new features on the empty notebook:
-  * The notebook name: `Untitled`
-  * Checkpoint information
-  * The menu bar (`File Edit etc.`) - just like `Word` or `Excel`
-  * An indication of which kernel you're using/language you're in
-  * Icon view (just like `Word` or `Excel`)
+  * The **notebook name**: `Untitled`
+  * **Checkpoint** information (the last time the notebook was saved, for safety)
+  * The **menu bar** (`File Edit etc.`) - just like `Word` or `Excel`
+  * An indication of **which kernel you're using/language you're in**
+  * **Icon view** (just like `Word` or `Excel`)
   * An empty cell with `In [ ]:`
+* Point out the **box around the cell**, and that it **changes colour** when you start to edit
 
 ----
 **SLIDE** MY FIRST NOTEBOOK **DEMO**
 
-* Give the notebook the name `variables`
+* **Give the notebook the name `variables`**
+* Click on `Untitled` and enter the name `variables`
 
 ----
 **SLIDE** CELL TYPES **DEMO**
 
 * `Jupyter` documents are comprised of `cells`
-* A `cell` can be one of several types - we'll focus on two:
-  * `Code`: code in the current kernel/language
-  * `Markdown`: text, with the opportunity for formatting
-* Change the first cell type to `Markdown`
-  * The box colour changes from green to blue
-  * The `In []` prompt disappears
+* A `cell` can be one of **several types** - we'll focus on two:
+  * `Code`: **code** in the current kernel/language
+  * `Markdown`: **text**, with the opportunity for formatting
+* **Change the first cell type to `Markdown`**
+  * The box **colour changes** from green to blue
+  * The `In []` **prompt disappears**
 
 ----
 **SLIDE** MARKDOWN TEXT **DEMO**
 
-* `Markdown` lets us enter formatted text
-  * Headers are preceded by a hash: `#`
-  * The level of header is determined by the number of hashes: `#`
-  * Italics are shown by enclosing text in single asterisks: `*italic*`
-  * Typewriter text/code is shown by enclosing in backticks: ```
-  * LaTeX can be entered within dollar signs `$`
+* `Markdown` lets us **enter formatted text**
+  * **Headers** are preceded by a hash: `#`
+  * The **level of header** is determined by the number of hashes: `#`
+  * **Typewriter text/code** is shown by enclosing in backticks: ```
+  * **Italics** are shown by enclosing text in single asterisks: `*italic*`
+  * **LaTeX** can be entered within dollar signs `$`
 * Press `Shift + Enter` to execute a cell
 * The cell is rendered, and a new cell appears beneath the executed cell
+
+```text
+# Variables in Python
+
+## Python as a calculator
+
+We can use `Python` as a calculator by typing mathematical statements
+into a code cell, and *executing* that cell by pressing `Shift + Enter`.
+
+We will enter the statement $1 + 2$ to see the result.
+```
 
 ----
 **SLIDE** ENTERING CODE **DEMO**
 
-* Mathematical statements can be entered directly into a code cell
+* **Mathematical statements can be entered directly** into a code cell
   * **ENTER `1+2`**
-* Before the cell is executed, note that the `In []` prompt has no value in it
-* Note that the code is colour syntax-highlighted
-  * **EXECUTE THE CELL**
-* Note that after execution, the `In []` prompt now has a number in it to indicate the order in which cells are executed
-* Note also that because there is no place to put the output, a value has been returned as `OUT [1]`, showing the result of the calculation
-* A new code cell is created beneath the executed cell.
+* **Before the cell is executed, note that the `In []` prompt has no value in it**
+* Note that the **code is colour syntax-highlighted**
+  * **EXECUTE THE CELL** `Shift + Enter`
+* Note that **after execution, the `In []` prompt now has a number in it** to indicate the order in which cells were executed
+* Note also that because there is no place to put the output, **a value has been returned as `OUT [1]`**, showing the result of the calculation
+* **A new code cell is created** beneath the executed cell.
+
+![progress check](images/red_green_sticky.png)
+
 * **ASK THE LEARNERS GO THROUGH THE EXERCISE**
 
 ----
