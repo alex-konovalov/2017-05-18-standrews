@@ -597,16 +597,20 @@ print('standard deviation:', stdval)
 ----
 **SLIDE** SUMMARY BY PATIENT
 
-* What if we want to get summaries patient-by-patient (row-by-row)?
-* **Demo code**
+* **What if we want to get summaries patient-by-patient (row-by-row)?**
 * We can extract a single row into a variable, and calculate the mean
-* We can also apply the `numpy` function directly, without creating a variable
-* **NOTE: that comments are preceded with a hash `#` and can be placed after a line of code**
-* **EXPLAIN: why leaving comments is good (can do that in all code - not just Jupyter notebooks)**
 
 ```python
 patient_0 = data[0, :] # Row zero only, all columns
 print('maximum inflammation for patient 0:', patient_0.max())
+```
+
+* **NOTE: that comments are preceded with a hash `#` and can be placed after a line of code**
+* * **EXPLAIN: why leaving comments is good (can do that in all code - not just Jupyter notebooks)**
+
+* We can also **apply the `numpy` function directly**, without creating a variable
+
+```python 
 print('maximum inflammation for patient 0:', numpy.max(data[0, :]))
 print('maximum inflammation for patient 2:', numpy.max(data[2, :]))
 ```
@@ -614,22 +618,29 @@ print('maximum inflammation for patient 2:', numpy.max(data[2, :]))
 ---- 
 **SLIDE** SUMMARY OF ALL PATIENTS
 
-* But what if we want to know about all patients at once?
-* Or what if we want an average inflammation per day?
+* But **what if we want to know about all patients at once?**
+* Or **what if we want an average inflammation per day?**
 * Writing one line per row, or per column, is likely to lead to mistakes and typos
-* We can instead specify which axis a function applies to
+* **We can specify which axis a function applies to**
+
+* **MOVE SLIDE TO SCREEN TO DEMONSTRATE AXES 0 AND 1**
+* 
 * Specifying `axis=0` makes the function work on columns (days)
 * Specifying `axis=1` makes the function work on rows (patients)
+
+* **RETURN NOTEBOOK TO SCREEN**
 
 ----
 **SLIDE** `NUMPY` OPERATIONS ON AXES
 
-* **Demo the code**
+* **`numpy` functions take an `axis=` parameter** which controls the axis for summary statistic calculations.
 
 ```python
-print(numpy.max(data, axis=1))
-print(data.mean(axis=0))
+print(numpy.max(data, axis=1))  # max value for each patient
+print(numpy.mean(data, axis=0)) # mean value on each day
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** VISUALISATION

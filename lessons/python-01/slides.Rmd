@@ -472,6 +472,8 @@ print(data.mean(axis=0))
 
 **LIVE DEMO**
 
+![progress check](images/red_green_sticky.png)
+
 # VISUALISATION
 
 ## Visualisation
