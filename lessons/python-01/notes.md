@@ -9,29 +9,74 @@ These notes are a guide to the speaker, as they present the material.
 **SLIDE** INTRODUCTION
 
 ----
-**SLIDE** GOAL 1
+**SLIDE** WHY ARE WE HERE?
 
-* We are teaching programming, not `Python` *per se*
-* We need to use *some* language, though
-* Python is free, and likely to be usable on your machine
-* Python is widely-used, and there's lots of support online
-* It can be easier for novices to pick up than other languages
-* You should use what is common in your area/with your colleagues
-* The principles of programming are the same in other languages
+* We're here to learn **how to program**
+* This is a way to **solve problems in your research** through making a computer do work **quickly** and **accurately**
+* You'll build **functions** that do specific, defined tasks
+* You'll **automate** those functions to perform tasks over and over again (in various combinations)
+* You'll **manipulate data**, which is at the heart of all academia
+* You'll learn some **file input/output** to make the computer read and write useful information
+* You'll learn some **Data structures**, which are ways to organise data so that the computer can deal with it efficiently
 
 ----
-**SLIDE** GOAL 2
+**SLIDE** XKCD
 
-* We're using a motivating example of data analysis
-* Data is in plain text, tabular (CSV)
-* Data represents patients and daily measurements
-* We're going to analyse the data
-* We're going to visualise the data
+* This cartoon is a *little* flippant, but only a bit
+* The principles of a programming language like Perl are universal
+* Many concepts are **universal across programming languages**
+* **Learning one programming language will speed up the process of learning others**
+* **Q: HOW MANY PEOPLE HERE HAVE EXPERIENCE OF AT LEAST ONE PROGRAMMING LANGUAGE?**
+* What the more experienced here encounter should be recognisable to them
+
+----
+**SLIDE** HOW ARE WE DOING THIS?
+
+* We'll be learning how to program **using Python**
+* **Why Python?**
+* We need to use *some* language
+* Python is free, with good documentation and lots of books and online courses.
+* Python is widely-used in academia, and there's lots of support online
+* It can be easier for novices to pick up than other languages
+* **We won't be covering the entire language in detail**
+* **We will be using some long-handed ways of doing things to keep them clear for novices**
+
+----
+**SLIDE** NO, I MEAN "*HOW* ARE WE DOING THIS?"
+
+* We'll use **two tools to write Python**
+* The **bulk of the course will be in the `Jupyter` notebook**
+* `Jupyter` is **good for exploring data, prototyping code, data-wrangling, and teaching**
+* However, it's **not so good for writing "production code"** in a general sense
+* So, we'll also spend a little bit of time writing code in a **text editor**
+* Text editors are part of the **edit-save-execute** cycle, which is how much code is written
+* There are also specialist **integrated development environments (IDEs)** for Python that are extremely useful for developers, but we'll not be using them
+
+----
+**SLIDE** DO I NEED TO USE PYTHON AFTERWARDS?
+
+* **No.**
+* The lesson and principles are general, we're just teaching in Python
+* What you learn here will be relevant in other languages
+* If your field or colleagues use another language in preference, **there may be very good reasons for that**, and they **may be able to offer detailed, relevant support and help to you in that language**. This is valuable.
+* Language Wars waste everyone's time.
+
+----
+**SLIDE** WHAT ARE WE DOING?
+
+* We're using **a motivating example of data analysis**
+* We've got some data relating to a new treatment for arthritis, and we're going to **explore it.**
+* Data represents patients and **daily measurements of inflammation**
+* We're going to **analyse** the data
+* We're going to **visualise** the data
 * We're going to get the computer to do this for us
-* Automation is key: fewer human mistakes, easier to apply to other datasets, and share with others (transparency)
+* **Automation** is key: **fewer human mistakes**, easier to **apply to other future datasets**, and share with others (**transparency**)
+* We can also **share our code and results** *via* sites such as GitHub and BitBucket (supplementary information, impact)
 
 ----
 **SLIDE** SETUP
+
+**AT THIS POINT, PUT THE `TERMINAL` ON-SCREEN IN A SINGLE PROJECTOR SETUP, AND MOVE THE SLIDES TO THE DESKTOP**
 
 ----
 **SLIDE** SETTING UP - 1 - **DEMO**
