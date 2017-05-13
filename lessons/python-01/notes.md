@@ -461,20 +461,43 @@ print(data.shape)
 ----
 **SLIDE** INDEXING ARRAYS
 
-* **Take learners through making notes in the notebook**
-* To get a single element from the array, index using *square bracket* notation - row first, then column
-* In `Python` we index from zero, so the first element is `data[0, 0]`
-* **Do the two `print()` examples**
+* **Take learners through making notes in the notebook: fence blocks**
+
+```markdown
+# Indexing arrays
+
+Arrays are indexed by *row* and *column*, using *square bracket* notation:
+```
+
+* To get a single element from the array, **index using *square bracket* notation** - row first, then column
+
+```python
+data[30, 20] # get entry at row 30, column 20 of the array
+```
+
+* **Execute the cell**
+* In **`Python` we index from zero**, so the first element is `data[0, 0]`
 
 ```python
 print('first value in data:', data[0, 0])
 print('middle value in data:', data[30, 20])
 ```
 
+![progress check](images/red_green_sticky.png)
+
 ----
 **SLIDE** SLICING ARRAYS
 
 * **Take learners through making notes in the notebook**
+
+```markdown
+## Slicing arrays
+
+We select sections of an array by *slicing* it - defining the start and end points of the *slice* in square brackets, separating the start and end with `:` (colon)
+
+The *slice* `0:4` means "start at index 0 and go up to, but not including, index 4"
+```
+
 * To get a section from the array, index using *square bracket* notation - but specify start and end points, separated by a colon
 * The slice `0:4` means start at index zero and go up to, but not including, index 4. So it takes elements `0, 1, 2, 3` (four elements)
 * **Do the two `print()` examples**
@@ -482,7 +505,10 @@ print('middle value in data:', data[30, 20])
 ```python
 print(data[0:4, 0:10])
 print(data[5:10, 0:10])
+print(data[2:4, 2:4])
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** MORE SLICES, PLEASE!
@@ -498,23 +524,50 @@ print('small is:')
 print(small)
 ```
 
+* **QUESTION: What does `:` on its own mean?**
+
+```python
+print(data[0:2, :])
+```
+
 ----
 **SLIDE** EXERCISE 04
 
-* The value is `oxy`, number `3`
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+**MCQ: put up four colours of sticky notes**
+
+* The value is `oxyg`, number `1`
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** ARRAY OPERATIONS
 
-* Arithmetic operations on `array`s are performed elementwise.
-* **Demo the code**
-* Operations with scalars act *elementwise*
-* Operations with two arrays are *elementwise*
+```markdown
+## Array operations
+
+Arithmetic operations on arrays are performed *elementwise*
+
+The `numpy` package provides functions that perform more complex operations on arrays.
+```
+
+* **Arithmetic operations on `array`s are performed elementwise.**
 
 ```python
 doubledata = data * 2.0
+```
+
+* This operation multiplies every array element by 2.0.
+* **Look at the top right corner of the original array**
+
+```python
 print('original:')
 print(data[:3, 36:])
+```
+
+* **Look at the top right corner of the doubled array**
+
+```
 print('doubledata:')
 print(doubledata[:3, 36:])
 ```
@@ -523,23 +576,23 @@ print(doubledata[:3, 36:])
 **SLIDE** `NUMPY` FUNCTIONS
 
 * `numpy` provides functions that can perform *more complex* operations on arrays
-* Some of these operations include statistical summaries: `.mean()`, `.min()`, `.max()` etc.
-* **Demo code**
-* These operations give summaries of the whole array
-* The `data` array also has these summary functions
-
+* Some of the **`numpy` operations include statistical summaries: `.mean()`, `.min()`, `.max()` etc.**
 
 ```python
 print(numpy.mean(data))
+```
+
+* We can asssign the output from these functions to variables
+* **By default, these functions give summaries of the whole array**
+
+```python
 maxval, minval, stdval = numpy.max(data), numpy.min(data), numpy.std(data)
 print('maximum inflammation:', maxval)
 print('minimum inflammation:', minval)
 print('standard deviation:', stdval)
-maxval, minval, stdval = data.max(), data.min(), data.std()
-print('maximum inflammation:', maxval)
-print('minimum inflammation:', minval)
-print('standard deviation:', stdval)
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** SUMMARY BY PATIENT

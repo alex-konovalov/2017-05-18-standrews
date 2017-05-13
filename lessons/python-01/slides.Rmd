@@ -352,6 +352,8 @@ print('middle value in data:', data[30, 20])
 
 **LIVE DEMO**
 
+![progress check](images/red_green_sticky.png)
+
 ## Slicing arrays
 
 <img src="images/slice_text.png" />
@@ -362,6 +364,8 @@ print('middle value in data:', data[30, 20])
 print(data[0:4, 0:10])
 print(data[5:10, 0:10])
 ```
+
+![progress check](images/red_green_sticky.png)
 
 **LIVE DEMO**
 
@@ -432,6 +436,8 @@ print('standard deviation:', stdval)
 ```
 
 * By default, these give summaries of the whole array.
+
+![progress check](images/red_green_sticky.png)
 
 **LIVE DEMO**
 
