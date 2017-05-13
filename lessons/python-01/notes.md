@@ -825,6 +825,8 @@ fig.tight_layout()                                   # tidy the figure
 
 **WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
+* **NOW, TO DO MORE INTERESTING THINGS, WE NEED TO LEARN A LITTLE MORE ABOUT PROGRAMMING**
+
 ----
 **SLIDE** LOOPS
 
@@ -833,12 +835,18 @@ fig.tight_layout()                                   # tidy the figure
 
 * Create a new notebook, and give it the name `loops`
 
+```markdown
+## Loops
+
+*Loops* allow us to repeat operations on a series of items.
+```
+
 ----
 **SLIDE** MOTIVATION
 
 * We wrote code that plots values of interest from our dataset
-* **BUT** soon we're going to get dozens of datasets to analyse
-* So, we need to tell the computer to repeat our plots and analysis on each dataset
+* **BUT** soon we're going to get **dozens of datasets** to analyse
+* So, we need to tell the computer to **repeat our plots and analysis on each dataset**
 * We're going to do this with `for` loops
 * **NOTE: `for` loops are a fundamental method for program control across nearly every programming language**
 * **NOTE: `for` loops in python work just like those the learners saw in `bash`, but are syntactically different**
@@ -846,78 +854,76 @@ fig.tight_layout()                                   # tidy the figure
 ----
 **SLIDE** SPELLING BEE
 
-* If we want to spell a word one letter at a time, we can *index* each letter in turn
-* **Demo code**
+* If we want to spell a word, like 'lead' one letter at a time
 
 ```python
 word = "lead"
+```
+
+* We can *index* each letter in turn (just like elements of an array)
+
+```python
 print(word[0])
 print(word[1])
 print(word[2])
 print(word[3])
 ```
 
-* But this is bad - **Why?**
-* The approach doesn't scale - what if our word is hundreds of letters long?
-* If our word is longer than the indices, we don't get all the data; if it's shorter, we get an error.
-  * **demonstrate with `oxygen` and `tin`**
+* But this has some problems - **ASK LEARNERS WHAT PROBLEMS THEY SEE**
+* The **approach doesn't scale** - what if our word is hundreds of letters long?
+* **What if our word is longer than the indices?** We don't get all the data; if it's shorter, we get an error.
+* **demonstrate with `oxygen` and `tin` - MODIFY THE WORD IN PLACE**
 
 ----
 **SLIDE** `FOR` LOOPS
 
-* `for` loops perform an operation *for* every item *in* a collection
-* **Demo code**
+* **`for` loops perform an operation *for* every item *in* a collection**
+* **REPLACE THE INDEXING AND DEMO FOR `oxygen`, `lead`, and `tin`**
 
 ```python
-word = "lead"
 for char in word:
     print(char)
 ```
 
-* This has two advantages - it's shorter code (less opportunity for error), and it's more flexible and robust - it doesn't matter how long `word` is, the code will still spell it out one letter at a time
-  * **demonstrate with `oxygen` and `tin`**
+* Why is this better? **ASK THE LEARNERS**
+* **It's shorter code** (less opportunity for error)
+* **It's more flexible and robust** - it doesn't matter how long `word` is, the code will still spell it out one letter at a time
   
 ----
 **SLIDE** BUILDING `FOR` LOOPS
 
 * The general loop syntax is defined by a `for` statement, and a *code block*
 
-```python
+```markdown
+The general loop syntax is
+
 for element in collection:
-    <do things with element>
+    <do something with element>
 ```
 
-* The `for` loop statement ends in a colon, `:`
+* The `for` loop **statement ends in a colon, `:`**
 * The *code block* is **indented** with a `tab` (`\t`)
   * **Everything indented immediately below the `for` statement is part of the `for` loop**
   * **There is no command or statement to signify the end of the loop body - only a change in indentation**
   * This is quite different from most other languages (and some people hate `Python` because of it)
-* **Demonstrate**
+* **DEMO THE CODE BELOW**
 
 ```python
 for char in word:
     print(char)
-    print("I'm in the loop!")
+    print("I'm in the loop")
     # This is a comment
-    print("I'm also in the loop!")
+    print("Still in the loop")
     
-    print("Still in the loop!")
-print("This line is not part of the loop")    
+    print("I'm in the loop as well")
+print("Not in the loop")
 ```
-
-----
-**SLIDE** `FOR` LOOP CYCLES
-
-![`for` loop image](images/loops_image.png)
-
-* In this image, each successive character of `word` is placed, one at a time, in the variable `char`.
-  * In each cycle of the loop, the contents of the variable `char` are printed
-  * Once the code block is complete, the next cycle of the loop starts
 
 ----
 **SLIDE** COUNTING THINGS
 
-* **Ask the learners what output they expect from the code below**
+* Code in a `for` loop can still see variables defined outside the loop
+* **PUT THE CODE INTO A CELL:**
 
 ```python
 length = 0
@@ -926,37 +932,55 @@ for vowel in 'aeiou':
 print('There are', length, 'vowels')
 ```
 
-* **Demo the code**
+* **Ask the learners what output they expect**
 * Talk through the operations of the loop, if necessary
 
 ----
 **SLIDE** LOOP VARIABLES
 
-* The *loop variable* still exists once the loop is finished
-* **Demo code**
+* The *loop variable* alsp still exists once the loop is finished
+* **PUT CODE IN A CELL**
 
 ```python
 letter = 'z'
+print(letter)
 for letter in 'abc':
     print(letter)
 print('after the loop, letter is', letter)
 ```
 
+* **ASK THE LEARNERS WHAT OUTPUT THEY EXPECT**
 * The value of `letter` is `c`, the last updated value in the loop - not `z`, which would be the case if the loop variable only had scope within the loop
 
 ----
 **SLIDE** `RANGE()`
 
-* The `range()` function creates a sequence of numbers.
+* **Make a markdown cell**
+
+```markdown
+## `range()`
+
+The `range()` function creates a sequence of numbers
+```
+
+* The `range()` function creates a **sequence of numbers.**
 * The sequence depends on the number and value of arguments given
-* **Demo code - loop over all three options**
+* **RUN DEMO CODE BELOW**
 
 ```python
-range(3)
-range(2, 5)
-range(3, 10, 3)
-for val in range(3, 10, 3):
+seq = range(3)
+print("Range is:", seq)
+for val in seq:
     print(val)
+```
+
+* **Substitute other ranges and run again**
+
+```python
+seq = range(3)
+seq = range(2, 5)
+seq = range(3, 10, 3)
+seq = range(10, 0, -1)
 ```
 
 * A single value *n* gives the sequence `[0, ..., n-1]`
@@ -966,6 +990,8 @@ for val in range(3, 10, 3):
 
 ----
 **SLIDE** EXERCISE 07
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
 
 ```python
 result = 1
@@ -984,16 +1010,48 @@ for char in instr:
     outstr =  char + outstr
 print(outstr)
 ```
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
-**SLIDE** EXERCISE 09
+**SLIDE** `enumerate()`
+
+```markdown
+## `enumerate()`
+
+The `enumerate()` function creates paired indices and values for elements of a sequence
+```
+
+* **DEMO CODE BELOW**
+
+```python
+seq = enumerate('aeiou')
+print("Sequence is:", seq)
+for idx, val in seq:
+    print(idx, val)
+ ```
+
+----
+**SLIDE** USING `enumerate()`
+
+* We can use enumerate to index lists in order, which can be very useful in a variety of circumstances
+* **PUT THE MARKDOWN IN THE NOTEBOOK**
+
+```markdown
+Calculate $y$ when $x=5$ when the coefficients are `coeffs = [2, 4, 3, 2, 1]`:
+
+$$y = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4$$
+```
+
+We can solve this with a little `Python`
 
 ```python
 x = 5
 coeffs = [2, 4, 3, 2, 1]
+
 y = 0
 for idx, val in enumerate(coeffs):
     y = y + val * (x ** idx)
+
 print(y)
 ```
 
@@ -1002,6 +1060,8 @@ print(y)
 
 ----
 **SLIDE** START A NEW NOTEBOOK
+
+
 
 ----
 **SLIDE** LISTS
