@@ -81,17 +81,29 @@ These notes are a guide to the speaker, as they present the material.
 ----
 **SLIDE** SETTING UP - 1 - **DEMO**
 
-* We want a neat (clean) working environment
-* Change directory to desktop (in terminal or Explorer)
-* Create directory `python-novice-inflammation`
-* Change your working directory to that directory
+* We want a **neat (clean) working environment**: always a good idea when starting a new project - it helps for when you might want to use `git` to put it under version control, later.
+* **Change directory to desktop** (in terminal or Explorer)
+* **Create directory** `python-novice-inflammation`
+* **Change your working directory** to that directory
+
+```bash
+cd ~/Desktop
+mkdir python-novice-inflammation
+cd python-novice-inflammation
+```
 
 ----
 **SLIDE** SETTING UP - 2 - **DEMO**
 
-* We need to acquire our data (and also a little code that can help us)
-* Copy `.zip` files from repository (or online!) **PUT IN ETHERPAD**
-* Extract files (command-line or in Explorer)
+* We need to **download our data** (and also a little code that can help us)
+* **Go to Etherpad in browser** [http://pad.software-carpentry.org/2017-05-18-standrews](http://pad.software-carpentry.org/2017-05-18-standrews)
+* **Point out file links** [http://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip](http://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip)
+* **Click on file links to download**
+* **Move files to `python-novice-inflammation` directory
+* **Extract files** - this will create a subdirectory called `data` in that folder
+* **CHECK WHETHER EVERYONE HAS EXTRACTED THE DATA**
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** GETTING STARTED
@@ -100,6 +112,9 @@ These notes are a guide to the speaker, as they present the material.
 **SLIDE** STARTING `JUPYTER` **DEMO**
 
 * Start `Jupyter` from the command-line
+* **CHECK WHETHER EVERYONE SEES A WORKING JUPYTER NOTEBOOK**
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** `JUPYTER` LANDING PAGE **DEMO**
