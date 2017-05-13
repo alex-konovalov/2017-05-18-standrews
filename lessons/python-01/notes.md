@@ -276,36 +276,36 @@ print(name)
 
 * **Lead the students** through the code:
 
+* Note, we're assigning an integer now (no quotes), but **assignment is the same for all data items**
+* Print `weight_kg` to see its value
+
 ```python
 weight_kg = 55
 print(weight_kg)
 ```
 
-* Note, we're assigning an integer now (no quotes), but **assignment is the same for all data items**
-* Print `weight_kg` to see its value
+* **Variables can be substituted by name wherever a value would go**, in calculations for example
 
 ```python
 2.2 * weight_kg
 ```
 
-* **Variables can be substituted by name wherever a value would go**, in calculations for example
 * People may ask about floating point representations here - an introduction is at [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) - put this on the Etherpad.
+
+* **The `print()` function will take more than one argument, separated by commas, and print them**
 
 ```python
 print("weight in pounds", 2.2 * weight_kg)
 ```
 
-* **The `print()` function will take more than one argument, separated by commas, and print them**
+* **Reassigning to the same variable overwrites the old value**
 
 ```python
 weight_kg = 57.5
 print("weight in kilograms is now:", weight_kg)
 ```
 
-* **Reassigning to the same variable overwrites the old value**
-
-* **Changing the value of one variable does not change the values of other variables**
-* Lead students through the code
+* **Changing the value of one variable does not automatically change the values of other defined variables**
 
 ```python
 print(weight_kg)
@@ -314,22 +314,27 @@ print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
 weight_kg = 100
 print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
 ```
-* **Although we changed the value in `weight_kg`, we did not change `weight_lb` when we did so**
+
+* **Although we changed the value in `weight_kg`, `weight_lb` did not change when we did so**
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** EXERCISE 02 (5MIN)
 
-* The solution is `3`
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+**MCQ: put up four colours of sticky notes**
+
+* The solution is `2`
 
 ----
 **SLIDE** EXERCISE 03 (5MIN)
 
+**MCQ: put up four colours of sticky notes**
+
 * The code prints `Hopper Grace`
 
-----
-**SLIDE** WHO'S WHO IN MEMORY?
-
-* In a `Jupyter` notebook or `iPython` terminal, `%whos` will list the variables that are in memory, and their contents.
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** DATA ANALYSIS

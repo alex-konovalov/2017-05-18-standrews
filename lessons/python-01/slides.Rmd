@@ -206,6 +206,8 @@ jupyter notebook
 <img src="images/print_samia.png" />
 <img src="images/boxes_variables_arrow.png" height="300px" />
 
+![progress check](images/red_green_sticky.png)
+
 ## Working with variables
 
 ```python
@@ -253,13 +255,6 @@ print(third, fourth)
 2. `Grace Hopper`
 3. `"Grace Hopper"`
 4. `"Hopper Grace"`
-
-## Who's who in memory?
-
-* **If you are in a `Jupyter` notebook or `iPython` terminal…**
-* `%whos` will show you all defined variables
-
-<img src="images/whos_who.png" />
 
 
 # Data Analysis
