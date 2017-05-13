@@ -14,20 +14,19 @@ body {
   background-size: cover;
   }
 
-.reveal h1 {
+.reveal section h1 {
   color: #872175;
+}
+
+.reveal section h2 {
+  color: #78A22F;
+}
+
+.reveal section h3 {
+  color: #569BBE;
 }
 
 .reveal section code {
     color: #569BBE;
 }
 
-#output code {
-  font-size: 0.8em;
-  line-height: 1em;
-}
-
-#interp code {
-  font-size: 0.8em;
-  line-height: 1em;
-}

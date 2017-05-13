@@ -12,29 +12,67 @@ output:
 
 # Introduction
 
-## Goal 1
+## Why are we here?
 
-* **To learn the basic concepts of programming**
+### Learn basic concepts of programming
 
-We use `Python` for this:
+* **How to solve problems in your research by…**
+  * Building functions
+  * Automating tasks
+* **Mechanics of manipulating data**
+  * File I/O
+  * Data structures
+
+## XKCD
+
+<img src="images/11th_grade.png" height="100%" />
+
+## How are we doing this?
+
+### Using the `Python` language:
 
 * we need *something* ;)
-* free, well-documented, cross-platform
-* widely-used
+* free, well-documented, and cross-platform
+* large academic userbase
+* many *libraries* for specialist work
 
-**Use what your colleagues (tend to) use**
+### we won't be covering the entire language
 
-## Goal 2
+## No, I mean "*how* are we doing this?"
 
-* **To analyse and visualise experimental data**
+### 1. `Jupyter` notebook
+
+* interactive notebook-based interface
+* good for data exploration, prototyping, and teaching
+* not so good for writing scripts/'production code'
+
+### 2. text editor
+
+* a more usual way to write code
+* edit-save-execute cycle
+
+## Do I need to use Python afterwards?
+
+* No. ;)
+  * The lesson is general, it's just taught in Python
+  * The principles are the same in nearly all languages
+  * If your colleagues/field settled on another language(s), maybe learn that
+  * (language wars are unproductive… ;) )
+
+## What are we doing?
+
+### Analysing and visualising experimental data
 
 * Effectiveness of a new treatment for arthritis
 * Several patients, recording inflammation on each day
 * Tabular (comma-separated) data
 
-**We can do this with a little programming**
+### We're going to get the computer to do this for us
 
-* Why programming? **AUTOMATION**
+* Why not just do it by hand?
+* **AUTOMATION**, **REUSE**, **SHARING**
+
+
 
 # Setup
 
@@ -42,7 +80,7 @@ We use `Python` for this:
 
 Before we begin… 
 
-* **make a neat working environment**
+* **make a neat working environment in the terminal**
 * obtain data
 
 ```bash
@@ -71,6 +109,9 @@ unzip python-novice-inflammation-code.zip
 
 ([http://pad.software-carpentry.org/2017-03-23-standrews](http://pad.software-carpentry.org/2017-03-23-standrews))
 
+![progress check](images/red_green_sticky.png)
+
+
 **LIVE DEMO**
 
 # Getting Started
@@ -82,6 +123,8 @@ At the command-line, start `Jupyter` notebook:
 ```bash
 jupyter notebook
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ## `Jupyter` landing page
 
@@ -128,11 +171,15 @@ jupyter notebook
 
 <img src="images/code_post_execution.png" />
 
+![progress check](images/red_green_sticky.png)
+
 ## <img src="images/exercise.png" height="75px" /> Exercise 01 (5min)
 
 * Try out some of your own calculations in code cells, e.g.
 
 <img src="images/calculator_exercise.png" height="300px" />
+
+![progress check](images/red_green_sticky.png)
 
 ## My first variable
 
@@ -141,14 +188,25 @@ jupyter notebook
 
 * Let's create a variable called `name`, containing `"Samia"`
 
-## Printing a variable
+## Creating a variable
 
 <img src="images/samia_variable.png" />
+
+* To *assign* a value we use the *equals sign*: `=`
+* The variable name/box label goes on the left, and the data item goes on the right
+* *Character strings*, or *strings*, are enclosed in quotes
+* *Executing* the cell assigns the variable
+
+![progress check](images/red_green_sticky.png)
+
+## Inspecting a variable
 
 * The `print()` *function* shows the contents of a variable
 
 <img src="images/print_samia.png" />
 <img src="images/boxes_variables_arrow.png" height="300px" />
+
+![progress check](images/red_green_sticky.png)
 
 ## Working with variables
 
@@ -198,13 +256,6 @@ print(third, fourth)
 3. `"Grace Hopper"`
 4. `"Hopper Grace"`
 
-## Who's who in memory?
-
-* **If you are in a `Jupyter` notebook or `iPython` terminal…**
-* `%whos` will show you all defined variables
-
-<img src="images/whos_who.png" />
-
 
 # Data Analysis
 
@@ -249,28 +300,6 @@ import numpy
 import seaborn
 ```
 
-## `JUPYTER` MAGIC
-
-* Another way to get use of some libraries in `Jupyter` is through *magic*
-
-```python
-%pylab inline
-import numpy
-import seaborn
-```
-
-* **This only works in `Jupyter` notebooks**
-
-<img src="images/interactive_namespace.png" />
-
-## `numpy`, `seaborn`, `pylab`
-
-* `numpy`: work with matrices and arrays in `Python`
-* `seaborn`: attractive statistical summary graphs
-* `pylab`: numerical operations and visualisation in `Python`
-
-* Calling `%pylab inline` shows graphics within the notebook itself
-
 ## Load data
 
 * `numpy` provides a function `loadtxt()` to load tabular data:
@@ -295,8 +324,6 @@ numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 
 ```python
 type(data)
-print(data.dtype)
-print(data.shape)
 ```
 
 **LIVE DEMO**
@@ -306,6 +333,11 @@ print(data.shape)
 * Creating the array created information, too
 * Info stored in *members* or *attributes* that belong to `data`
 * `data.<attribute>` e.g. `data.shape`
+
+```python
+print(data.dtype)
+print(data.shape)
+```
 
 ## Indexing arrays
 
@@ -320,6 +352,8 @@ print('middle value in data:', data[30, 20])
 
 **LIVE DEMO**
 
+![progress check](images/red_green_sticky.png)
+
 ## Slicing arrays
 
 <img src="images/slice_text.png" />
@@ -330,6 +364,8 @@ print('middle value in data:', data[30, 20])
 print(data[0:4, 0:10])
 print(data[5:10, 0:10])
 ```
+
+![progress check](images/red_green_sticky.png)
 
 **LIVE DEMO**
 
@@ -401,6 +437,8 @@ print('standard deviation:', stdval)
 
 * By default, these give summaries of the whole array.
 
+![progress check](images/red_green_sticky.png)
+
 **LIVE DEMO**
 
 ## Summary by patient
@@ -434,6 +472,8 @@ print(data.mean(axis=0))
 
 **LIVE DEMO**
 
+![progress check](images/red_green_sticky.png)
+
 # VISUALISATION
 
 ## Visualisation
@@ -445,15 +485,30 @@ print(data.mean(axis=0))
 
 * [https://github.com/widdowquinn/Teaching-Data-Visualisation](https://github.com/widdowquinn/Teaching-Data-Visualisation)
 
-## `matplotlib`
+## `Jupyter` Magics
 
-* `matplotlib` is the *de facto* standard plotting library in `Python`
-* we `import`ed `seaborn` earlier, which makes `matplotlib` output nicer
-* we used `%pylab inline` earlier, which puts `matplotlib` output in the notebook
+* `Jupyter` provides an alternative way to import some libraries: *magics*
+* `matplotlib` is the *de facto* standard plotting library in `Python`, and we import it with a *magic*
 
 ```python
+%matplotlib inline
 import matplotlib.pyplot
-image = matplotlib.pyplot.imshow(data)
+```
+
+* This gives us some extra control of how the library behaves, specific to the `Jupyter` notebook.
+* We import `numpy` and `seaborn` normally
+
+```python
+import numpy
+import seaborn
+```
+
+## Load data
+
+* We need to load the patient data into our new notebook
+
+```python
+data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 ```
 
 **LIVE DEMO**
@@ -461,6 +516,11 @@ image = matplotlib.pyplot.imshow(data)
 ## `matplotlib` `.imshow()`
 
 * `.imshow()` renders matrix values as an image
+
+```python
+image = matplotlib.pyplot.imshow(data)
+```
+
 * small values are white, large values are black
 * inflammation rises and falls over a 40-day period
 
@@ -477,6 +537,7 @@ ave_plot = matplotlib.pyplot.plot(ave_inflammation)
 ```
 
 * **QUESTION: does this look reasonable?**
+
 
 **LIVE DEMO**
 
@@ -498,6 +559,8 @@ min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
 
 Can you create a plot showing the standard deviation (`numpy.std()`) of the inflammation data for each day across all patients?
 
+![progress check](images/red_green_sticky.png)
+
 ## Figures and subplots
 
 * We can put all three plots into a single *figure*
@@ -511,6 +574,8 @@ Can you create a plot showing the standard deviation (`numpy.std()`) of the infl
 ## <img src="images/exercise.png" height="75px" /> Exercise 06 (10min)
 
 Can you modify the last plot to display the three graphs on top of one another, instead of side by side?
+
+![progress check](images/red_green_sticky.png)
 
 # LOOPS
 
@@ -570,9 +635,6 @@ for element in collection:
 * The `for` loop statement ends in a colon, `:`
 * The *code block* is **indented** with a `tab` (`\t`)
 
-## `for` loop cycles
-
-<img src="images/loops_image.png" height="600px" />
 
 ## Counting things
 
@@ -637,9 +699,9 @@ for idx, val in enumerate("aeiou"):
     print(idx, val)
 ```
 
-## <img src="images/exercise.png" height="75px" /> Exercise 09 (5min)
+## Using `enumerate()`
 
-* Can you write a loop using enumerate that solves the equation
+* We can write a loop using enumerate that solves the equation
 
 $$y = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4$$
 
@@ -719,6 +781,8 @@ print("your list:", your_list)
 ```
 
 **LIVE DEMO**
+
+![progress check](images/red_green_sticky.png)
 
 ## Nested `list`s
 

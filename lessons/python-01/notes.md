@@ -2,6 +2,12 @@
 
 These notes are a guide to the speaker, as they present the material.
 
+## Before you start
+
+* Test your `Jupyter` installation and make sure you can connect to the kernel.
+
+## Slides
+
 ----
 **SLIDE** Building Programs With Python (1)
 
@@ -9,44 +15,101 @@ These notes are a guide to the speaker, as they present the material.
 **SLIDE** INTRODUCTION
 
 ----
-**SLIDE** GOAL 1
+**SLIDE** WHY ARE WE HERE?
 
-* We are teaching programming, not `Python` *per se*
-* We need to use *some* language, though
-* Python is free, and likely to be usable on your machine
-* Python is widely-used, and there's lots of support online
-* It can be easier for novices to pick up than other languages
-* You should use what is common in your area/with your colleagues
-* The principles of programming are the same in other languages
+* We're here to learn **how to program**
+* This is a way to **solve problems in your research** through making a computer do work **quickly** and **accurately**
+* You'll build **functions** that do specific, defined tasks
+* You'll **automate** those functions to perform tasks over and over again (in various combinations)
+* You'll **manipulate data**, which is at the heart of all academia
+* You'll learn some **file input/output** to make the computer read and write useful information
+* You'll learn some **Data structures**, which are ways to organise data so that the computer can deal with it efficiently
 
 ----
-**SLIDE** GOAL 2
+**SLIDE** XKCD
 
-* We're using a motivating example of data analysis
-* Data is in plain text, tabular (CSV)
-* Data represents patients and daily measurements
-* We're going to analyse the data
-* We're going to visualise the data
+* This cartoon is a *little* flippant, but only a bit
+* The principles of a programming language like Perl are universal
+* Many concepts are **universal across programming languages**
+* **Learning one programming language will speed up the process of learning others**
+* **Q: HOW MANY PEOPLE HERE HAVE EXPERIENCE OF AT LEAST ONE PROGRAMMING LANGUAGE?**
+* What the more experienced here encounter should be recognisable to them
+
+----
+**SLIDE** HOW ARE WE DOING THIS?
+
+* We'll be learning how to program **using Python**
+* **Why Python?**
+* We need to use *some* language
+* Python is free, with good documentation and lots of books and online courses.
+* Python is widely-used in academia, and there's lots of support online
+* It can be easier for novices to pick up than other languages
+* **We won't be covering the entire language in detail**
+* **We will be using some long-handed ways of doing things to keep them clear for novices**
+
+----
+**SLIDE** NO, I MEAN "*HOW* ARE WE DOING THIS?"
+
+* We'll use **two tools to write Python**
+* The **bulk of the course will be in the `Jupyter` notebook**
+* `Jupyter` is **good for exploring data, prototyping code, data-wrangling, and teaching**
+* However, it's **not so good for writing "production code"** in a general sense
+* So, we'll also spend a little bit of time writing code in a **text editor**
+* Text editors are part of the **edit-save-execute** cycle, which is how much code is written
+* There are also specialist **integrated development environments (IDEs)** for Python that are extremely useful for developers, but we'll not be using them
+
+----
+**SLIDE** DO I NEED TO USE PYTHON AFTERWARDS?
+
+* **No.**
+* The lesson and principles are general, we're just teaching in Python
+* What you learn here will be relevant in other languages
+* If your field or colleagues use another language in preference, **there may be very good reasons for that**, and they **may be able to offer detailed, relevant support and help to you in that language**. This is valuable.
+* Language Wars waste everyone's time.
+
+----
+**SLIDE** WHAT ARE WE DOING?
+
+* We're using **a motivating example of data analysis**
+* We've got some data relating to a new treatment for arthritis, and we're going to **explore it.**
+* Data represents patients and **daily measurements of inflammation**
+* We're going to **analyse** the data
+* We're going to **visualise** the data
 * We're going to get the computer to do this for us
-* Automation is key: fewer human mistakes, easier to apply to other datasets, and share with others (transparency)
+* **Automation** is key: **fewer human mistakes**, easier to **apply to other future datasets**, and share with others (**transparency**)
+* We can also **share our code and results** *via* sites such as GitHub and BitBucket (supplementary information, impact)
 
 ----
 **SLIDE** SETUP
 
+**AT THIS POINT, PUT THE `TERMINAL` ON-SCREEN IN A SINGLE PROJECTOR SETUP, AND MOVE THE SLIDES TO THE DESKTOP**
+
 ----
 **SLIDE** SETTING UP - 1 - **DEMO**
 
-* We want a neat (clean) working environment
-* Change directory to desktop (in terminal or Explorer)
-* Create directory `python-novice-inflammation`
-* Change your working directory to that directory
+* We want a **neat (clean) working environment**: always a good idea when starting a new project - it helps for when you might want to use `git` to put it under version control, later.
+* **Change directory to desktop** (in terminal or Explorer)
+* **Create directory** `python-novice-inflammation`
+* **Change your working directory** to that directory
+
+```bash
+cd ~/Desktop
+mkdir python-novice-inflammation
+cd python-novice-inflammation
+```
 
 ----
 **SLIDE** SETTING UP - 2 - **DEMO**
 
-* We need to acquire our data (and also a little code that can help us)
-* Copy `.zip` files from repository (or online!) **PUT IN ETHERPAD**
-* Extract files (command-line or in Explorer)
+* We need to **download our data** (and also a little code that can help us)
+* **Go to Etherpad in browser** [http://pad.software-carpentry.org/2017-05-18-standrews](http://pad.software-carpentry.org/2017-05-18-standrews)
+* **Point out file links** [http://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip](http://swcarpentry.github.io/python-novice-inflammation/data/python-novice-inflammation-data.zip)
+* **Click on file links to download**
+* **Move files** to `python-novice-inflammation` directory
+* **Extract files** - this will create a subdirectory called `data` in that folder
+* **CHECK WHETHER EVERYONE HAS EXTRACTED THE DATA**
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** GETTING STARTED
@@ -54,15 +117,23 @@ These notes are a guide to the speaker, as they present the material.
 ----
 **SLIDE** STARTING `JUPYTER` **DEMO**
 
-* Start `Jupyter` from the command-line
+* Make sure you're in the project directory `python-novice-inflammation`
+* **Start `Jupyter`** from the command-line
+* **CHECK WHETHER EVERYONE SEES A WORKING JUPYTER NOTEBOOK**
+
+```bash
+jupyter notebook
+```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** `JUPYTER` LANDING PAGE **DEMO**
 
-* Landing page is a file browser, like Explorer/Finder
+* **`Jupyter` landing page is a file browser**, like Explorer/Finder
 * Point out `Python` (`.py`) files, `.zip` files, and directories)
-* Point out directory (`data`), and how the file symbols are different.
-* Point out `New` button.
+* Point out directory (`data`), and how the file symbols are different. (*the triangle by the check box gives a key*)
+* **Point out `New` button.**
 
 ----
 **SLIDE** CREATE A NEW NOTEBOOK **DEMO**
@@ -70,94 +141,171 @@ These notes are a guide to the speaker, as they present the material.
 * Click on `New -> Python 3`
 * Point out that there may or may not be other options in the student's installation
 * Indicate the new features on the empty notebook:
-  * The notebook name: `Untitled`
-  * Checkpoint information
-  * The menu bar (`File Edit etc.`) - just like `Word` or `Excel`
-  * An indication of which kernel you're using/language you're in
-  * Icon view (just like `Word` or `Excel`)
+  * The **notebook name**: `Untitled`
+  * **Checkpoint** information (the last time the notebook was saved, for safety)
+  * The **menu bar** (`File Edit etc.`) - just like `Word` or `Excel`
+  * An indication of **which kernel you're using/language you're in**
+  * **Icon view** (just like `Word` or `Excel`)
   * An empty cell with `In [ ]:`
+* Point out the **box around the cell**, and that it **changes colour** when you start to edit
 
 ----
 **SLIDE** MY FIRST NOTEBOOK **DEMO**
 
-* Give the notebook the name `variables`
+* **Give the notebook the name `variables`**
+* Click on `Untitled` and enter the name `variables`
 
 ----
 **SLIDE** CELL TYPES **DEMO**
 
 * `Jupyter` documents are comprised of `cells`
-* A `cell` can be one of several types - we'll focus on two:
-  * `Code`: code in the current kernel/language
-  * `Markdown`: text, with the opportunity for formatting
-* Change the first cell type to `Markdown`
-  * The box colour changes from green to blue
-  * The `In []` prompt disappears
+* A `cell` can be one of **several types** - we'll focus on two:
+  * `Code`: **code** in the current kernel/language
+  * `Markdown`: **text**, with the opportunity for formatting
+* **Change the first cell type to `Markdown`**
+  * The box **colour changes** from green to blue
+  * The `In []` **prompt disappears**
 
 ----
 **SLIDE** MARKDOWN TEXT **DEMO**
 
-* `Markdown` lets us enter formatted text
-  * Headers are preceded by a hash: `#`
-  * The level of header is determined by the number of hashes: `#`
-  * Italics are shown by enclosing text in single asterisks: `*italic*`
-  * Typewriter text/code is shown by enclosing in backticks: ```
-  * LaTeX can be entered within dollar signs `$`
+* `Markdown` lets us **enter formatted text**
+  * **Headers** are preceded by a hash: `#`
+  * The **level of header** is determined by the number of hashes: `#`
+  * **Typewriter text/code** is shown by enclosing in backticks: ```
+  * **Italics** are shown by enclosing text in single asterisks: `*italic*`
+  * **LaTeX** can be entered within dollar signs `$`
 * Press `Shift + Enter` to execute a cell
 * The cell is rendered, and a new cell appears beneath the executed cell
+
+```markdown
+# Variables in Python
+
+## Python as a calculator
+
+We can use `Python` as a calculator by typing mathematical statements
+into a code cell, and *executing* that cell by pressing `Shift + Enter`.
+
+We will enter the statement $1 + 2$ to see the result.
+```
 
 ----
 **SLIDE** ENTERING CODE **DEMO**
 
-* Mathematical statements can be entered directly into a code cell
+* **Mathematical statements can be entered directly** into a code cell
   * **ENTER `1+2`**
-* Before the cell is executed, note that the `In []` prompt has no value in it
-* Note that the code is colour syntax-highlighted
-  * **EXECUTE THE CELL**
-* Note that after execution, the `In []` prompt now has a number in it to indicate the order in which cells are executed
-* Note also that because there is no place to put the output, a value has been returned as `OUT [1]`, showing the result of the calculation
-* A new code cell is created beneath the executed cell.
-* **ASK THE LEARNERS GO THROUGH THE EXERCISE**
+* **Before the cell is executed, note that the `In []` prompt has no value in it**
+* Note that the **code is colour syntax-highlighted**
+  * **EXECUTE THE CELL** `Shift + Enter`
+* Note that **after execution, the `In []` prompt now has a number in it** to indicate the order in which cells were executed
+* Note also that because there is no place to put the output, **a value has been returned as `OUT [1]`**, showing the result of the calculation
+* **A new code cell is created** beneath the executed cell.
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** EXERCISE 01
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+* **Ask the learners to try some calculator calculations, and demo some of your own**
+
+```python
+2 ** 4
+48 / 2 * (9 + 3)  # AMBIGUOUS!
+48 / (2 * (9 + 3))
+(48 / 2) * (9 + 3)
+1e3 + 1e4
+6 % 2
+7 / 2
+7 % 2
+```
+
+![progress check](images/red_green_sticky.png)
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** MY FIRST VARIABLE
 
 * **TYPE THE MARKDOWN IN A CELL AND EXECUTE**
   * This is to keep the notebook as an example of literate programming (and a handy reference for the students)
+
+```markdown
+## Variables
+
+* Variables are like *named boxes*
+* An item of data goes into the box
+* When we refer to the box/variable name, we get the contents of the box
+```
+
+* **Use a real-life example to hand if possible**
 * You can think of a variable as a labelled box, containing a data item
   * Here, we have a box labelled `Name` - this is the variable name
   * We've put the value `Samia` into the box
-  * **LET'S DO THIS FOR REAL IN PYTHON**
-    * To *assign* a value we use the *equals sign*
-    * The variable name/box label goes on the left, and the data item goes on the right
-    * *Character strings*, or *strings*, are enclosed in quotes
-    * Executing the cell assigns the variable
-  * So now, if we refer to the variable `Name`, we get the value that's in the box: `Samia`
+
+----
+**SLIDE** CREATING A VARIABLE
+
+```python
+name = "Samia"
+```
+
+* **LET'S DO THIS FOR REAL IN PYTHON - follow on from the physical example if possible**
+  * To *assign* a value we use the *equals sign*
+  * The variable name/box label goes on the left, and the data item goes on the right
+  * *Character strings*, or *strings*, are enclosed in quotes
+  * Executing the cell assigns the variable
+* So now, if we refer to the variable `Name`, we get the value that's in the box: `Samia`
+
+![progress check](images/red_green_sticky.png)
+
+----
+**SLIDE** INSPECTING A VARIABLE
+
+* The `print()` function shows contents of a variable
+* **We refer to the name of the variable, and get its contents**
+
+```python
+print(name)
+```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** WORKING WITH VARIABLES
 
-* Lead the students through the code:
+* **Lead the students** through the code:
+
+* Note, we're assigning an integer now (no quotes), but **assignment is the same for all data items**
+* Print `weight_kg` to see its value
 
 ```python
 weight_kg = 55
 print(weight_kg)
+```
+
+* **Variables can be substituted by name wherever a value would go**, in calculations for example
+
+```python
 2.2 * weight_kg
+```
+
+* People may ask about floating point representations here - an introduction is at [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) - put this on the Etherpad.
+
+* **The `print()` function will take more than one argument, separated by commas, and print them**
+
+```python
 print("weight in pounds", 2.2 * weight_kg)
+```
+
+* **Reassigning to the same variable overwrites the old value**
+
+```python
 weight_kg = 57.5
 print("weight in kilograms is now:", weight_kg)
 ```
 
-* Assign an integer (assignment is the same for all data items)
-* Print `weight_kg` to see its value
-* Variables can be substituted by name wherever a value would go
-* The `print()` function will take more than one argument, separated by commas, and print them
-* Reassigning to the same variable overwrites the old value
-
-* **Changing the value of one variable does not change the values of other variables**
-* Lead students through the code
+* **Changing the value of one variable does not automatically change the values of other defined variables**
 
 ```python
 print(weight_kg)
@@ -166,22 +314,27 @@ print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
 weight_kg = 100
 print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
 ```
-* **Although we changed the value in `weight_kg`, we did not change `weight_lb` when we did so**
+
+* **Although we changed the value in `weight_kg`, `weight_lb` did not change when we did so**
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** EXERCISE 02 (5MIN)
 
-* The solution is `3`
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+**MCQ: put up four colours of sticky notes**
+
+* The solution is `2`
 
 ----
 **SLIDE** EXERCISE 03 (5MIN)
 
+**MCQ: put up four colours of sticky notes**
+
 * The code prints `Hopper Grace`
 
-----
-**SLIDE** WHO'S WHO IN MEMORY?
-
-* In a `Jupyter` notebook or `iPython` terminal, `%whos` will list the variables that are in memory, and their contents.
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** DATA ANALYSIS
@@ -189,103 +342,160 @@ print('weight in kilograms:', weight_kg, 'and in pounds:', weight_lb)
 ----
 **SLIDE** START A NEW NOTEBOOK
 
-* Create a new notebook, and give it the name `analysis`
+* **Create a new notebook, and give it the name `analysis`**
+* For this, you can introduce `File -> New Notebook -> Python 3` as a way to create a new notebook
+
+```markdown
+# Data analysis
+
+This notebook introduces the use of `Jupyter` and `Python` for data analysis
+```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** EXAMINE THE DATA
 
+* **SHOW THE TERMINAL ON SCREEN**
 * Use the terminal (`head` from this morning)
  
 ```bash
 head data/inflammation-01.csv
 ```
 
-* Describe plain text, csv format
-* State that we'll use the `numpy` library
+* **Describe the data**: plain text, csv format
+  * One row per patient
+  * One column per day
+  * Values separated by commas
+* **State that we'll use the `numpy` library** to work with this in Python
 
 ----
 **SLIDE** `PYTHON` LIBRARIES
 
-* `Python` contains many basic and general functions and tools
-* Specialised tools are packaged in *libraries*
-* We can call on libraries with the `import` statement, when we need them
+* Most programming languages have **libraries** (or **modules**, or **packages**).
+* **Libraries contain code that's not in the main language** but is useful for something specific - they can define **functions**, **data types**, and whole programs
+* **Libraries add specific functionality to the language** - you import as many as you neeed
+* `Python` has libraries for many types of work and operations
+* **In `Python`, we call on libraries with the `import` statement, when we need them**
 * Importing a library is like getting a new piece of equipment out of the locker and onto the lab bench
-* Libraries add functionality to your current `Python` instance
+* **Import and describe libraries**
 
-----
-**SLIDE** `JUPYTER` MAGIC
-
-* `Jupyter` provides another way to load libraries, through *magics*
-* **Do the `pylab` magic**
-* **Import `numpy` and `seaborn`**
-* Note that warnings about fonts may be normal.
-
-----
-**SLIDE** `NUMPY`, `SEABORN`, `PYLAB`
+```python
+import numpy
+```
 
 * `numpy` is a library that provides functions and pethods to work with arrays and matrices, such as those in your dataset
-* `seaborn` is a library that enables attractive graphs and statistical summaries
-* `pylab` is a library that mimics `MatLab` in `Python`, providing a number of useful tools for numerical operations and visualisation
 
 ----
 **SLIDE** LOAD DATA
 
-* The `numpy` library gives us a function called `loadtxt()` that loads tabular data from a file
-* It's used as `numpy.loadtxt()`
-* *Dotted notation* tells us that `loadtxt()` belongs to `numpy`
-* `loadtxt()` expects two *arguments* or *parameters*
-* The parameter `fname` takes the path to the file we want to load
-* The parameter `delimiter` takes the character that we think separates columns in that file
-* `Python` will accept double- or single-quotes around strings
-* **Execute the line in a cell**
+```markdown
+## Load data
+
+Load comma-separated data from a file
+```
+
+* The `numpy` library gives us a function called **`loadtxt()` that loads tabular data from a file**
+* To use a `function` from a `library`, **the format is usually `library.function()`: *dotted notation***
+* **`loadtxt()` expects two *arguments* or *parameters*** - values it needs to know to work
+* The parameter `fname` takes the **path to the file we want to load**
+* The parameter `delimiter` takes the **character that we think separates columns** in that file
+
+```python
+numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
+```
+
+* **NOTE: This can be a good place to introduce tab-completion!**
+* Here, our function is `numpy.loadtxt()`, and  *Dotted notation* tells us that `loadtxt()` belongs to `numpy`
+* `Python` will accept **double- or single-quotes** around strings
+* **EXECUTE THE CELL**
 
 ----
 **SLIDE** LOADED DATA
 
-* Since we didn't ask `Python` to do anything with the data, it just shows it to us.
+* We didn't ask `Python` to do anything with the data, so it it just shows the data to us.
 * The data display is truncated by default - *ellipses* (`...`) show rows and columns that were excluded for space 
 * Significant digits are not shown
 * **NOTE that integers in the file have been converted to floating point numbers**
-* **Ask the learners to assign the matrix to a variable called `data`**
+* **Ask the learners to assign the matrix to a variable called `data`: MAKE THIS CHANGE IN-PLACE**
+
+```python
+data = numpy.loadtxt(fname="data/inflammation-01.csv", delimiter=",")
+```
+
+* Now when we execute the cell **we see no output**, but `data` now contains the array, which we can see by **printing the variable**
+
+```python
+print(data)
+```
 
 ----
 **SLIDE** WHAT IS OUR DATA? **LIVE DEMO**
 
-* Take the learners through the code:
+* We've loaded some data, but **what is it?**
 
 ```python
 type(data)
-print(data.dtype)
-print(data.shape)
 ```
-
-* `type(data)` is a `numpy.ndarray` - an *n*-dimensional array
-* `print(data.dtype)` tells us that the values in the array are 64-bit floating point numbers
-* `print(data.shape)` tells us that there are 60 rows and 40 columns in the dataset
+* **`Python` sees our data as a special `type`: `numpy.ndarray`**
+* From *dotted notation* we see that `ndarray` belongs to (was defined in) the `numpy` library
+* `ndarray` stands for "n-dimensional array" - so this is **an n-dimensional array from the `numpy` library**
 
 ----
 **SLIDE** MEMBERS AND ATTRIBUTES
 
-* When we created `data` we didn't just create the array, we also created information about the array, called *members* or *attributes*
-* This information belongs to `data` so is accessed in the same way as a module function, through *dotted notation*
+* **Creating our `data` array created a lot of information, too**
+* We created **information about the array** called *attributes*
+* This information belongs to `data` so is **accessed in the same way as a module function**, through *dotted notation*
+
+```python
+print(data.dtype)
+print(data.shape)
+```
+
+* `print(data.dtype)` tells us that the **data type for values in the array** is: 64-bit floating point numbers
+* `print(data.shape)` tells us that there are **60 rows and 40 columns** in the dataset
 
 ----
 **SLIDE** INDEXING ARRAYS
 
-* **Take learners through making notes in the notebook**
-* To get a single element from the array, index using *square bracket* notation - row first, then column
-* In `Python` we index from zero, so the first element is `data[0, 0]`
-* **Do the two `print()` examples**
+* **Take learners through making notes in the notebook: fence blocks**
+
+```markdown
+# Indexing arrays
+
+Arrays are indexed by *row* and *column*, using *square bracket* notation:
+```
+
+* To get a single element from the array, **index using *square bracket* notation** - row first, then column
+
+```python
+data[30, 20] # get entry at row 30, column 20 of the array
+```
+
+* **Execute the cell**
+* In **`Python` we index from zero**, so the first element is `data[0, 0]`
 
 ```python
 print('first value in data:', data[0, 0])
 print('middle value in data:', data[30, 20])
 ```
 
+![progress check](images/red_green_sticky.png)
+
 ----
 **SLIDE** SLICING ARRAYS
 
 * **Take learners through making notes in the notebook**
+
+```markdown
+## Slicing arrays
+
+We select sections of an array by *slicing* it - defining the start and end points of the *slice* in square brackets, separating the start and end with `:` (colon)
+
+The *slice* `0:4` means "start at index 0 and go up to, but not including, index 4"
+```
+
 * To get a section from the array, index using *square bracket* notation - but specify start and end points, separated by a colon
 * The slice `0:4` means start at index zero and go up to, but not including, index 4. So it takes elements `0, 1, 2, 3` (four elements)
 * **Do the two `print()` examples**
@@ -293,7 +503,10 @@ print('middle value in data:', data[30, 20])
 ```python
 print(data[0:4, 0:10])
 print(data[5:10, 0:10])
+print(data[2:4, 2:4])
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** MORE SLICES, PLEASE!
@@ -309,23 +522,50 @@ print('small is:')
 print(small)
 ```
 
+* **QUESTION: What does `:` on its own mean?**
+
+```python
+print(data[0:2, :])
+```
+
 ----
 **SLIDE** EXERCISE 04
 
-* The value is `oxy`, number `3`
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+**MCQ: put up four colours of sticky notes**
+
+* The value is `oxyg`, number `1`
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** ARRAY OPERATIONS
 
-* Arithmetic operations on `array`s are performed elementwise.
-* **Demo the code**
-* Operations with scalars act *elementwise*
-* Operations with two arrays are *elementwise*
+```markdown
+## Array operations
+
+Arithmetic operations on arrays are performed *elementwise*
+
+The `numpy` package provides functions that perform more complex operations on arrays.
+```
+
+* **Arithmetic operations on `array`s are performed elementwise.**
 
 ```python
 doubledata = data * 2.0
+```
+
+* This operation multiplies every array element by 2.0.
+* **Look at the top right corner of the original array**
+
+```python
 print('original:')
 print(data[:3, 36:])
+```
+
+* **Look at the top right corner of the doubled array**
+
+```
 print('doubledata:')
 print(doubledata[:3, 36:])
 ```
@@ -334,37 +574,41 @@ print(doubledata[:3, 36:])
 **SLIDE** `NUMPY` FUNCTIONS
 
 * `numpy` provides functions that can perform *more complex* operations on arrays
-* Some of these operations include statistical summaries: `.mean()`, `.min()`, `.max()` etc.
-* **Demo code**
-* These operations give summaries of the whole array
-* The `data` array also has these summary functions
-
+* Some of the **`numpy` operations include statistical summaries: `.mean()`, `.min()`, `.max()` etc.**
 
 ```python
 print(numpy.mean(data))
+```
+
+* We can asssign the output from these functions to variables
+* **By default, these functions give summaries of the whole array**
+
+```python
 maxval, minval, stdval = numpy.max(data), numpy.min(data), numpy.std(data)
-print('maximum inflammation:', maxval)
-print('minimum inflammation:', minval)
-print('standard deviation:', stdval)
-maxval, minval, stdval = data.max(), data.min(), data.std()
 print('maximum inflammation:', maxval)
 print('minimum inflammation:', minval)
 print('standard deviation:', stdval)
 ```
 
+![progress check](images/red_green_sticky.png)
+
 ----
 **SLIDE** SUMMARY BY PATIENT
 
-* What if we want to get summaries patient-by-patient (row-by-row)?
-* **Demo code**
+* **What if we want to get summaries patient-by-patient (row-by-row)?**
 * We can extract a single row into a variable, and calculate the mean
-* We can also apply the `numpy` function directly, without creating a variable
-* **NOTE: that comments are preceded with a hash `#` and can be placed after a line of code**
-* **EXPLAIN: why leaving comments is good (can do that in all code - not just Jupyter notebooks)**
 
 ```python
 patient_0 = data[0, :] # Row zero only, all columns
 print('maximum inflammation for patient 0:', patient_0.max())
+```
+
+* **NOTE: that comments are preceded with a hash `#` and can be placed after a line of code**
+* * **EXPLAIN: why leaving comments is good (can do that in all code - not just Jupyter notebooks)**
+
+* We can also **apply the `numpy` function directly**, without creating a variable
+
+```python 
 print('maximum inflammation for patient 0:', numpy.max(data[0, :]))
 print('maximum inflammation for patient 2:', numpy.max(data[2, :]))
 ```
@@ -372,132 +616,193 @@ print('maximum inflammation for patient 2:', numpy.max(data[2, :]))
 ---- 
 **SLIDE** SUMMARY OF ALL PATIENTS
 
-* But what if we want to know about all patients at once?
-* Or what if we want an average inflammation per day?
+* But **what if we want to know about all patients at once?**
+* Or **what if we want an average inflammation per day?**
 * Writing one line per row, or per column, is likely to lead to mistakes and typos
-* We can instead specify which axis a function applies to
+* **We can specify which axis a function applies to**
+
+* **MOVE SLIDE TO SCREEN TO DEMONSTRATE AXES 0 AND 1**
+* 
 * Specifying `axis=0` makes the function work on columns (days)
 * Specifying `axis=1` makes the function work on rows (patients)
+
+* **RETURN NOTEBOOK TO SCREEN**
 
 ----
 **SLIDE** `NUMPY` OPERATIONS ON AXES
 
-* **Demo the code**
+* **`numpy` functions take an `axis=` parameter** which controls the axis for summary statistic calculations.
 
 ```python
-print(numpy.max(data, axis=1))
-print(data.mean(axis=0))
+print(numpy.max(data, axis=1))  # max value for each patient
+print(numpy.mean(data, axis=0)) # mean value on each day
+```
+
+![progress check](images/red_green_sticky.png)
+
+----
+**SLIDE** VISUALISATION
+
+----
+**SLIDE** VISUALISATION
+
+* **Start a new `markdown` notebook**
+
+```markdown
+# Visualisation
+
+> "The purpose of computing is insight, not numbers" - Richard Hamming
+
+The best way to gain insight is often to visualise data.
+```
+
+* **Visualisation is a large topic that deserves more attention**
+
+----
+**SLIDE** `JUPYTER` MAGIC
+
+* **`Jupyter` provides another way to control libraries, through *magics***
+* `matplotlib` is the *de facto* standard plotting library in `Python`
+* **Do the `matplotlib` magic**
+* Note that warnings about fonts may be normal.
+
+```python
+%matplotlib inline
+import matplotlib.pyplot
+```
+
+* **Import `numpy` and `seaborn`**
+* `seaborn` is a library that enables attractive graphs and statistical summaries
+
+```python
+import numpy
+import seaborn
 ```
 
 ----
-**SLIDE** VISUALISATION
+**SLIDE** Load data
 
-----
-**SLIDE** VISUALISATION
-
-* **Start a new `markdown` cell**
-* Outline how visualisation is a large topic that deserves more attention
-* Show off the SSI course materials
-
-----
-**SLIDE** `MATPLOTLIB`
-
-* There's no "official" plotting library or graphics library in `Python`
-* `matplotlib` is the `de facto` standard
-* **lots of tools are built on `matplotlib`**
-* We imported `seaborn`, which makes `matploltlib` output a bit more publication-ready
-* We used `%pylab inline`, which puts `matplotlib` output in the notebook
-* **Demo code**
+* We want to visualise our data, and so we need to load it into a variable in the notebook again
+* **Load the data again**
 
 ```python
-import matplotlib.pyplot
-image = matplotlib.pyplot.imshow(data)
+data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 ```
 
 ----
 **SLIDE** `MATPLOTLIB` `.IMSHOW()` 
 
 * The `.imshow()` function converts matrix values into an image
-* Here, small values are white, and large values are black (*8you can change this colour scheme…**)
-* From the image, we cna see inflammation rising and falling over a 40-day period for all patients.
+
+```python
+image = matplotlib.pyplot.imshow(data)
+```
+
+* Here, small values are white, and large values are black (**you can change this colour scheme with other settings…**)
+* From the image, we can see **inflammation rising and falling** over a 40-day period for all patients.
+* **QUESTION: does this look reasonable?**
 
 ----
 **SLIDE** `MATPLOTLIB` `.PLOT()`
 
-* `.plot()` shows a conventional line graph
-* We're going to use it to plot the average inflammation level on each day of the study
+* **`.plot()` shows a conventional line graph**
+* We're going to use it to **plot the average inflammation level on each day of the study**
 * We'll create the variable `ave_inflammation` and use `numpy.mean()` on axis `0` of the data
-* We plot the data with `matplotlib`
-* **Demo the code**
 
 ```python
 ave_inflammation = numpy.mean(data, axis=0)
 ave_plot = matplotlib.pyplot.plot(ave_inflammation)
 ```
 
-* **Ask students if the data looks reasonable?**
-* The data does not look reasonable. Biologically, we expect a sharp rise in inflammation, followed by a slow tail-off
+* **NOTE: ask students if the data looks reasonable?**
+* The **data does not look reasonable**. Biologically, we expect a sharp rise in inflammation, followed by a slow tail-off
 
 ----
 **SLIDE** INVESTIGATING DATA
 
-* Since our plot of `.mean()` values looks artificial, let's check on other statistics to see if we can see what's going on.
-* **NOTE we're not defining a variable, this time**
-* **Demo code**
+* Since **our plot of `.mean()` values looks artificial, let's check on other statistics** to see if we can see what's going on.
+* We'll plot the maximum value by day
 
 ```python
 max_plot = matplotlib.pyplot.plot(numpy.max(data, axis=0))
+```
+* **NOTE we're not defining a variable, this time**
+
+```python
 min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
 ```
 
 * **Ask students if the data looks reasonable?**
 * The data looks very artificial. The maxima are completely smooth, but the minima are a step function.
-* **NOTE we would not have noticed this without visualisation**
+* **NOTE: we would not have noticed this without visualisation**
 
 ----
 **SLIDE** EXERCISE 05
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
 
 ```python
 std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
 ```
 
+![progress check](images/red_green_sticky.png)
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
+
 ----
 **SLIDE** FIGURES AND SUBPLOTS
 
-* **Demo code**
-* The code needs to all go in a single cell
+* **THE CODE ALL NEEDS TO GO IN ONE CELL, BUT WE CAN EXECUTE AFTER EACH SECTION TO SHOW BUILD-UP**
+* We can put all three plots we just drew into a single figure
+* To do this, we use `matplotlib` to **create a figure**, and put it in a variable called `fig`
 
 ```python
 fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))  # Create a figure object
+```
+
+* The `figsize` argument specifies the *width*, then the *height* of the figure being produced, in inches
+* We then **create three *axes*** - these are the variables that hold the individual plots
+* Using the `.add_subplot()` function, we need to specify three things:
+  * number of rows, number of columns, which cell this figure goes into
+  * **THIS NEEDS TO BE DRAWN OUT ON THE BOARD**
+
+```python
 axes1 = fig.add_subplot(1, 3, 1)                     # Add three subplots
 axes2 = fig.add_subplot(1, 3, 2)
 axes3 = fig.add_subplot(1, 3, 3)
-axes1.set_ylabel('average')                          # Label and plot the graphs
-axes1.plot(numpy.mean(data, axis=0))
-axes2.set_ylabel('max')
-axes2.plot(numpy.max(data, axis=0))
-axes3.set_ylabel('min')
-axes3.plot(numpy.min(data, axis=0))
-fig.tight_layout()                                   # tidy the figure
 ```
 
-* **This is the most demanding code you will write, so far**
-* We can put all three plots we just drew into a single figure
-* To do this, we use `matplotlib` to create a figure, and put it in a variable called `fig`
-  * The `figsize` argument specifies the *width*, then the *height* of the figure being produced, in inches
-* We then create three *axes* - these are the variables that hold the individual plots
-* Using the `.add_subplot()` function, we need to specify three things:
-  * number of rows, number of columns, which cell this figure goes into
-  * **This might need to be drawn out on the board**
 * Once we've created our plot axes, we can add labels and plots to each of them in turn
 * Plot axes properties are usually changed using the `.set_<something>()` syntax
   * Here we're changing only the label on the *y*-axis
+
+```python
+axes1.set_ylabel('average')                          # Label the graphs
+axes2.set_ylabel('max')
+axes3.set_ylabel('min')
+```
+  
 * We can plot on an axis by using its `.plot()` function
   * As before, we can pass the output from the `numpy.max()` function directly
+
+```python
+axes1.plot(numpy.mean(data, axis=0))                 # Plot the graphs
+axes2.plot(numpy.max(data, axis=0))
+axes3.plot(numpy.min(data, axis=0))
+```
+
 * Finally, we'll tighten up the presentation by using `fig.tight_layout()` - a function that moves the axes until they are visually pleasing.
+
+```python
+fig.tight_layout()                                   # tidy the figure
+```
+
+* **This is the most demanding code you have written, so far! ROUND OF APPLAUSE FOR YOURSELVES!**
 
 ----
 **SLIDE** EXERCISE 06
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
 
 * Note that it helps to change `figsize`
 * Otherwise the only change is in `add_subplot()`
@@ -516,6 +821,12 @@ axes3.plot(numpy.min(data, axis=0))
 fig.tight_layout()                                   # tidy the figure
 ```
 
+![progress check](images/red_green_sticky.png)
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
+
+* **NOW, TO DO MORE INTERESTING THINGS, WE NEED TO LEARN A LITTLE MORE ABOUT PROGRAMMING**
+
 ----
 **SLIDE** LOOPS
 
@@ -524,12 +835,18 @@ fig.tight_layout()                                   # tidy the figure
 
 * Create a new notebook, and give it the name `loops`
 
+```markdown
+## Loops
+
+*Loops* allow us to repeat operations on a series of items.
+```
+
 ----
 **SLIDE** MOTIVATION
 
 * We wrote code that plots values of interest from our dataset
-* **BUT** soon we're going to get dozens of datasets to analyse
-* So, we need to tell the computer to repeat our plots and analysis on each dataset
+* **BUT** soon we're going to get **dozens of datasets** to analyse
+* So, we need to tell the computer to **repeat our plots and analysis on each dataset**
 * We're going to do this with `for` loops
 * **NOTE: `for` loops are a fundamental method for program control across nearly every programming language**
 * **NOTE: `for` loops in python work just like those the learners saw in `bash`, but are syntactically different**
@@ -537,78 +854,76 @@ fig.tight_layout()                                   # tidy the figure
 ----
 **SLIDE** SPELLING BEE
 
-* If we want to spell a word one letter at a time, we can *index* each letter in turn
-* **Demo code**
+* If we want to spell a word, like 'lead' one letter at a time
 
 ```python
 word = "lead"
+```
+
+* We can *index* each letter in turn (just like elements of an array)
+
+```python
 print(word[0])
 print(word[1])
 print(word[2])
 print(word[3])
 ```
 
-* But this is bad - **Why?**
-* The approach doesn't scale - what if our word is hundreds of letters long?
-* If our word is longer than the indices, we don't get all the data; if it's shorter, we get an error.
-  * **demonstrate with `oxygen` and `tin`**
+* But this has some problems - **ASK LEARNERS WHAT PROBLEMS THEY SEE**
+* The **approach doesn't scale** - what if our word is hundreds of letters long?
+* **What if our word is longer than the indices?** We don't get all the data; if it's shorter, we get an error.
+* **demonstrate with `oxygen` and `tin` - MODIFY THE WORD IN PLACE**
 
 ----
 **SLIDE** `FOR` LOOPS
 
-* `for` loops perform an operation *for* every item *in* a collection
-* **Demo code**
+* **`for` loops perform an operation *for* every item *in* a collection**
+* **REPLACE THE INDEXING AND DEMO FOR `oxygen`, `lead`, and `tin`**
 
 ```python
-word = "lead"
 for char in word:
     print(char)
 ```
 
-* This has two advantages - it's shorter code (less opportunity for error), and it's more flexible and robust - it doesn't matter how long `word` is, the code will still spell it out one letter at a time
-  * **demonstrate with `oxygen` and `tin`**
+* Why is this better? **ASK THE LEARNERS**
+* **It's shorter code** (less opportunity for error)
+* **It's more flexible and robust** - it doesn't matter how long `word` is, the code will still spell it out one letter at a time
   
 ----
 **SLIDE** BUILDING `FOR` LOOPS
 
 * The general loop syntax is defined by a `for` statement, and a *code block*
 
-```python
+```markdown
+The general loop syntax is
+
 for element in collection:
-    <do things with element>
+    <do something with element>
 ```
 
-* The `for` loop statement ends in a colon, `:`
+* The `for` loop **statement ends in a colon, `:`**
 * The *code block* is **indented** with a `tab` (`\t`)
   * **Everything indented immediately below the `for` statement is part of the `for` loop**
   * **There is no command or statement to signify the end of the loop body - only a change in indentation**
   * This is quite different from most other languages (and some people hate `Python` because of it)
-* **Demonstrate**
+* **DEMO THE CODE BELOW**
 
 ```python
 for char in word:
     print(char)
-    print("I'm in the loop!")
+    print("I'm in the loop")
     # This is a comment
-    print("I'm also in the loop!")
+    print("Still in the loop")
     
-    print("Still in the loop!")
-print("This line is not part of the loop")    
+    print("I'm in the loop as well")
+print("Not in the loop")
 ```
-
-----
-**SLIDE** `FOR` LOOP CYCLES
-
-![`for` loop image](images/loops_image.png)
-
-* In this image, each successive character of `word` is placed, one at a time, in the variable `char`.
-  * In each cycle of the loop, the contents of the variable `char` are printed
-  * Once the code block is complete, the next cycle of the loop starts
 
 ----
 **SLIDE** COUNTING THINGS
 
-* **Ask the learners what output they expect from the code below**
+* Code in a `for` loop can still see variables defined outside the loop
+* **PUT THE CODE INTO A CELL:**
 
 ```python
 length = 0
@@ -617,37 +932,55 @@ for vowel in 'aeiou':
 print('There are', length, 'vowels')
 ```
 
-* **Demo the code**
+* **Ask the learners what output they expect**
 * Talk through the operations of the loop, if necessary
 
 ----
 **SLIDE** LOOP VARIABLES
 
-* The *loop variable* still exists once the loop is finished
-* **Demo code**
+* The *loop variable* alsp still exists once the loop is finished
+* **PUT CODE IN A CELL**
 
 ```python
 letter = 'z'
+print(letter)
 for letter in 'abc':
     print(letter)
 print('after the loop, letter is', letter)
 ```
 
+* **ASK THE LEARNERS WHAT OUTPUT THEY EXPECT**
 * The value of `letter` is `c`, the last updated value in the loop - not `z`, which would be the case if the loop variable only had scope within the loop
 
 ----
 **SLIDE** `RANGE()`
 
-* The `range()` function creates a sequence of numbers.
+* **Make a markdown cell**
+
+```markdown
+## `range()`
+
+The `range()` function creates a sequence of numbers
+```
+
+* The `range()` function creates a **sequence of numbers.**
 * The sequence depends on the number and value of arguments given
-* **Demo code - loop over all three options**
+* **RUN DEMO CODE BELOW**
 
 ```python
-range(3)
-range(2, 5)
-range(3, 10, 3)
-for val in range(3, 10, 3):
+seq = range(3)
+print("Range is:", seq)
+for val in seq:
     print(val)
+```
+
+* **Substitute other ranges and run again**
+
+```python
+seq = range(3)
+seq = range(2, 5)
+seq = range(3, 10, 3)
+seq = range(10, 0, -1)
 ```
 
 * A single value *n* gives the sequence `[0, ..., n-1]`
@@ -657,6 +990,8 @@ for val in range(3, 10, 3):
 
 ----
 **SLIDE** EXERCISE 07
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
 
 ```python
 result = 1
@@ -675,16 +1010,48 @@ for char in instr:
     outstr =  char + outstr
 print(outstr)
 ```
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
-**SLIDE** EXERCISE 09
+**SLIDE** `enumerate()`
+
+```markdown
+## `enumerate()`
+
+The `enumerate()` function creates paired indices and values for elements of a sequence
+```
+
+* **DEMO CODE BELOW**
+
+```python
+seq = enumerate('aeiou')
+print("Sequence is:", seq)
+for idx, val in seq:
+    print(idx, val)
+ ```
+
+----
+**SLIDE** USING `enumerate()`
+
+* We can use enumerate to index lists in order, which can be very useful in a variety of circumstances
+* **PUT THE MARKDOWN IN THE NOTEBOOK**
+
+```markdown
+Calculate $y$ when $x=5$ when the coefficients are `coeffs = [2, 4, 3, 2, 1]`:
+
+$$y = a_0 + a_1 x + a_2 x^2 + a_3 x^3 + a_4 x^4$$
+```
+
+We can solve this with a little `Python`
 
 ```python
 x = 5
 coeffs = [2, 4, 3, 2, 1]
+
 y = 0
 for idx, val in enumerate(coeffs):
     y = y + val * (x ** idx)
+
 print(y)
 ```
 
@@ -694,37 +1061,66 @@ print(y)
 ----
 **SLIDE** START A NEW NOTEBOOK
 
+```markdown
+# Lists
+
+Lists are a built-in `Python` datatype, describing ordered collections of elements.
+
+Lists are defined by comma-separated values, in square brackets.
+``` 
+
 ----
 **SLIDE** LISTS
 
-* `list`s are a built-in `Python` datatype, denoting ordered collections of elements
-* `list`s are defined by square brackets, and comma-separated values
-* **Demo code**
+* Lists are defined as ordered lists of values, in square brackets, separated by commas
 
 ```python
 odds = [1, 3, 5, 7]
 print('odds are:', odds)
+```
+
+* They can be indexed and sliced, as seen for arrays
+
+```python
 print('first and last:', odds[0], odds[-1])
+print(odds[2:])
+```
+
+* They can be iterated over, in loops
+
+```python
 for number in odds:
     print(number)
 ```
 
-* They can be indexed and sliced, as seen for arrays
-* They can be iterated over, in loops
-
 ----
 **SLIDE** MUTABILITY
 
-* `list`s and `string`s are both sequences
-* **BUT** you can change the elements in a list, after it is created: **lists are mutable**
-* `string`s are **NOT** mutable
-* **Demo code**
+```markdown
+## Mutability
+
+`Python` has a concept of mutability. Items that can be changed in-place are *mutable*. Those that can't are *immutable*.
+
+Lists are *mutable*, strings are *immutable*.
+```
+
+* `list`s and `string`s are both sequences, **BUT** you can change the elements in a list, after it is created: **lists are mutable**
 
 ```python
 names = ['Newton', 'Darwing', 'Turing'] # typo in Darwin's name
 print('names is originally:', names)
+```
+
+* **We have a typo - let's correct it**
+
+```
 names[1] = 'Darwin' # correct the name
 print('final value of names:', names)
+```
+
+* `string`s are **NOT** mutable
+
+```python
 name = 'Darwin'
 name[0] = 'd'
 ```
@@ -732,14 +1128,20 @@ name[0] = 'd'
 ----
 **SLIDE** CHANGER DANGER
 
-* There are risks associated with modifying lists in-place
-* **Demo code**
+* **There are risks associated with modifying lists in-place**
+* Rather than make copies of lists, when assigned to more than one variable, `Python` will make *reference* to the original list
+* **DEMO CODE**
 
 ```python
 my_list = [1, 2, 3, 4]
 your_list = my_list
-my_list[1] = 0
 print("my list:", my_list)
+my_list[1] = 0
+```
+
+* **ASK LEARNERS WHAT THEY THINK `your_list` contains**
+
+```python
 print("your list:", your_list)
 ```
 
@@ -748,8 +1150,8 @@ print("your list:", your_list)
 ----
 **SLIDE** LIST COPIES
 
-* To avoid this kind of effect, you can make a *copy* of a `list` by *slicing* it, or using the `list()` function that returns a new list
-* **Demo code**
+* To a**void this kind of effect, you can make a *copy* of a `list` by *slicing* it**, or using the `list()` function that returns a new list
+* **DEMO CODE - MODIFY THE CODE ABOVE IN-PLACE IN THE NOTEBOOK **
 
 ```python
 my_list = [1, 2, 3, 4]
@@ -771,40 +1173,60 @@ print("my list:", my_list)
 print("your list:", your_list)
 ```
 
+![progress check](images/red_green_sticky.png)
+
 ----
 **SLIDE** NESTED LISTS
 
-* `list`s can contain any datatype, even other lists
+* **ADD MARKDOWN CELL**
+
+```markdown
+## Nested `list`s and `list` functions
+
+A `list` can contain any other datatype - even another `list`!
+```
+
+* **`list`s can contain any datatype, even other lists**
 * Imagine we have a grocery store with three shelves, and the items on the shelves are arranged with {pepper, zucchini, onion} on the top shelf, {cabbage, lettuce, garlic} on the middle shelf, and {apple, pear, banana} on the lower shelf. 
-* We can represent this in a *nested list*: one list per shelf, and a list that contains the three lists, to represent the grocery store.
+* **We can represent this in a *nested list***: one list per shelf, and a list that contains the three lists, to represent the grocery store.
 * **Demo code**
 
 ```python
-x = [['pepper', 'zucchini', 'onion'],
-     ['cabbage', 'lettuce', 'garlic'],
-     ['apple', 'pear', 'banana']]
+shelves = [['pepper', 'zucchini', 'onion'],
+           ['cabbage', 'lettuce', 'garlic'],
+           ['apple', 'pear', 'banana']]
 ```
 
 **NOTE: This should remind you of the `numpy` array you loaded earlier!**
 **Work through the code below**
 
 ```python
-print([x[0]])
-print(x[0])
-print(x[0][0])
+print(shelves[0])
+print([shelves[0]])
+print(shelves[0][0])
 ```
 
 ----
 **SLIDE** `LIST` FUNCTIONS
 
 * `list`s are `Python` objects and have a number of useful functions to modify their contents
-* **Demo code**
+* `.append()` adds a value to the end of the list
 
 ```python
 odds.append(9)
 print("odds after adding a value:", odds)
+```
+
+* `.reverse()` reverses the order of list items
+
+```python
 odds.reverse()
 print("odds after reversing:", odds)
+```
+
+* `.pop()` returns the last item in the list, removing it from the list
+
+```python
 print(odds.pop())
 print("odds after popping:", odds)
 ```
@@ -812,12 +1234,19 @@ print("odds after popping:", odds)
 ----
 **SLIDE** OVERLOADING
 
+* We can add (`+`) and multiply (`*`) lists, even though they're not really arithmetic operations
 * *Overloading* refers to an *operator* (e.g. `+`) having more than one meaning, depending on the thing it operates on.
+
 
 ```python
 vowels = ['a', 'e', 'i', 'o', 'u']
 vowels_welsh = ['a', 'e', 'i', 'o', 'u', 'w', 'y']
 print(vowels + vowels_welsh)
+```
+
+* **NOTE: multiplication of lists does not work like multiplication of `numpy` arrays**
+
+```python
 counts = [2, 4, 6, 8, 10]
 repeats = counts * 2
 print(repeats)
