@@ -575,6 +575,8 @@ Can you create a plot showing the standard deviation (`numpy.std()`) of the infl
 
 Can you modify the last plot to display the three graphs on top of one another, instead of side by side?
 
+![progress check](images/red_green_sticky.png)
+
 # LOOPS
 
 ## Start a new notebook

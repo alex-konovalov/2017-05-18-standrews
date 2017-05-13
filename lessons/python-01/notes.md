@@ -739,49 +739,70 @@ min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
 ----
 **SLIDE** EXERCISE 05
 
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+
 ```python
 std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
 ```
 
 ![progress check](images/red_green_sticky.png)
 
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
+
 ----
 **SLIDE** FIGURES AND SUBPLOTS
 
-* **Demo code**
-* The code needs to all go in a single cell
+* **THE CODE ALL NEEDS TO GO IN ONE CELL, BUT WE CAN EXECUTE AFTER EACH SECTION TO SHOW BUILD-UP**
+* We can put all three plots we just drew into a single figure
+* To do this, we use `matplotlib` to **create a figure**, and put it in a variable called `fig`
 
 ```python
 fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))  # Create a figure object
+```
+
+* The `figsize` argument specifies the *width*, then the *height* of the figure being produced, in inches
+* We then **create three *axes*** - these are the variables that hold the individual plots
+* Using the `.add_subplot()` function, we need to specify three things:
+  * number of rows, number of columns, which cell this figure goes into
+  * **THIS NEEDS TO BE DRAWN OUT ON THE BOARD**
+
+```python
 axes1 = fig.add_subplot(1, 3, 1)                     # Add three subplots
 axes2 = fig.add_subplot(1, 3, 2)
 axes3 = fig.add_subplot(1, 3, 3)
-axes1.set_ylabel('average')                          # Label and plot the graphs
-axes1.plot(numpy.mean(data, axis=0))
-axes2.set_ylabel('max')
-axes2.plot(numpy.max(data, axis=0))
-axes3.set_ylabel('min')
-axes3.plot(numpy.min(data, axis=0))
-fig.tight_layout()                                   # tidy the figure
 ```
 
-* **This is the most demanding code you will write, so far**
-* We can put all three plots we just drew into a single figure
-* To do this, we use `matplotlib` to create a figure, and put it in a variable called `fig`
-  * The `figsize` argument specifies the *width*, then the *height* of the figure being produced, in inches
-* We then create three *axes* - these are the variables that hold the individual plots
-* Using the `.add_subplot()` function, we need to specify three things:
-  * number of rows, number of columns, which cell this figure goes into
-  * **This might need to be drawn out on the board**
 * Once we've created our plot axes, we can add labels and plots to each of them in turn
 * Plot axes properties are usually changed using the `.set_<something>()` syntax
   * Here we're changing only the label on the *y*-axis
+
+```python
+axes1.set_ylabel('average')                          # Label the graphs
+axes2.set_ylabel('max')
+axes3.set_ylabel('min')
+```
+  
 * We can plot on an axis by using its `.plot()` function
   * As before, we can pass the output from the `numpy.max()` function directly
+
+```python
+axes1.plot(numpy.mean(data, axis=0))                 # Plot the graphs
+axes2.plot(numpy.max(data, axis=0))
+axes3.plot(numpy.min(data, axis=0))
+```
+
 * Finally, we'll tighten up the presentation by using `fig.tight_layout()` - a function that moves the axes until they are visually pleasing.
+
+```python
+fig.tight_layout()                                   # tidy the figure
+```
+
+* **This is the most demanding code you have written, so far! ROUND OF APPLAUSE FOR YOURSELVES!**
 
 ----
 **SLIDE** EXERCISE 06
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
 
 * Note that it helps to change `figsize`
 * Otherwise the only change is in `add_subplot()`
@@ -799,6 +820,10 @@ axes3.set_ylabel('min')
 axes3.plot(numpy.min(data, axis=0))
 fig.tight_layout()                                   # tidy the figure
 ```
+
+![progress check](images/red_green_sticky.png)
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** LOOPS
