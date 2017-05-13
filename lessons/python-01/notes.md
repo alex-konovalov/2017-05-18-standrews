@@ -222,40 +222,87 @@ We will enter the statement $1 + 2$ to see the result.
 
 ![progress check](images/red_green_sticky.png)
 
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
+
 ----
 **SLIDE** MY FIRST VARIABLE
 
 * **TYPE THE MARKDOWN IN A CELL AND EXECUTE**
   * This is to keep the notebook as an example of literate programming (and a handy reference for the students)
+
+```text
+## Variables
+
+* Variables are like *named boxes*
+* An item of data goes into the box
+* When we refer to the box/variable name, we get the contents of the box
+```
+
+* **Use a real-life example to hand if possible**
 * You can think of a variable as a labelled box, containing a data item
   * Here, we have a box labelled `Name` - this is the variable name
   * We've put the value `Samia` into the box
-  * **LET'S DO THIS FOR REAL IN PYTHON**
-    * To *assign* a value we use the *equals sign*
-    * The variable name/box label goes on the left, and the data item goes on the right
-    * *Character strings*, or *strings*, are enclosed in quotes
-    * Executing the cell assigns the variable
-  * So now, if we refer to the variable `Name`, we get the value that's in the box: `Samia`
+
+----
+**SLIDE** CREATING A VARIABLE
+
+```python
+name = "Samia"
+```
+
+* **LET'S DO THIS FOR REAL IN PYTHON - follow on from the physical example if possible**
+  * To *assign* a value we use the *equals sign*
+  * The variable name/box label goes on the left, and the data item goes on the right
+  * *Character strings*, or *strings*, are enclosed in quotes
+  * Executing the cell assigns the variable
+* So now, if we refer to the variable `Name`, we get the value that's in the box: `Samia`
+
+![progress check](images/red_green_sticky.png)
+
+----
+**SLIDE** INSPECTING A VARIABLE
+
+* The `print()` function shows contents of a variable
+* **We refer to the name of the variable, and get its contents**
+
+```python
+print(name)
+```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** WORKING WITH VARIABLES
 
-* Lead the students through the code:
+* **Lead the students** through the code:
 
 ```python
 weight_kg = 55
 print(weight_kg)
+```
+
+* Note, we're assigning an integer now (no quotes), but **assignment is the same for all data items**
+* Print `weight_kg` to see its value
+
+```python
 2.2 * weight_kg
+```
+
+* **Variables can be substituted by name wherever a value would go**, in calculations for example
+* People may ask about floating point representations here - an introduction is at [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) - put this on the Etherpad.
+
+```python
 print("weight in pounds", 2.2 * weight_kg)
+```
+
+* **The `print()` function will take more than one argument, separated by commas, and print them**
+
+```python
 weight_kg = 57.5
 print("weight in kilograms is now:", weight_kg)
 ```
 
-* Assign an integer (assignment is the same for all data items)
-* Print `weight_kg` to see its value
-* Variables can be substituted by name wherever a value would go
-* The `print()` function will take more than one argument, separated by commas, and print them
-* Reassigning to the same variable overwrites the old value
+* **Reassigning to the same variable overwrites the old value**
 
 * **Changing the value of one variable does not change the values of other variables**
 * Lead students through the code

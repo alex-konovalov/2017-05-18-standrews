@@ -188,9 +188,18 @@ jupyter notebook
 
 * Let's create a variable called `name`, containing `"Samia"`
 
-## Printing a variable
+## Creating a variable
 
 <img src="images/samia_variable.png" />
+
+* To *assign* a value we use the *equals sign*: `=`
+* The variable name/box label goes on the left, and the data item goes on the right
+* *Character strings*, or *strings*, are enclosed in quotes
+* *Executing* the cell assigns the variable
+
+![progress check](images/red_green_sticky.png)
+
+## Inspecting a variable
 
 * The `print()` *function* shows the contents of a variable
 
