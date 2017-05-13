@@ -179,6 +179,8 @@ jupyter notebook
 
 <img src="images/calculator_exercise.png" height="300px" />
 
+![progress check](images/red_green_sticky.png)
+
 ## My first variable
 
 <img src="images/my_first_variable.png" />

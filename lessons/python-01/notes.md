@@ -203,10 +203,24 @@ We will enter the statement $1 + 2$ to see the result.
 
 ![progress check](images/red_green_sticky.png)
 
-* **ASK THE LEARNERS GO THROUGH THE EXERCISE**
-
 ----
 **SLIDE** EXERCISE 01
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+* **Ask the learners to try some calculator calculations, and demo some of your own**
+
+```python
+2 ** 4
+48 / 2 * (9 + 3)  # AMBIGUOUS!
+48 / (2 * (9 + 3))
+(48 / 2) * (9 + 3)
+1e3 + 1e4
+6 % 2
+7 / 2
+7 % 2
+```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** MY FIRST VARIABLE
