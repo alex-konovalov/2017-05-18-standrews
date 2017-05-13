@@ -485,15 +485,30 @@ print(data.mean(axis=0))
 
 * [https://github.com/widdowquinn/Teaching-Data-Visualisation](https://github.com/widdowquinn/Teaching-Data-Visualisation)
 
-## `matplotlib`
+## `Jupyter` Magics
 
-* `matplotlib` is the *de facto* standard plotting library in `Python`
-* we `import`ed `seaborn` earlier, which makes `matplotlib` output nicer
-* we used `%pylab inline` earlier, which puts `matplotlib` output in the notebook
+* `Jupyter` provides an alternative way to import some libraries: *magics*
+* `matplotlib` is the *de facto* standard plotting library in `Python`, and we import it with a *magic*
 
 ```python
+%matplotlib inline
 import matplotlib.pyplot
-image = matplotlib.pyplot.imshow(data)
+```
+
+* This gives us some extra control of how the library behaves, specific to the `Jupyter` notebook.
+* We import `numpy` and `seaborn` normally
+
+```python
+import numpy
+import seaborn
+```
+
+## Load data
+
+* We need to load the patient data into our new notebook
+
+```python
+data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 ```
 
 **LIVE DEMO**
@@ -501,6 +516,11 @@ image = matplotlib.pyplot.imshow(data)
 ## `matplotlib` `.imshow()`
 
 * `.imshow()` renders matrix values as an image
+
+```python
+image = matplotlib.pyplot.imshow(data)
+```
+
 * small values are white, large values are black
 * inflammation rises and falls over a 40-day period
 
@@ -517,6 +537,7 @@ ave_plot = matplotlib.pyplot.plot(ave_inflammation)
 ```
 
 * **QUESTION: does this look reasonable?**
+
 
 **LIVE DEMO**
 
@@ -537,6 +558,8 @@ min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
 ## <img src="images/exercise.png" height="75px" /> Exercise 05 (10min)
 
 Can you create a plot showing the standard deviation (`numpy.std()`) of the inflammation data for each day across all patients?
+
+![progress check](images/red_green_sticky.png)
 
 ## Figures and subplots
 

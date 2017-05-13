@@ -382,11 +382,9 @@ head data/inflammation-01.csv
 
 ```python
 import numpy
-import seaborn
 ```
 
 * `numpy` is a library that provides functions and pethods to work with arrays and matrices, such as those in your dataset
-* `seaborn` is a library that enables attractive graphs and statistical summaries
 
 ----
 **SLIDE** LOAD DATA
@@ -648,72 +646,95 @@ print(numpy.mean(data, axis=0)) # mean value on each day
 ----
 **SLIDE** VISUALISATION
 
-* **Start a new `markdown` cell**
-* Outline how visualisation is a large topic that deserves more attention
-* Show off the SSI course materials
+* **Start a new `markdown` notebook**
+
+```markdown
+# Visualisation
+
+> "The purpose of computing is insight, not numbers" - Richard Hamming
+
+The best way to gain insight is often to visualise data.
+```
+
+* **Visualisation is a large topic that deserves more attention**
 
 ----
 **SLIDE** `JUPYTER` MAGIC
 
-* **`Jupyter` provides another way to load libraries, through *magics***
+* **`Jupyter` provides another way to control libraries, through *magics***
+* `matplotlib` is the *de facto* standard plotting library in `Python`
 * **Do the `matplotlib` magic**
-* **Import `numpy` and `seaborn`**
 * Note that warnings about fonts may be normal.
 
-----
-**SLIDE** `MATPLOTLIB`
+```python
+%matplotlib inline
+import matplotlib.pyplot
+```
 
-* There's no "official" plotting library or graphics library in `Python`
-* `matplotlib` is the `de facto` standard
-* **lots of tools are built on `matplotlib`**
-* We imported `seaborn`, which makes `matploltlib` output a bit more publication-ready
-* We used `%pylab inline`, which puts `matplotlib` output in the notebook
-* **Demo code**
+* **Import `numpy` and `seaborn`**
+* `seaborn` is a library that enables attractive graphs and statistical summaries
 
 ```python
-import matplotlib.pyplot
-image = matplotlib.pyplot.imshow(data)
+import numpy
+import seaborn
+```
+
+----
+**SLIDE** Load data
+
+* We want to visualise our data, and so we need to load it into a variable in the notebook again
+* **Load the data again**
+
+```python
+data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
 ```
 
 ----
 **SLIDE** `MATPLOTLIB` `.IMSHOW()` 
 
 * The `.imshow()` function converts matrix values into an image
-* Here, small values are white, and large values are black (*8you can change this colour scheme…**)
-* From the image, we cna see inflammation rising and falling over a 40-day period for all patients.
+
+```python
+image = matplotlib.pyplot.imshow(data)
+```
+
+* Here, small values are white, and large values are black (**you can change this colour scheme with other settings…**)
+* From the image, we can see **inflammation rising and falling** over a 40-day period for all patients.
+* **QUESTION: does this look reasonable?**
 
 ----
 **SLIDE** `MATPLOTLIB` `.PLOT()`
 
-* `.plot()` shows a conventional line graph
-* We're going to use it to plot the average inflammation level on each day of the study
+* **`.plot()` shows a conventional line graph**
+* We're going to use it to **plot the average inflammation level on each day of the study**
 * We'll create the variable `ave_inflammation` and use `numpy.mean()` on axis `0` of the data
-* We plot the data with `matplotlib`
-* **Demo the code**
 
 ```python
 ave_inflammation = numpy.mean(data, axis=0)
 ave_plot = matplotlib.pyplot.plot(ave_inflammation)
 ```
 
-* **Ask students if the data looks reasonable?**
-* The data does not look reasonable. Biologically, we expect a sharp rise in inflammation, followed by a slow tail-off
+* **NOTE: ask students if the data looks reasonable?**
+* The **data does not look reasonable**. Biologically, we expect a sharp rise in inflammation, followed by a slow tail-off
 
 ----
 **SLIDE** INVESTIGATING DATA
 
-* Since our plot of `.mean()` values looks artificial, let's check on other statistics to see if we can see what's going on.
-* **NOTE we're not defining a variable, this time**
-* **Demo code**
+* Since **our plot of `.mean()` values looks artificial, let's check on other statistics** to see if we can see what's going on.
+* We'll plot the maximum value by day
 
 ```python
 max_plot = matplotlib.pyplot.plot(numpy.max(data, axis=0))
+```
+* **NOTE we're not defining a variable, this time**
+
+```python
 min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
 ```
 
 * **Ask students if the data looks reasonable?**
 * The data looks very artificial. The maxima are completely smooth, but the minima are a step function.
-* **NOTE we would not have noticed this without visualisation**
+* **NOTE: we would not have noticed this without visualisation**
 
 ----
 **SLIDE** EXERCISE 05
@@ -721,6 +742,8 @@ min_plot = matplotlib.pyplot.plot(numpy.min(data, axis=0))
 ```python
 std_plot = matplotlib.pyplot.plot(numpy.std(data, axis=0))
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** FIGURES AND SUBPLOTS
