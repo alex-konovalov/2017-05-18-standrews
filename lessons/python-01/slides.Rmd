@@ -909,6 +909,9 @@ else:
 
 **LIVE DEMO**
 
+
+![progress check](images/red_green_sticky.png)
+
 ## Combining conditions
 
 * Conditions can be combined using *Boolean Logic*
@@ -955,21 +958,6 @@ print(1 in range(3))
 print(1 in range(2, 10))
 ```
 
-**LIVE DEMO**
-
-## List comprehensions
-
-* We often want to loop over a list of elements and make a decision on the basis of whether the element meets some condition.
-* *List comprehensions* offer a concise way to do this
-
-```python
-letters = 'abcdefghijklmnopqrstuvwxyz'
-vowels = 'aeiou'
-result = [l.upper() for l in letters if l in vowels]
-print(result)
-```
-
-**LIVE DEMO**
 
 # ANALYSING MULTIPLE FILES
 

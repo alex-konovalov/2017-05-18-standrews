@@ -1260,14 +1260,32 @@ print(repeats)
 ----
 **SLIDE** START A NEW NOTEBOOK
 
+* **Call it `choices`**
+* **Add an introduction cell**
+
+```markdown
+# Making Choices
+
+We often want to make the computer perform one task if some condition is true, but a different task if that condition is false.
+```
+
+* **Add the Python code to the markdown**
+
+```python
+if <condition>:
+  <executed if condition is True>
+```
+
 ----
 **SLIDE** CONDITIONALS
 
 * We often want the computer to do `<something>` **`if`** some condition is **true**
-* To do this, we can use an `if` statement
-* `if` statements end in a colon (`:`) and have a *condition* - the *condition* is evaluated and, if found to be `true`, the code block is executed
-* The code block is *indented* as was the case with the `for` loop
-* **Demo code**
+* To do this, we can use an **`if` statement**
+  * **`if` statements end in a colon (`:`)**
+  * **they also have a *condition*** - the *condition* is evaluated and, if found to be `true`, the code block is executed
+  * The code block is *indented* as was the case with the `for` loop
+
+* **EXECUTE CODE**
 
 ```python
 num = 37
@@ -1276,13 +1294,30 @@ if num > 100:
 print('done')
 ```
 
+* **CHANGE NUMBER TO VARIOUS VALUES IN THE SAME CELL**
+
+```python
+num = 137
+num = 100
+```
+
+* **Any condition** that might evaluate to `True` or `False` can be used:
+* **SHOW A DIFFERENT TEST**
+
+```python
+if 'atlas' == 'atlas':
+    print("the same")
+```
+
 ----
 **SLIDE** `IF-ELSE` STATEMENTS
 
-* An `if` statement executes code if the condition evaluates as `true`
-* But what if the condition evaluates as `false`?
-* The `else` structure is like the `if` structure - it ends in a colon (`:`) and the indented code block beneath it executes if the condition is `false`
-* **Demo code**
+* **An `if` statement executes code if the condition evaluates as `true`**
+* But **what if the condition evaluates as `false`?**
+* The **`else` structure** is like the `if` structure
+  * it **ends in a colon (`:`)**
+  * the **indented code block beneath it executes if the condition is `false`**
+* **MAKE CHANGES AND EXECUTE CODE IN EXISTING CELLS**
 
 ```python
 num = 37
@@ -1293,17 +1328,27 @@ else:
 print('done')
 ```
 
+```python
+if 'atlas' == 'atlash':
+    print("the same")
+else:
+    print('different')
+```
+
 ----
 **SLIDE** CONDITIONAL LOGIC
+
+* **OPTIONALLY SHOW THIS SLIDE**
 
 * Describe flowchart
 
 ----
 **SLIDE** `IF-ELIF-ELSE` CONDITIONALS
 
-* We can chain conditional tests together with `elif` (short for `else if`)
-* The `elif` statement structure is the same as the `if` statement structure - the indented code block is executed if the condition is true, and **no previous conditions have been met**.
-* **Demo code**
+* We can **chain conditional tests together with `elif` (short for `else if`)**
+* The `elif` statement structure is the same as the `if` statement structure 
+  * the indented code block is executed if the condition is true, and **no previous conditions have been met**.
+* **EXECUTE DEMO CODE IN EXISTING CELL**
 
 ```python
 num = -3
@@ -1317,12 +1362,15 @@ else:
 
 * **NOTE: the test for equality is a double-equals!**
 
+
+![progress check](images/red_green_sticky.png)
+
 ----
 **SLIDE** COMBINING CONDITIONS
 
-* Conditions can be combined using *Boolean Logic*
+* We can **combine conditions using *Boolean Logic***
 * Operators include `and`, `or` and `not`
-* **Demo code**
+* **EXECUTE CODE IN NEW CELL**
 
 ```python
 if (1 > 0) and (-1 > 0):
@@ -1331,71 +1379,61 @@ else:
     print('at least one part is false')
 ```
 
+* **VARY THE CODE IN PLACE**
+
+```python
+if (4 > 0) and (2 > 0):
+    print('both parts are true')
+else:
+    print('at least one part is false')
+```
+
+```python
+if (4 > 0) or (2 > 0):
+    print('at least one part is true')
+else:
+    print('both parts are false')
+```
+
 ----
-**SLIDE** EXERCISE 10
+**SLIDE** EXERCISE 09
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
 
 * Solution: `C`
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** MORE OPERATORS
 
-* There are two operators you will meet and use frequently
-* `==` (double-equals) is the quality operator, and returns `True` if the left-hand-side value is equal to the right-hand-side value
-* `in` is the membership operator, and returns `True` if the left-hand-side value is in the right-hand-side value
-* **Demo code**
+* **ADD THE MARKDOWN**
+
+```markdown
+## Operators
+
+* `==` (equals)
+* `in`
+```
+
+* These are **two operators** you will meet and use frequently
+* `==` **(double-equals) is the equality operator**, and returns `True` if the left-hand-side value is equal to the right-hand-side value
+* **DEMO CODE**
 
 ```python
 print(1 == 1)
 print(1 == 2)
+```
+
+* `in` is the **membership operator**, and returns `True` if the left-hand-side value is in the right-hand-side value
+* **DEMO CODE**
+
+```python
 print('a' in 'toast')
 print('b' in 'toast')
 print(1 in [1, 2, 3])
 print(1 in range(3))
 print(1 in range(2, 10))
-```
-
-----
-**SLIDE** LIST COMPREHENSIONS
-
-* We often want to loop over a list of elements and make a decision on the basis of whether the element meets some condition.
-* *List comprehensions* offer a concise way to do this
-* **Demo code**
-* We can write a loop that checks letters for whether they're a vowel and, if they are, convert them to upper case and add them to a list.
-
-```python
-letters = 'abcdefghijklmnopqrstuvwxyz'
-vowels = 'aeiou'
-
-result = []
-for l in letters:
-    if l in vowels:
-        result.append(l.upper())
-print(result)
-```
-
-* We can do this in a single line with a *list comprehension*
-* Firstly, we rewrite the loop as a *list comprehension*
-* By enclosing the for l in letters part of the loop in square brackets, we are asking the loop to return a list.
-* By asking directly for l in the brackets, we get the loop to return each element l to us as we go round the loop
-
-```python
-result = [l for l in letters]
-print(result)
-```
-
-* In addition to asking for each element with each cycle around the loop, we can do things with or to that element, such as convert it to upper case by calling its .upper() method/function.
-
-```python
-result = [l.upper() for l in letters]
-print(result)
-```
-
-* Finally, we can add a condition to the list comprehension so that the loop only returns values when the condition evaluates to True.
-* *Here, we require that the letter in l can be found in the vowels string.
-
-```python
-result = [l.upper() for l in letters if l in vowels]
-print(result)
 ```
 
 ----
