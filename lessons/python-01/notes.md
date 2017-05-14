@@ -1362,7 +1362,6 @@ else:
 
 * **NOTE: the test for equality is a double-equals!**
 
-
 ![progress check](images/red_green_sticky.png)
 
 ----
@@ -1399,6 +1398,7 @@ else:
 **SLIDE** EXERCISE 09
 
 * **PUT THE EXERCISE SLIDE ON SCREEN**
+* **MCQ: Put up four stickies**
 
 * Solution: `C`
 
@@ -1442,106 +1442,246 @@ print(1 in range(2, 10))
 ----
 **SLIDE** START A NEW NOTEBOOK
 
+* **Call it `files`**
+* **ADD NEW HEADER CELL**
+
+```markdown
+# Analysing Multiple Files
+
+We're now almost ready to start analysing multiple files of inflammation data.
+```
+
+* **ADD IMPORTS**
+
+```python
+%matplotlib inline
+
+import matplotlib.pyplot
+import numpy
+import seaborn
+```
+
 ----
 **SLIDE** ANALYSING MULTIPLE FILES
 
-* We have received several files of data from the inflammation studies, and we would like to perform the same operations on each of them.
-* We have learned how to open files, read in the data, visualise the data, loop over contents, and make decisions based on that content.
-* Now we need to know how to interact with the *filesystem* to get our data files.
+* We have **received several files of data** from the inflammation studies, and we would like to **perform the same operations on each of them**.
+* We have **learned how to open files, read data, visualise data, loop over data, and make decisions** based on that content.
+* Now we need to know how to **interact with the *filesystem*** to get our data files.
 
 -----
 **SLIDE** THE `OS` MODULE
 
-* To interact with the filesystem, we need to import the `os` module
-* This allows us to interact with the filesystem in the same way, regardless of the operating system we work on
-* **Do imports in notebook**
-* **NOTE: it's usual to abbreviate imported modules, e.g. `numpy` to `np`, if they are used frequently**
+* **New Markdown cell**
+
+```markdown
+## The `os` module
+
+Allows us to interact with the computer's filesystem
+```
+
+* To interact with the filesystem, **we need to import the `os` module**
+* This allows us to interact with the filesystem in the same way, regardless of the operating system we work on! **INTEROPERABILITY AND REPRODUCIBILITY**
+* **IMPORT THE MODULE**
 
 ```python
-%pylab inline
-
-import matplotlib.pyplot
-import numpy as np
 import os
-import seaborn
 ```
 
 ----
 **SLIDE** `OS.LISTDIR`
 
 * The `.listdir()` function lists the contents of a directory
-* Our data is in the `'data'` directory
-* **Demo code**
 
 ```python
-print(os.listdir('data'))
+os.listdir('.')
 ```
 
+* Our data is in the `'data'` directory
+* **Reuse the cell**
+
+```python
+os.listdir('data')
+```
+
+* **We only want `inflammation` data** so we would like to ignore the `small` files
+* We want to turn the list from `os.listdir()` into a list that contains only `inflammation*` files: **use `for` loop and `if` to filter**
 * The list can be filtered with a `for` loop or *list comprehension*
 
 ```python
-files = [f for f in os.listdir('data')]
-print(files)
+for file in os.listdir('data'):
+    if 'inflammation' in file:
+        print(file)
 ```
 
-* We can use the .startswith() function of the `string` object (all the filenames are strings) as the conditional
-* We keep only filenames that start with `inflammation`.
+* We'd like to work with this set of files, so we store it in a variable, called `files`.
+* A suitable data type here is a `list`, and we can populate it one file at a time, using `.append()`
+* **ADAPT THE EXISTING CELL**
 
 ```python
-files = [f for f in os.listdir('data') if f.startswith('inflammation')]
+files = []
+for file in os.listdir('data'):
+    if 'inflammation' in file:
+        files.append(file)
 print(files)
 ```
 
 ----
 **SLIDE** `OS.PATH.JOIN`
 
-* The `os.listdir()` function only returns filenames, not the *path* (relative or absolute) to those files.
-* To construct a path, we can use the `os.path.join()` function. This takes directory and file names, and returns a path built from them, as a string, suitable for the underlying operating system.
+* The **`os.listdir()` function only returns filenames**, not the *path* (relative or absolute) to those files.
+* **WE NEED THE FULL PATH TO A FILE TO BE ABLE TO USE IT**
+* To **construct a path**, we can use the `os.path.join()` function. 
+* `os.path.join()` takes directory and file names, and returns a path built from them as a string, suitable for the underlying operating system.
 * **This is useful for making code shareable and usable on all OS/computers**
-* **Demo code**
+* **EXAMPLE CODE IN NEW CELL**
 
 ```python
-print(os.path.join('data', 'inflammation-01.csv'))
+os.path.join('parent', 'child', 'file.txt')
+os.path.join('data', 'inflammation-01.csv')
+```
+
+* **MODIFY PREVIOUS CELL TO GET**
+
+```python
+files = []
+for file in os.listdir('data'):
+    if 'inflammation' in file:
+        files.append(os.path.join('data', file))
+print(files)
 ```
 
 ----
 **SLIDE** VISUALISING THE DATA
 
-* Now we have all the tools we need to load all the inflammation data files, and visualise the mean, minimum and maximum values in an array of plots.
-  * We can get a list of paths to the data files with `os` and a *list comprehension*
-  * We can load data from a file with `np.loadtxt()`
-  * We can calculate summary statistics with `mp.mean()`, `np.max()`, etc.
-  * We can create figures with `matplotlib`, and arrays of figures with `.add_subplot()`
+* **Add markdown**
+
+```markdown
+## Visualising data
+
+We can now load data from each file in turn, and visualise the mean, minimum and maximum values in an array of plots
+```
+
+* Now **we have all the tools we need** to load all the inflammation data files, and visualise the mean, minimum and maximum values in an array of plots.
+  * We can get a **list of paths to the data files** with `os` and a *list comprehension*
+  * We can **load data from a file** with `numpy.loadtxt()`
+  * We can **calculate summary statistics** with `numpy.mean()`, `numpy.max()`, etc.
+  * We can **create figures** with `matplotlib`, and arrays of figures with `.add_subplot()`
 
 ----
 **SLIDE** VISUALISATION CODE
 
+* **BUILD THE CODE IN STAGES**
+
+* **1 - show that we see each filename in turn**
 ```python
-filenames = [os.path.join('data', f) for f in os.listdir('data')
-             if f.startswith('inflammation')]
+for file in files:
+    print(file)
+```
 
-for f in filenames:
-    print(f)
+* **2 - show the data in each file**
 
-    data = np.loadtxt(fname=f, delimiter=',')
+```python
+for file in files:
+    print(file)
+    
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+    print(data)
+```
 
+* **3 - create a figure for each file**
+
+```python
+for file in files:
+    print(file)
+
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-
     axes1 = fig.add_subplot(1, 3, 1)
     axes2 = fig.add_subplot(1, 3, 2)
     axes3 = fig.add_subplot(1, 3, 3)
+```
 
+* **4 - decorate the axes**
+
+```python
+for file in files:
+    print(file)
+
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+    
+    # decorate axes
     axes1.set_ylabel('average')
-    axes1.plot(np.mean(data, axis=0))
+    axes2.set_ylabel('maximum')
+    axes3.set_ylabel('minimum')
+```
 
-    axes2.set_ylabel('max')
-    axes2.plot(np.max(data, axis=0))
+* **5 - plot the data**
 
-    axes3.set_ylabel('min')
-    axes3.plot(np.min(data, axis=0))
+```python
+for file in files:
+    print(file)
 
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+    
+    # decorate axes
+    axes1.set_ylabel('average')
+    axes2.set_ylabel('maximum')
+    axes3.set_ylabel('minimum')
+    
+    # plot data
+    axes1.plot(numpy.mean(data, axis=0))
+    axes2.plot(numpy.max(data, axis=0))
+    axes3.plot(numpy.min(data, axis=0))
+```
+
+* **6 - tidy and show plot**
+
+```python
+for file in files:
+    print(file)
+
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+    
+    # decorate axes
+    axes1.set_ylabel('average')
+    axes2.set_ylabel('maximum')
+    axes3.set_ylabel('minimum')
+    
+    # plot data
+    axes1.plot(numpy.mean(data, axis=0))
+    axes2.plot(numpy.max(data, axis=0))
+    axes3.plot(numpy.min(data, axis=0))
+    
+    # tidy and show the plot
     fig.tight_layout()
     matplotlib.pyplot.show()
 ```
 
 * **Show the collapse/expand click option in the notebook**
+
+![progress check](images/red_green_sticky.png)
