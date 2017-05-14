@@ -12,6 +12,12 @@ output:
 
 # Introduction
 
+## Etherpad
+
+Please use the Etherpad to take notes/share code, ask questions and explore
+
+* [http://pad.software-carpentry.org/2017-05-18-standrews](http://pad.software-carpentry.org/2017-05-18-standrews)
+
 ## Why are we here?
 
 ### Learn basic concepts of programming
