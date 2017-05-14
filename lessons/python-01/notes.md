@@ -1260,14 +1260,32 @@ print(repeats)
 ----
 **SLIDE** START A NEW NOTEBOOK
 
+* **Call it `choices`**
+* **Add an introduction cell**
+
+```markdown
+# Making Choices
+
+We often want to make the computer perform one task if some condition is true, but a different task if that condition is false.
+```
+
+* **Add the Python code to the markdown**
+
+```python
+if <condition>:
+  <executed if condition is True>
+```
+
 ----
 **SLIDE** CONDITIONALS
 
 * We often want the computer to do `<something>` **`if`** some condition is **true**
-* To do this, we can use an `if` statement
-* `if` statements end in a colon (`:`) and have a *condition* - the *condition* is evaluated and, if found to be `true`, the code block is executed
-* The code block is *indented* as was the case with the `for` loop
-* **Demo code**
+* To do this, we can use an **`if` statement**
+  * **`if` statements end in a colon (`:`)**
+  * **they also have a *condition*** - the *condition* is evaluated and, if found to be `true`, the code block is executed
+  * The code block is *indented* as was the case with the `for` loop
+
+* **EXECUTE CODE**
 
 ```python
 num = 37
@@ -1276,13 +1294,30 @@ if num > 100:
 print('done')
 ```
 
+* **CHANGE NUMBER TO VARIOUS VALUES IN THE SAME CELL**
+
+```python
+num = 137
+num = 100
+```
+
+* **Any condition** that might evaluate to `True` or `False` can be used:
+* **SHOW A DIFFERENT TEST**
+
+```python
+if 'atlas' == 'atlas':
+    print("the same")
+```
+
 ----
 **SLIDE** `IF-ELSE` STATEMENTS
 
-* An `if` statement executes code if the condition evaluates as `true`
-* But what if the condition evaluates as `false`?
-* The `else` structure is like the `if` structure - it ends in a colon (`:`) and the indented code block beneath it executes if the condition is `false`
-* **Demo code**
+* **An `if` statement executes code if the condition evaluates as `true`**
+* But **what if the condition evaluates as `false`?**
+* The **`else` structure** is like the `if` structure
+  * it **ends in a colon (`:`)**
+  * the **indented code block beneath it executes if the condition is `false`**
+* **MAKE CHANGES AND EXECUTE CODE IN EXISTING CELLS**
 
 ```python
 num = 37
@@ -1293,17 +1328,27 @@ else:
 print('done')
 ```
 
+```python
+if 'atlas' == 'atlash':
+    print("the same")
+else:
+    print('different')
+```
+
 ----
 **SLIDE** CONDITIONAL LOGIC
+
+* **OPTIONALLY SHOW THIS SLIDE**
 
 * Describe flowchart
 
 ----
 **SLIDE** `IF-ELIF-ELSE` CONDITIONALS
 
-* We can chain conditional tests together with `elif` (short for `else if`)
-* The `elif` statement structure is the same as the `if` statement structure - the indented code block is executed if the condition is true, and **no previous conditions have been met**.
-* **Demo code**
+* We can **chain conditional tests together with `elif` (short for `else if`)**
+* The `elif` statement structure is the same as the `if` statement structure 
+  * the indented code block is executed if the condition is true, and **no previous conditions have been met**.
+* **EXECUTE DEMO CODE IN EXISTING CELL**
 
 ```python
 num = -3
@@ -1317,12 +1362,14 @@ else:
 
 * **NOTE: the test for equality is a double-equals!**
 
+![progress check](images/red_green_sticky.png)
+
 ----
 **SLIDE** COMBINING CONDITIONS
 
-* Conditions can be combined using *Boolean Logic*
+* We can **combine conditions using *Boolean Logic***
 * Operators include `and`, `or` and `not`
-* **Demo code**
+* **EXECUTE CODE IN NEW CELL**
 
 ```python
 if (1 > 0) and (-1 > 0):
@@ -1331,22 +1378,57 @@ else:
     print('at least one part is false')
 ```
 
+* **VARY THE CODE IN PLACE**
+
+```python
+if (4 > 0) and (2 > 0):
+    print('both parts are true')
+else:
+    print('at least one part is false')
+```
+
+```python
+if (4 > 0) or (2 > 0):
+    print('at least one part is true')
+else:
+    print('both parts are false')
+```
+
 ----
-**SLIDE** EXERCISE 10
+**SLIDE** EXERCISE 09
+
+* **PUT THE EXERCISE SLIDE ON SCREEN**
+* **MCQ: Put up four stickies**
 
 * Solution: `C`
+
+**WHEN FINISHED, GO BACK TO THE NOTEBOOK AND PUT THE SLIDES ON THE DESKTOP**
 
 ----
 **SLIDE** MORE OPERATORS
 
-* There are two operators you will meet and use frequently
-* `==` (double-equals) is the quality operator, and returns `True` if the left-hand-side value is equal to the right-hand-side value
-* `in` is the membership operator, and returns `True` if the left-hand-side value is in the right-hand-side value
-* **Demo code**
+* **ADD THE MARKDOWN**
+
+```markdown
+## Operators
+
+* `==` (equals)
+* `in`
+```
+
+* These are **two operators** you will meet and use frequently
+* `==` **(double-equals) is the equality operator**, and returns `True` if the left-hand-side value is equal to the right-hand-side value
+* **DEMO CODE**
 
 ```python
 print(1 == 1)
 print(1 == 2)
+```
+
+* `in` is the **membership operator**, and returns `True` if the left-hand-side value is in the right-hand-side value
+* **DEMO CODE**
+
+```python
 print('a' in 'toast')
 print('b' in 'toast')
 print(1 in [1, 2, 3])
@@ -1355,155 +1437,372 @@ print(1 in range(2, 10))
 ```
 
 ----
-**SLIDE** LIST COMPREHENSIONS
-
-* We often want to loop over a list of elements and make a decision on the basis of whether the element meets some condition.
-* *List comprehensions* offer a concise way to do this
-* **Demo code**
-* We can write a loop that checks letters for whether they're a vowel and, if they are, convert them to upper case and add them to a list.
-
-```python
-letters = 'abcdefghijklmnopqrstuvwxyz'
-vowels = 'aeiou'
-
-result = []
-for l in letters:
-    if l in vowels:
-        result.append(l.upper())
-print(result)
-```
-
-* We can do this in a single line with a *list comprehension*
-* Firstly, we rewrite the loop as a *list comprehension*
-* By enclosing the for l in letters part of the loop in square brackets, we are asking the loop to return a list.
-* By asking directly for l in the brackets, we get the loop to return each element l to us as we go round the loop
-
-```python
-result = [l for l in letters]
-print(result)
-```
-
-* In addition to asking for each element with each cycle around the loop, we can do things with or to that element, such as convert it to upper case by calling its .upper() method/function.
-
-```python
-result = [l.upper() for l in letters]
-print(result)
-```
-
-* Finally, we can add a condition to the list comprehension so that the loop only returns values when the condition evaluates to True.
-* *Here, we require that the letter in l can be found in the vowels string.
-
-```python
-result = [l.upper() for l in letters if l in vowels]
-print(result)
-```
-
-----
 **SLIDE** ANALYSING MULTIPLE FILES
 
 ----
 **SLIDE** START A NEW NOTEBOOK
 
+* **Call it `files`**
+* **ADD NEW HEADER CELL**
+
+```markdown
+# Analysing Multiple Files
+
+We're now almost ready to start analysing multiple files of inflammation data.
+```
+
+* **ADD IMPORTS**
+
+```python
+%matplotlib inline
+
+import matplotlib.pyplot
+import numpy
+import seaborn
+```
+
 ----
 **SLIDE** ANALYSING MULTIPLE FILES
 
-* We have received several files of data from the inflammation studies, and we would like to perform the same operations on each of them.
-* We have learned how to open files, read in the data, visualise the data, loop over contents, and make decisions based on that content.
-* Now we need to know how to interact with the *filesystem* to get our data files.
+* We have **received several files of data** from the inflammation studies, and we would like to **perform the same operations on each of them**.
+* We have **learned how to open files, read data, visualise data, loop over data, and make decisions** based on that content.
+* Now we need to know how to **interact with the *filesystem*** to get our data files.
 
 -----
 **SLIDE** THE `OS` MODULE
 
-* To interact with the filesystem, we need to import the `os` module
-* This allows us to interact with the filesystem in the same way, regardless of the operating system we work on
-* **Do imports in notebook**
-* **NOTE: it's usual to abbreviate imported modules, e.g. `numpy` to `np`, if they are used frequently**
+* **New Markdown cell**
+
+```markdown
+## The `os` module
+
+Allows us to interact with the computer's filesystem
+```
+
+* To interact with the filesystem, **we need to import the `os` module**
+* This allows us to interact with the filesystem in the same way, regardless of the operating system we work on! **INTEROPERABILITY AND REPRODUCIBILITY**
+* **IMPORT THE MODULE**
 
 ```python
-%pylab inline
-
-import matplotlib.pyplot
-import numpy as np
 import os
-import seaborn
 ```
 
 ----
 **SLIDE** `OS.LISTDIR`
 
 * The `.listdir()` function lists the contents of a directory
-* Our data is in the `'data'` directory
-* **Demo code**
 
 ```python
-print(os.listdir('data'))
+os.listdir('.')
 ```
 
+* Our data is in the `'data'` directory
+* **Reuse the cell**
+
+```python
+os.listdir('data')
+```
+
+* **We only want `inflammation` data** so we would like to ignore the `small` files
+* We want to turn the list from `os.listdir()` into a list that contains only `inflammation*` files: **use `for` loop and `if` to filter**
 * The list can be filtered with a `for` loop or *list comprehension*
 
 ```python
-files = [f for f in os.listdir('data')]
-print(files)
+for file in os.listdir('data'):
+    if 'inflammation' in file:
+        print(file)
 ```
 
-* We can use the .startswith() function of the `string` object (all the filenames are strings) as the conditional
-* We keep only filenames that start with `inflammation`.
+* We'd like to work with this set of files, so we store it in a variable, called `files`.
+* A suitable data type here is a `list`, and we can populate it one file at a time, using `.append()`
+* **ADAPT THE EXISTING CELL**
 
 ```python
-files = [f for f in os.listdir('data') if f.startswith('inflammation')]
+files = []
+for file in os.listdir('data'):
+    if 'inflammation' in file:
+        files.append(file)
 print(files)
 ```
 
 ----
 **SLIDE** `OS.PATH.JOIN`
 
-* The `os.listdir()` function only returns filenames, not the *path* (relative or absolute) to those files.
-* To construct a path, we can use the `os.path.join()` function. This takes directory and file names, and returns a path built from them, as a string, suitable for the underlying operating system.
+* The **`os.listdir()` function only returns filenames**, not the *path* (relative or absolute) to those files.
+* **WE NEED THE FULL PATH TO A FILE TO BE ABLE TO USE IT**
+* To **construct a path**, we can use the `os.path.join()` function. 
+* `os.path.join()` takes directory and file names, and returns a path built from them as a string, suitable for the underlying operating system.
 * **This is useful for making code shareable and usable on all OS/computers**
-* **Demo code**
+* **EXAMPLE CODE IN NEW CELL**
 
 ```python
-print(os.path.join('data', 'inflammation-01.csv'))
+os.path.join('parent', 'child', 'file.txt')
+os.path.join('data', 'inflammation-01.csv')
+```
+
+* **MODIFY PREVIOUS CELL TO GET**
+
+```python
+files = []
+for file in os.listdir('data'):
+    if 'inflammation' in file:
+        files.append(os.path.join('data', file))
+print(files)
 ```
 
 ----
 **SLIDE** VISUALISING THE DATA
 
-* Now we have all the tools we need to load all the inflammation data files, and visualise the mean, minimum and maximum values in an array of plots.
-  * We can get a list of paths to the data files with `os` and a *list comprehension*
-  * We can load data from a file with `np.loadtxt()`
-  * We can calculate summary statistics with `mp.mean()`, `np.max()`, etc.
-  * We can create figures with `matplotlib`, and arrays of figures with `.add_subplot()`
+* **Add markdown**
+
+```markdown
+## Visualising data
+
+We can now load data from each file in turn, and visualise the mean, minimum and maximum values in an array of plots
+```
+
+* Now **we have all the tools we need** to load all the inflammation data files, and visualise the mean, minimum and maximum values in an array of plots.
+  * We can get a **list of paths to the data files** with `os` and a *list comprehension*
+  * We can **load data from a file** with `numpy.loadtxt()`
+  * We can **calculate summary statistics** with `numpy.mean()`, `numpy.max()`, etc.
+  * We can **create figures** with `matplotlib`, and arrays of figures with `.add_subplot()`
 
 ----
 **SLIDE** VISUALISATION CODE
 
+* **BUILD THE CODE IN STAGES**
+
+* **1 - show that we see each filename in turn**
 ```python
-filenames = [os.path.join('data', f) for f in os.listdir('data')
-             if f.startswith('inflammation')]
+for file in files:
+    print(file)
+```
 
-for f in filenames:
-    print(f)
+* **2 - show the data in each file**
 
-    data = np.loadtxt(fname=f, delimiter=',')
+```python
+for file in files:
+    print(file)
+    
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+    print(data)
+```
 
+* **3 - create a figure for each file**
+
+```python
+for file in files:
+    print(file)
+
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-
     axes1 = fig.add_subplot(1, 3, 1)
     axes2 = fig.add_subplot(1, 3, 2)
     axes3 = fig.add_subplot(1, 3, 3)
+```
 
+* **4 - decorate the axes**
+
+```python
+for file in files:
+    print(file)
+
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+    
+    # decorate axes
     axes1.set_ylabel('average')
-    axes1.plot(np.mean(data, axis=0))
+    axes2.set_ylabel('maximum')
+    axes3.set_ylabel('minimum')
+```
 
-    axes2.set_ylabel('max')
-    axes2.plot(np.max(data, axis=0))
+* **5 - plot the data**
 
-    axes3.set_ylabel('min')
-    axes3.plot(np.min(data, axis=0))
+```python
+for file in files:
+    print(file)
 
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+    
+    # decorate axes
+    axes1.set_ylabel('average')
+    axes2.set_ylabel('maximum')
+    axes3.set_ylabel('minimum')
+    
+    # plot data
+    axes1.plot(numpy.mean(data, axis=0))
+    axes2.plot(numpy.max(data, axis=0))
+    axes3.plot(numpy.min(data, axis=0))
+```
+
+* **6 - tidy and show plot**
+
+```python
+for file in files:
+    print(file)
+
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
+    fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
+    axes1 = fig.add_subplot(1, 3, 1)
+    axes2 = fig.add_subplot(1, 3, 2)
+    axes3 = fig.add_subplot(1, 3, 3)
+    
+    # decorate axes
+    axes1.set_ylabel('average')
+    axes2.set_ylabel('maximum')
+    axes3.set_ylabel('minimum')
+    
+    # plot data
+    axes1.plot(numpy.mean(data, axis=0))
+    axes2.plot(numpy.max(data, axis=0))
+    axes3.plot(numpy.min(data, axis=0))
+    
+    # tidy and show the plot
     fig.tight_layout()
     matplotlib.pyplot.show()
 ```
 
 * **Show the collapse/expand click option in the notebook**
+
+![progress check](images/red_green_sticky.png)
+
+----
+**SLIDE** CHECKING DATA
+
+* There are **two suspicious features** to some of the datasets
+
+1. The **maximum values rose and fell as straight lines**
+2. The **minimum values are consistently zero**
+
+* We'll use `if` statements to **test for these conditions and give a warning**
+
+----
+**SLIDE** TEST FOR SUSPICIOUS MAXIMA
+
+* Is day zero value 0, and day 20 value 20?
+* **ADD TO EXISTING CODE BEFORE PLOT**
+
+```python
+if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+    print('Suspicious looking maxima!')
+```
+
+----
+**SLIDE** SUSPICIOUS MINIMA
+
+* Are all the minima zero? (do they sum to zero?)
+* **ADD TO EXISTING CODE BEFORE PLOT - AS ELIF**
+
+```python
+elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    print('Minima sum to zero!')
+```
+
+----
+**SLIDE** BEING TIDY
+
+* If everything's OK, **let's be reassuring**
+* **ADD TO EXISTING CODE BEFORE PLOT**
+
+```python
+else:
+    print('Seems OK!')
+```
+
+![progress check](images/red_green_sticky.png)
+
+
+----
+**SLIDE** MAKING A SCRIPT
+
+----
+**SLIDE** RUN THE NOTEBOOK
+
+* **Run the notebook: `Kernel -> Restart & Run All`**
+* Interactive output appears in the notebook
+* **`Jupyter` is good for this kind of work** - prototyping, interactive, teaching
+* But it's not how most people write `Python` day-to-day
+* **We'll use our notebook as the basis for a script**
+
+----
+**SLIDE** DOWNLOAD `PYTHON` CODE
+
+* **Download the notebook** as a script: `File -> Download As -> Python`
+* It will download as `files.py`
+
+**PUT THE TERMINAL ON SCREEN**
+
+* **Move the file to your working directory**
+* **OPEN THE FILE WITH AN EDITOR**
+* `files.py` is a plain text file, containing `Python` code and comments, from your notebook
+* **All the Markdown has been converted to comments**
+* **All the `In[]` and `Out[]` markers are also now comments**
+
+----
+**SLIDE** RUN `PYTHON` CODE
+
+* **In the editor**
+  * **COMMENT OUT `get_ipython().magic('matplotlib inline')`** magic
+* **In the terminal**
+  * **RUN `python files.py`**
+* **OUTPUT MAY DIFFER DEPENDING ON INDIVIDUALS' SETUPS - ASK WHAT THEY SEE**
+
+----
+**SLIDE** Edit `PYTHON` CODE
+
+* Seeing each image in turn is not convenient
+* We'll **write each image to file instead of viewing it**
+* `EDIT - SAVE - EXECUTE` cycle
+* **EDIT THE FILE AS SHOWN BELOW**
+
+```python
+# matplotlib.pyplot.show()
+outfile = file + '.png'
+print("Writing PNG to", outfile)
+matplotlib.pyplot.savefig(outfile)  
+```
+
+* The files are placed in the `data` directory
+ 
+----
+**SLIDE** CONCLUSIONS
+
+**PUT THE SLIDES ON SCREEN**
+
+----
+**SLIDE** LEARNING OUTCOMES
+
+* `Jupyter` notebooks
+* variables
+* data types: arrays, lists, strings, numbers
+* file IO: loading data, listing files, manipulating filenames
+* calculating statistics
+* plotting data: plots and subplots
+* program flow: loops and conditionals
+* automating multiple analyses
+* `Python` scripts: edit-save-execute
+ 
+----
+**SLIDE** WELL DONE!
+
+* **SEND THEM HOME HAPPY!**

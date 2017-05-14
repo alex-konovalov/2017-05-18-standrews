@@ -12,6 +12,12 @@ output:
 
 # Introduction
 
+## Etherpad
+
+Please use the Etherpad to take notes/share code, ask questions and explore
+
+* [http://pad.software-carpentry.org/2017-05-18-standrews](http://pad.software-carpentry.org/2017-05-18-standrews)
+
 ## Why are we here?
 
 ### Learn basic concepts of programming
@@ -909,6 +915,9 @@ else:
 
 **LIVE DEMO**
 
+
+![progress check](images/red_green_sticky.png)
+
 ## Combining conditions
 
 * Conditions can be combined using *Boolean Logic*
@@ -923,7 +932,7 @@ else:
 
 **LIVE DEMO**
 
-## <img src="images/exercise.png" height="75px" /> Exercise 10 (5min)
+## <img src="images/exercise.png" height="75px" /> Exercise 09 (5min)
 
 What is the result of executing the code below?
 
@@ -955,21 +964,6 @@ print(1 in range(3))
 print(1 in range(2, 10))
 ```
 
-**LIVE DEMO**
-
-## List comprehensions
-
-* We often want to loop over a list of elements and make a decision on the basis of whether the element meets some condition.
-* *List comprehensions* offer a concise way to do this
-
-```python
-letters = 'abcdefghijklmnopqrstuvwxyz'
-vowels = 'aeiou'
-result = [l.upper() for l in letters if l in vowels]
-print(result)
-```
-
-**LIVE DEMO**
 
 # ANALYSING MULTIPLE FILES
 
@@ -1040,31 +1034,138 @@ Now we have all the tools we need to load all the inflammation data files, and v
 ## Visualisation code
 
 ```python
-filenames = [os.path.join('data', f) for f in os.listdir('data')
-             if f.startswith('inflammation')]
+files = []
+for file in os.listdir('data'):
+    if 'inflammation' in file:
+        files.append(os.path.join('data', file))
+print(files)
              
-for f in filenames:
-    print(f)
+for file in files:
+    print(file)
 
-    data = np.loadtxt(fname=f, delimiter=',')
-    
+    # load data
+    data = numpy.loadtxt(fname=file, delimiter=',')
+
+    # create figure and axes
     fig = matplotlib.pyplot.figure(figsize=(10.0, 3.0))
-    
     axes1 = fig.add_subplot(1, 3, 1)
     axes2 = fig.add_subplot(1, 3, 2)
     axes3 = fig.add_subplot(1, 3, 3)
     
+    # decorate axes
     axes1.set_ylabel('average')
-    axes1.plot(np.mean(data, axis=0))
+    axes2.set_ylabel('maximum')
+    axes3.set_ylabel('minimum')
     
-    axes2.set_ylabel('max')
-    axes2.plot(np.max(data, axis=0))
+    # plot data
+    axes1.plot(numpy.mean(data, axis=0))
+    axes2.plot(numpy.max(data, axis=0))
+    axes3.plot(numpy.min(data, axis=0))
     
-    axes3.set_ylabel('min')
-    axes3.plot(np.min(data, axis=0))
-    
+    # tidy and show the plot
     fig.tight_layout()
     matplotlib.pyplot.show()
 ```
 
-**LIVE DEMO**
+![progress check](images/red_green_sticky.png)
+
+## Checking Data
+
+* There are two suspicious features to some of the datasets
+
+1. The maximum values rose and fell as straight lines
+2. The minimum values are consistently zero
+
+* We'll use `if` statements to test for these conditions and give a warning
+
+
+## Suspicious maxima
+
+* Is day zero value 0, and day 20 value 20?
+
+```python
+if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+    print('Suspicious looking maxima!')
+```
+
+## Suspicious minima
+
+* Are all the minima zero? (do they sum to zero?)
+
+```python
+[...]
+elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    print('Minima sum to zero!')
+```
+
+## Being tidy
+
+* If everything's OK, let's be reassuring
+
+```python
+else:
+    print('Seems OK!')
+```
+
+# Making a Script
+
+## Run the Notebook
+
+* Run the notebook: `Kernel -> Restart & Run All`
+* Interactive output appears in the notebook
+* `Jupyter` is good for this kind of work - prototyping, interactive, teaching
+* But it's not how most people write `Python` day-to-day
+* **We'll use our notebook as the basis for a script**
+
+## Download `Python` Code
+
+* Download the notebook as a script: `File -> Download As -> Python`
+* It will download as `files.py`
+* Move the file to your working directory
+* Open the file with an editor (`nano files.py`)
+* **Inspect the file**
+
+## Run `Python` Code
+
+**The `Jupyter` magic is not usable, here**
+
+* comment out the line `get_ipython().magic('matplotlib inline')`
+* exit the editor
+
+**Run the script at the command-line**
+
+* `python files.py`
+
+## Edit `Python` Code
+
+* Seeing each image in turn is not convenient
+* We'll write each image to file instead of viewing it
+* `EDIT - SAVE - EXECUTE` cycle
+
+```python
+# matplotlib.pyplot.show()
+outfile = file + '.png'
+print("Writing PNG to", outfile)
+matplotlib.pyplot.savefig(outfile)  
+```
+
+* Run with `python files.py`
+* The files are placed in the `data` directory
+
+# Conclusions
+
+## Learning Outcomes
+
+* `Jupyter` notebooks
+* variables
+* data types: arrays, lists, strings, numbers
+* file IO: loading data, listing files, manipulating filenames
+* calculating statistics
+* plotting data: plots and subplots
+* program flow: loops and conditionals
+* automating multiple analyses
+* `Python` scripts: edit-save-execute
+
+## Well done!
+
+<img src="images/long_way_to_go.jpg" height="450px" />
