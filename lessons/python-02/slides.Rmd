@@ -35,7 +35,7 @@ Please use the Etherpad to take notes/share code, ask questions and explore
 
 ## What are we doing?
 
-### Analysing and visualising experimental data
+### Analysing experimental data
 
 * Effectiveness of a new treatment for arthritis
 * Several patients, recording inflammation on each day
@@ -49,12 +49,11 @@ Please use the Etherpad to take notes/share code, ask questions and explore
 
 # Setup
 
-## Setting up - 1
+## Setting up
 
 Before we begin… 
 
-* **make a neat working environment**
-* obtain data
+* **return to our neat working environment**
 
 ```bash
 cd ~/Desktop
@@ -62,8 +61,6 @@ cd python-novice-inflammation
 ```
 
 **LIVE DEMO**
-
-# Getting Started
 
 ## Starting `Jupyter`
 
@@ -77,11 +74,8 @@ jupyter notebook
 
 <img src="images/jupyter_landing.png" />
 
-## Create a new notebook
 
-<img src="images/new_notebook_menu.png" height="150px" />
-<img src="images/empty_notebook.png" height="150px" />
-<img src="images/functions_notebook.png" height="200px" />
+# FUNCTIONS
 
 ## Motivation
 
@@ -92,8 +86,6 @@ jupyter notebook
 * It's not flexible enough to deal with thousands of files
 * We can't modify it easily 
 * **SO** we need to package our code for reuse: **FUNCTIONS**
-
-# FUNCTIONS
 
 ## What is a function?
 
@@ -107,6 +99,12 @@ $$y = f(x)$$
 
 * The output $y$ depends in some way on the value of $x$ - defined by $f()$.
 * **Not all functions in code take an input, or produce a usable output, but the principle is generally the same.**
+
+## Create a new notebook
+
+<img src="images/new_notebook_menu.png" height="150px" />
+<img src="images/empty_notebook.png" height="150px" />
+<img src="images/functions_notebook.png" height="200px" />
 
 ## My first function
 

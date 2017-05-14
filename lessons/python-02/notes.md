@@ -47,15 +47,12 @@ These notes are a guide to the speaker, as they present the material.
 **SLIDE** SETUP
 
 ----
-**SLIDE** SETTING UP **DEMO**
+**SLIDE** SETTING UP
 
 * We want a neat (clean) working environment
 * **IF NECESSARY!**
 * Change directory to desktop (in terminal or Explorer)
 * Change your working directory to `python-novice-inflammation` (from yesterday/earlier)
-
-----
-**SLIDE** GETTING STARTED
 
 ----
 **SLIDE** STARTING `JUPYTER` **DEMO**
@@ -66,12 +63,12 @@ These notes are a guide to the speaker, as they present the material.
 **SLIDE** `JUPYTER` LANDING PAGE **DEMO**
 
 * Landing page is a file browser, like Explorer/Finder
-* Point out `Python` (`.py`) files, `.zip` files, and directories)
-* Point out directory (`data`), and how the file symbols are different.
-* Point out `New` button.
+* **MAKE SURE EVERYONE IS IN THE CORRECT LOCATION**
+
+![progress check](images/red_green_sticky.png)
 
 ----
-**SLIDE** CREATE A NEW NOTEBOOK **DEMO**
+**SLIDE** FUNCTIONS
 
 ----
 **SLIDE** MOTIVATION
@@ -83,9 +80,6 @@ These notes are a guide to the speaker, as they present the material.
 * **We do this by writing functions**
 
 ----
-**SLIDE** FUNCTIONS
-
-----
 **SLIDE** WHAT IS A FUNCTION?
 
 * Functions in code work like mathematical functions, like `y=f(x)`
@@ -94,6 +88,10 @@ These notes are a guide to the speaker, as they present the material.
 * `y`  is the returned value, or output(s)
 * The function's output  `y`  depends in some way on the value of  `x`  - defined by  `f()`.
 * **Not all functions in code take an input, or produce a usable output, but the principle is generally the same.**
+
+----
+**SLIDE** CREATE A NEW NOTEBOOK **DEMO**
+
 
 ----
 **SLIDE** MY FIRST FUNCTION
