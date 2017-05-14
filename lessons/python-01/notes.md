@@ -1685,3 +1685,124 @@ for file in files:
 * **Show the collapse/expand click option in the notebook**
 
 ![progress check](images/red_green_sticky.png)
+
+----
+**SLIDE** CHECKING DATA
+
+* There are **two suspicious features** to some of the datasets
+
+1. The **maximum values rose and fell as straight lines**
+2. The **minimum values are consistently zero**
+
+* We'll use `if` statements to **test for these conditions and give a warning**
+
+----
+**SLIDE** TEST FOR SUSPICIOUS MAXIMA
+
+* Is day zero value 0, and day 20 value 20?
+* **ADD TO EXISTING CODE BEFORE PLOT**
+
+```python
+if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+    print('Suspicious looking maxima!')
+```
+
+----
+**SLIDE** SUSPICIOUS MINIMA
+
+* Are all the minima zero? (do they sum to zero?)
+* **ADD TO EXISTING CODE BEFORE PLOT - AS ELIF**
+
+```python
+elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    print('Minima sum to zero!')
+```
+
+----
+**SLIDE** BEING TIDY
+
+* If everything's OK, **let's be reassuring**
+* **ADD TO EXISTING CODE BEFORE PLOT**
+
+```python
+else:
+    print('Seems OK!')
+```
+
+![progress check](images/red_green_sticky.png)
+
+
+----
+**SLIDE** MAKING A SCRIPT
+
+----
+**SLIDE** RUN THE NOTEBOOK
+
+* **Run the notebook: `Kernel -> Restart & Run All`**
+* Interactive output appears in the notebook
+* **`Jupyter` is good for this kind of work** - prototyping, interactive, teaching
+* But it's not how most people write `Python` day-to-day
+* **We'll use our notebook as the basis for a script**
+
+----
+**SLIDE** DOWNLOAD `PYTHON` CODE
+
+* **Download the notebook** as a script: `File -> Download As -> Python`
+* It will download as `files.py`
+
+**PUT THE TERMINAL ON SCREEN**
+
+* **Move the file to your working directory**
+* **OPEN THE FILE WITH AN EDITOR**
+* `files.py` is a plain text file, containing `Python` code and comments, from your notebook
+* **All the Markdown has been converted to comments**
+* **All the `In[]` and `Out[]` markers are also now comments**
+
+----
+**SLIDE** RUN `PYTHON` CODE
+
+* **In the editor**
+  * **COMMENT OUT `get_ipython().magic('matplotlib inline')`** magic
+* **In the terminal**
+  * **RUN `python files.py`**
+* **OUTPUT MAY DIFFER DEPENDING ON INDIVIDUALS' SETUPS - ASK WHAT THEY SEE**
+
+----
+**SLIDE** Edit `PYTHON` CODE
+
+* Seeing each image in turn is not convenient
+* We'll **write each image to file instead of viewing it**
+* `EDIT - SAVE - EXECUTE` cycle
+* **EDIT THE FILE AS SHOWN BELOW**
+
+```python
+# matplotlib.pyplot.show()
+outfile = file + '.png'
+print("Writing PNG to", outfile)
+matplotlib.pyplot.savefig(outfile)  
+```
+
+* The files are placed in the `data` directory
+ 
+----
+**SLIDE** CONCLUSIONS
+
+**PUT THE SLIDES ON SCREEN**
+
+----
+**SLIDE** LEARNING OUTCOMES
+
+* `Jupyter` notebooks
+* variables
+* data types: arrays, lists, strings, numbers
+* file IO: loading data, listing files, manipulating filenames
+* calculating statistics
+* plotting data: plots and subplots
+* program flow: loops and conditionals
+* automating multiple analyses
+* `Python` scripts: edit-save-execute
+ 
+----
+**SLIDE** WELL DONE!
+
+* **SEND THEM HOME HAPPY!**

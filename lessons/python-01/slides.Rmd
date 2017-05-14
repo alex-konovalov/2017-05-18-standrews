@@ -1068,3 +1068,104 @@ for file in files:
 ```
 
 ![progress check](images/red_green_sticky.png)
+
+## Checking Data
+
+* There are two suspicious features to some of the datasets
+
+1. The maximum values rose and fell as straight lines
+2. The minimum values are consistently zero
+
+* We'll use `if` statements to test for these conditions and give a warning
+
+
+## Suspicious maxima
+
+* Is day zero value 0, and day 20 value 20?
+
+```python
+if numpy.max(data, axis=0)[0] == 0 and numpy.max(data, axis=0)[20] == 20:
+    print('Suspicious looking maxima!')
+```
+
+## Suspicious minima
+
+* Are all the minima zero? (do they sum to zero?)
+
+```python
+[...]
+elif numpy.sum(numpy.min(data, axis=0)) == 0:
+    print('Minima sum to zero!')
+```
+
+## Being tidy
+
+* If everything's OK, let's be reassuring
+
+```python
+else:
+    print('Seems OK!')
+```
+
+# Making a Script
+
+## Run the Notebook
+
+* Run the notebook: `Kernel -> Restart & Run All`
+* Interactive output appears in the notebook
+* `Jupyter` is good for this kind of work - prototyping, interactive, teaching
+* But it's not how most people write `Python` day-to-day
+* **We'll use our notebook as the basis for a script**
+
+## Download `Python` Code
+
+* Download the notebook as a script: `File -> Download As -> Python`
+* It will download as `files.py`
+* Move the file to your working directory
+* Open the file with an editor (`nano files.py`)
+* **Inspect the file**
+
+## Run `Python` Code
+
+**The `Jupyter` magic is not usable, here**
+
+* comment out the line `get_ipython().magic('matplotlib inline')`
+* exit the editor
+
+**Run the script at the command-line**
+
+* `python files.py`
+
+## Edit `Python` Code
+
+* Seeing each image in turn is not convenient
+* We'll write each image to file instead of viewing it
+* `EDIT - SAVE - EXECUTE` cycle
+
+```python
+# matplotlib.pyplot.show()
+outfile = file + '.png'
+print("Writing PNG to", outfile)
+matplotlib.pyplot.savefig(outfile)  
+```
+
+* Run with `python files.py`
+* The files are placed in the `data` directory
+
+# Conclusions
+
+## Learning Outcomes
+
+* `Jupyter` notebooks
+* variables
+* data types: arrays, lists, strings, numbers
+* file IO: loading data, listing files, manipulating filenames
+* calculating statistics
+* plotting data: plots and subplots
+* program flow: loops and conditionals
+* automating multiple analyses
+* `Python` scripts: edit-save-execute
+
+## Well done!
+
+<img src="images/long_way_to_go.jpg" height="450px" />
