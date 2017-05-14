@@ -2,6 +2,12 @@
 
 These notes are a guide to the speaker, as they present the material.
 
+## Before you start
+
+* Test your `Jupyter` installation and make sure you can connect to the kernel.
+
+## Slides
+
 ----
 **SLIDE** Building Programs With Python (1)
 
@@ -9,26 +15,33 @@ These notes are a guide to the speaker, as they present the material.
 **SLIDE** INTRODUCTION
 
 ----
-**SLIDE** GOAL 1
+**SLIDE** WHY ARE WE HERE?
 
-* We are teaching programming, not `Python` *per se*
-* We need to use *some* language, though
-* Python is free, and likely to be usable on your machine
-* Python is widely-used, and there's lots of support online
-* It can be easier for novices to pick up than other languages
-* You should use what is common in your area/with your colleagues
-* The principles of programming are the same in other languages
+* We're here to learn **how to program**
+* This is a way to **solve problems in your research** through making a computer do work **quickly** and **accurately**
+* You'll build **functions** that do specific, defined tasks
+* You'll **automate** those functions to perform tasks over and over again (in various combinations)
+* You'll **manipulate data**, which is at the heart of all academia
+* You'll learn some **file input/output** to make the computer read and write useful information
+* You'll learn some **Data structures**, which are ways to organise data so that the computer can deal with it efficiently
 
 ----
-**SLIDE** GOAL 2
+**SLIDE** XKCD
 
-* We're using a motivating example of data analysis
-* Data is in plain text, tabular (CSV)
-* Data represents patients and daily measurements
-* We're going to analyse the data
-* We're going to visualise the data
-* We're going to get the computer to do this for us
-* Automation is key: fewer human mistakes, easier to apply to other datasets, and share with others (transparency)
+* Again, this slide is only a little bit flippant
+* *No-one* writes perfect code, first time
+* It's all about revision, and good practice: **defensive programming**
+* This will make your life, and other people's lives, much easier
+
+----
+**SLIDE** WHAT ARE WE DOING?
+
+* We're using **a motivating example of data analysis**
+* We've got some data relating to a new treatment for arthritis, and we're going to **explore it.**
+* Data represents patients and **daily measurements of inflammation**
+* We're going to **refactor** our code from yesterday
+* We're going to **document** what the code does
+* We're going to **catch errors** in our code, and respond sensibly
 
 ----
 **SLIDE** SETUP

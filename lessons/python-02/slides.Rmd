@@ -12,29 +12,40 @@ output:
 
 # Introduction
 
-## Goal 1
+## Etherpad
 
-* **To learn the basic concepts of programming**
+Please use the Etherpad to take notes/share code, ask questions and explore
 
-We use `Python` for this:
+* [http://pad.software-carpentry.org/2017-05-18-standrews](http://pad.software-carpentry.org/2017-05-18-standrews)
 
-* we need *something* ;)
-* free, well-documented, cross-platform
-* widely-used
+## Why are we here?
 
-**Use what your colleagues (tend to) use**
+### Learn basic concepts of programming
 
-## Goal 2
+* **How to solve problems in your research by…**
+  * Building functions
+  * Automating tasks
+* **Good Coding Practice**
+  * Functions
+  * Defensive Programming
 
-* **To analyse and visualise experimental data**
+## XKCD
+
+<img src="images/good_code.png" height="500px" />
+
+## What are we doing?
+
+### Analysing and visualising experimental data
 
 * Effectiveness of a new treatment for arthritis
 * Several patients, recording inflammation on each day
 * Tabular (comma-separated) data
 
-**We can do this with a little programming**
+### We're going to improve our code
 
-* Why programming? **AUTOMATION**
+* **AUTOMATION**, **REUSE**, **SHARING**
+* **FUNCTIONS**, **DOCUMENTATION**
+* **DEFENSIVE PROGRAMMING**
 
 # Setup
 
