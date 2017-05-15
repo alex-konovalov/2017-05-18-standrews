@@ -570,6 +570,8 @@ def centre(data, desired):
 ----
 **SLIDE** EXERCISE 03
 
+* **MOVE SLIDES TO THE SCREEN**
+
 ```python
 def rescale(data):
     """Returns input array rescaled to [0.0, 0.1]."""
@@ -583,14 +585,25 @@ def rescale(data):
 ----
 **SLIDE** ERRORS AND EXCEPTIONS
 
+* **MOVE NOTEBOOK TO THE SCREEN**
+
 ----
 **SLIDE** CREATE A NEW NOTEBOOK
+
+* **Call the notebook `errors`**
+* **ADD AN INTRO**
+
+```markdown
+# Errors and Exceptions
+
+`Python` provides useful error reports of what has gone wrong, which can help with debugging.
+```
 
 ----
 **SLIDE** ERRORS
 
-* Programming is essentially just making errors over and over again until the code works ;)
-* The key skill is learning how to identify, and then fix, the errors when they are reported.
+* **Programming is essentially just making errors over and over again until the code works** ;)
+* The key skill is **learning how to identify, and then fix, the errors** when they are reported.
 * **All programmers** make errors. 
 
 ----
@@ -598,40 +611,57 @@ def rescale(data):
 
 * `Python` tries to be helpful, and provides extensive information about errors
 * These are called *tracebacks*
-* We'll induce one, so we can look at it
-* **Demo code**
+* **We'll induce a traceback, so we can look at it**
+* **ENTER CODE IN A CELL**
 
 ```python
 def favourite_ice_cream():
-    ice_creams = [
-        "chocolate",
-        "vanilla",
-        "strawberry"
-    ]
+    ice_creams = ["chocolate",
+                  "vanilla",
+                  "strawberry"]
     print(ice_creams[3])
+```
 
+* **NEW CELL**
+
+```
 favourite_ice_cream()
 ```
 
 ----
 **SLIDE** PARTS OF A TRACEBACK
 
-* **Talk through the traceback on the notebook**
+```python
+---------------------------------------------------------------------------
+IndexError                                Traceback (most recent call last)
+<ipython-input-4-8f18c934933f> in <module>()
+----> 1 favourite_ice_cream()
+
+<ipython-input-3-3f8910a0f7ad> in favourite_ice_cream()
+      3                   "vanilla",
+      4                   "strawberry"]
+----> 5     print(ice_creams[3])
+
+IndexError: list index out of range
+
+```
+
+* **TALK THROUGH THE TRACEBACK IN THE NOTEBOOK**
 * The *stack* of all steps leading to the error is shown
 * The steps are separated by lines starting `<ipython-input-1…`
 * The steps run in order from top to bottom
 * The first step has an arrow, showing where we were when the error happened. We were calling the `favourite_ice_cream()` function
 * The second step tells us that we were *in* the `favourite_ice_cream()` function
 * The second step also points to the line `print(ice_creams[3])`, which is where the error occurs
-* The second step is the last step, and the precise error is shown on the final line: `IndexError: list index out of range`
+* This is also the last step, and the precise error is shown on the final line: `IndexError: list index out of range`
 * Together, this tells us that we have made an index error in the line `print(ice_creams[3])`, and by looking we can see that we've tried to use an index outside the length of the list.
 
 ----
 **SLIDE** SYNTAX ERRORS
 
-* The error you saw just now was a *logic error* - the code was valid `Python`, but it did something 'illegal'
-* *Syntax* errors occur when the code is not interpretable as valid `Python`
-* **Demo code**
+* **The error you saw just now was a *logic error*** - the code was valid `Python`, but it did something 'illegal'
+* ***Syntax* errors occur when the code is not interpretable as valid `Python`**
+* **ENTER CODE IN A NEW CELL - NOTE THE EXTRA SPACE AND LACK OF COLON!**
 
 ```python
 def some_function()
@@ -643,16 +673,22 @@ def some_function()
 ----
 **SLIDE** SYNTAX TRACEBACK
 
+```python
+  File "<ipython-input-6-bef8c18baffa>", line 1
+    def some_function()
+                       ^
+SyntaxError: invalid syntax
+```
+
 * `Python` tells us there's a `SyntaxError` - the code isn't written correctly
 * It points to the approximate location of the problem with a caret/hat (`^`)
 * We can see that we need to put a colon at the end of the function declaration
-* **Fix the code**
+* **FIX THE CODE IN PLACE**
 
 ----
 **SLIDE** FIXED?
 
-* Show fixed code
-* **Demo code**
+* **SHOW AND RUN FIXED CODE**
 
 ```python
 def some_function():
@@ -664,6 +700,13 @@ def some_function():
 ----
 **SLIDE** NOT QUITE
 
+```python
+  File "<ipython-input-7-b32ba7f38b6b>", line 4
+    return msg
+    ^
+IndentationError: unexpected indent
+```
+
 * `Python` now tells us that there's an `IndentationError`
 * We don't learn about all the syntax errors at one time - `Python` gives up after the first one it finds
 * **(fixing the first error in a file might correct all subsequent errors)**
@@ -673,11 +716,15 @@ def some_function():
 
 * If you try to use a variable that is not defined in *scope*, you will get a `NameError`
 * This often happens with typos
-* **Demo code**
+* **ENTER CODE IN A NEW CELL**
 
 ```python
 print(a)
+```
 
+* We have a **NAME ERROR**
+
+```python
 ---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
 <ipython-input-5-c5a4f3535135> in <module>()
@@ -687,11 +734,17 @@ NameError: name 'a' is not defined
 ```
 
 * **This is true in functions/loops, too**
+* **ENTER CODE IN A NEW CELL**
 
 ```python
 for i in range(3):
     count = count + i
-    
+```
+
+* This still gives us a name error
+
+
+```python
  ---------------------------------------------------------------------------
 NameError                                 Traceback (most recent call last)
 <ipython-input-6-15ebe951e74d> in <module>()
@@ -705,14 +758,17 @@ NameError: name 'count' is not defined
 **SLIDE** INDEX ERRORS
 
 * If you try to access an element of a collection that does not exist, you'll get an `IndexError`
+* **ENTER CODE IN NEW CELL**
 
 ```python
 letters = ['a', 'b', 'c']
-print("Letter #1 is", letters[0])
-print("Letter #2 is", letters[1])
-print("Letter #3 is", letters[2])
-print("Letter #4 is", letters[3])
+for letter in range(4):
+    print("Letter", letter, "is", letters[letter])
+```
 
+* **This gives us an `IndexError`**
+
+```
 Letter #1 is a
 Letter #2 is b
 Letter #3 is c
@@ -729,6 +785,8 @@ IndexError: list index out of range
 ----
 **SLIDE** EXERCISE 04
 
+* **PUT SLIDES ON SCREEN**
+
 ```python
 message = ""
 for number in range(10):
@@ -740,8 +798,12 @@ for number in range(10):
 print(message)
 ```
 
+![progress check](images/red_green_sticky.png)
+
 ----
 **SLIDE** DEFENSIVE PROGRAMMING
+
+* **PUT NOTEBOOK BACK ON SCREEN**
 
 ----
 **SLIDE** CREATE A NEW NOTEBOOK
