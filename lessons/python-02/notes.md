@@ -76,18 +76,19 @@ These notes are a guide to the speaker, as they present the material.
 * We wrote some code that plots values of interest from multiple datasets, but that code is long and complicated
 * The code is also not very flexible if we want to deal with thousands of files, and we can't modify it to plot only a subset of files very easily
 * Cutting and pasting is slow and error-prone
-* **SO** we need to package our code for reuse.
+* **SO** we will package our code for reuse.
 * **We do this by writing functions**
 
 ----
 **SLIDE** WHAT IS A FUNCTION?
 
-* Functions in code work like mathematical functions, like `y=f(x)`
+* Functions in code work **like mathematical functions**, like `y=f(x)`
 * `f()`  is the function
-* `x`  is an input (or inputs)
-* `y`  is the returned value, or output(s)
+* `x`  is an **input** (or inputs)
+* `y`  is the **returned value**, or output(s)
 * The function's output  `y`  depends in some way on the value of  `x`  - defined by  `f()`.
 * **Not all functions in code take an input, or produce a usable output, but the principle is generally the same.**
+* **You've already been using functions in this course: `print()`, `numpy.max()`, etc.**
 
 ----
 **SLIDE** CREATE A NEW NOTEBOOK **DEMO**

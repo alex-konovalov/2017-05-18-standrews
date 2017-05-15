@@ -85,7 +85,7 @@ jupyter notebook
 * **BUT** the code is long and complicated
 * It's not flexible enough to deal with thousands of files
 * We can't modify it easily 
-* **SO** we need to package our code for reuse: **FUNCTIONS**
+* **SO** we will package our code for reuse: **FUNCTIONS**
 
 ## What is a function?
 
