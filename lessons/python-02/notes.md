@@ -1032,7 +1032,169 @@ def normalise_rectangle(rect):
 ----
 **SLIDE** NOTES ON ASSERTIONS
 
+* **PUT SLIDES ON SCREEN**
+
 * Assertions help understand programs: they declare what the program should be doing
 * Assertions help the person reading the program match their understanding of the code to what the code expects
 * *Fail early, fail often*
 * Turn bugs into assertions or tests: if you've made the mistake once, you might make it again
+
+----
+**SLIDE** TEST-DRIVEN DEVELOPMENT
+
+----
+**SLIDE** A PROBLEM
+
+* We want to write a function that identifies when two or more ranges (**eg. time-series** overlap).
+* The range of each input is given as a pair of numbers: (start, end)
+* We want the largest range that all the inputs include
+
+* **ASK LEARNERS HOW THEY WOULD GO ABOUT THE PROCESS**
+
+----
+**SLIDE** A NOVICE'S APPROACH
+
+1. Write a function: `range_overlap()`
+2. Call the function interactively on two or three test inputs
+3. If the answer is wrong, fix the function
+
+* **This works - thousands of scientists are doing it right now!**
+
+----
+**SLIDE** A PROGRAMMER'S APPROACH
+
+1. Write a short function for each test
+2. Write a `range_overlap()` function that should pass those tests
+3. If any answers are wrong, fix it and re-run the test functions
+
+* **WHy DO IT THIS WAY?**
+* **We have to say what the function does - in detail - before we write it** - clarity of thought, aids design
+* **Avoids confirmation bias** - we have to think about what could go wrong before we write the function, not write a function and confirm that it works on sample data
+
+----
+**SLIDE** TEST FUNCTIONS
+
+* **PUT THE NOTEBOOK ON SCREEN**
+* **Add an intro**
+
+```markdown
+## Test-Driven Development
+
+In test-driven development, we write tests that assert what functions should do before we start writing the functions themselves.
+```
+
+* Here are three test functions for a hypothetical `range_overlap()` function
+
+1. single range returns itself
+2. simple overlap of two ranges
+3. simple overlap of three ranges
+
+```python
+assert range_overlap([(0.0, 1.0)]) == (0.0, 1.0)
+assert range_overlap([(2.0, 3.0), (2.0, 4.0)]) == (2.0, 3.0)
+assert range_overlap([(0.0, 1.0), (0.0, 2.0), (-1.0, 1.0)]) == (0.0, 1.0)
+```
+
+* **ENTER FUNCTIONS IN A CELL AND RUN**
+* **NOTE THAT IN THE ABSENCE OF A FUNCTION, IT FAILS**
+* **NOTE THAT WE HAVE IMPLICITLY DEFINED WHAT OUR INPUT AND OUTPUT LOOK LIKE**
+* **NOTE THAT WE'RE MISSING A CASE WITH NO OVERLAP**
+1. How should we define a result where there is no overlap? **DISCUSS WITH LEARNERS** Return `(0, 0)`; return `None`?
+2. Are our ranges `(x, y)` or `[x, y]`? - do they meet when we have `[(0, 1), (1, 2)]`
+
+* **ASSUME**
+* Return `None` when there's no overlap
+* Overlaps must have non-zero width
+* **ADD TWO MORE TESTS**
+
+```python
+assert range_overlap([(0.0, 1.0), (5.0, 6.0)]) == None
+assert range_overlap([(0.0, 1.0), (1.0, 2.0)]) == None
+```
+
+----
+**SLIDE** MAKE A TEST FUNCTION
+
+* **Wrap the assertions in a function**
+* **DO THIS IN THE SAME CELL**
+
+```python
+def test_range_overlap():
+    assert range_overlap([(0.0, 1.0)]) == (0.0, 1.0)
+    assert range_overlap([(2.0, 3.0), (2.0, 4.0)]) == (2.0, 3.0)
+    assert range_overlap([(0.0, 1.0), (0.0, 2.0), (-1.0, 1.0)]) == (0.0, 1.0)
+    assert range_overlap([(0.0, 1.0), (5.0, 6.0)]) == None
+    assert range_overlap([(0.0, 1.0), (1.0, 2.0)]) == None
+```
+
+----
+**SLIDE** WRITE `RANGE_OVERLAP()`
+
+* **WRITE THE FUNCTION IN THE SAME CELL**
+
+```python
+def range_overlap(ranges):
+    """Return common overlap among a set of (low, high) ranges."""
+    lowest = 0.0
+    highest = 1.0
+    for (low, high) in ranges:
+        lowest = max(lowest, low)
+        highest = min(highest, high)
+    return (lowest, highest)
+```
+
+* **RUN THE CELL**
+* **TEST IN THE CELL BELOW**
+
+```python
+test_range_overlap()
+```
+
+* This fails:
+
+```python
+---------------------------------------------------------------------------
+AssertionError                            Traceback (most recent call last)
+<ipython-input-25-cf9215c96457> in <module>()
+----> 1 test_range_overlap()
+
+<ipython-input-24-2c4b718b7bc2> in test_range_overlap()
+     10 def test_range_overlap():
+     11     assert range_overlap([(0.0, 1.0)]) == (0.0, 1.0)
+---> 12     assert range_overlap([(2.0, 3.0), (2.0, 4.0)]) == (2.0, 3.0)
+     13     assert range_overlap([(0.0, 1.0), (0.0, 2.0), (-1.0, 1.0)]) == (0.0, 1.0)
+     14     assert range_overlap([(0.0, 1.0), (5.0, 6.0)]) == None
+
+AssertionError: 
+```
+
+* **SECOND TEST FAILS**
+* We're initialising `lowest` and `highest` to arbitrary values - we should really do this from the data
+* *always initialise from data* - a very sound rule!
+
+----
+**SLIDE** EXERCISE 05
+
+* **PUT SLIDES ON SCREEN**
+* **add a test**
+
+```python
+assert range_overlap([]) == None
+```
+
+* Solution:
+
+```python
+def range_overlap(ranges):
+    """Return common overlap among a set of (low, high) ranges."""
+    if not ranges:
+        return None
+    lowest, highest = ranges[0]
+    for (low, high) in ranges[1:]:
+        lowest = max(lowest, low)
+        highest = min(highest, high)
+    if lowest >= highest:  # no overlap
+        return None
+    else:
+        return (lowest, highest)
+```

@@ -703,3 +703,85 @@ def normalise_rectangle(rect):
 * Assertions help the person reading the program match their understanding of the code to what the code expects
 * *Fail early, fail often*
 * Turn bugs into assertions or tests: if you've made the mistake once, you might make it again
+
+# Test-driven development
+
+## A problem
+
+### We want to write a function…
+* Input: a set of ranges (s0, e0), (s1, e1), …
+* Output: the largest range included in all the input ranges
+  
+<img src="images/python-overlapping-ranges.svg" height="300px" />
+
+## A novice's approach
+
+1. Write a function: `range_overlap()`
+2. Call the function interactively on two or three test inputs
+3. If the answer is wrong, fix the function
+
+### Is there anything wrong with this?
+
+## A programmer's approach
+
+1. Write a short function for each test **first**
+2. Write a `range_overlap()` function that should pass those tests
+3. If any answers are wrong, fix it and re-run the test functions
+
+### Why do it this way?
+
+## Test functions
+
+* Here are three test functions for a hypothetical `range_overlap()` function
+
+1. single range returns itself
+2. simple overlap of two ranges
+3. simple overlap of three ranges
+
+```python
+assert range_overlap([ (0.0, 1.0) ]) == (0.0, 1.0)
+assert range_overlap([ (2.0, 3.0), (2.0, 4.0) ]) == (2.0, 3.0)
+assert range_overlap([ (0.0, 1.0), (0.0, 2.0), (-1.0, 1.0) ]) == (0.0, 1.0)
+```
+
+### What are we missing?
+
+## Make the test function
+
+* Wrap the tests in a single function
+
+```python
+def test_range_overlap():
+    assert range_overlap([(0.0, 1.0)]) == (0.0, 1.0)
+    assert range_overlap([(2.0, 3.0), (2.0, 4.0)]) == (2.0, 3.0)
+    assert range_overlap([(0.0, 1.0), (0.0, 2.0), (-1.0, 1.0)]) == (0.0, 1.0)
+    assert range_overlap([(0.0, 1.0), (5.0, 6.0)]) == None
+    assert range_overlap([(0.0, 1.0), (1.0, 2.0)]) == None
+```
+
+## Write `range_overlap()`
+
+```python
+def range_overlap(ranges):
+    """Return common overlap among a set of (low, high) ranges."""
+    lowest = 0.0
+    highest = 1.0
+    for (low, high) in ranges:
+        lowest = max(lowest, low)
+        highest = min(highest, high)
+    return (lowest, highest)
+```
+
+* Test with `test_range_overlap()`
+
+## <img src="images/exercise.png" height="75px" /> Exercise 05 (15min)
+
+Add the test:
+
+```python
+assert range_overlap([]) == None
+```
+
+Can you fix `range_overlap()`?
+
+![progress check](images/red_green_sticky.png)
