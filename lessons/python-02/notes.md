@@ -200,27 +200,46 @@ def outer(s)
     return s[0] + s[-1]
 ```
 
+![progress check](images/red_green_sticky.png)
+
 * **RETURN TO THE NOTEBOOK**
 
 ----
 **SLIDE** SCOPE
 
-* Variables defined within a function, including parameters, are not 'visible' outside the function
-* This is called *function scope*
-**Demo code**
+* **Make a Markdown note**
+
+```markdown
+## Scope
+
+Variables defined within a function (including parameters) are not available outside the function unless they are returned.
+```
+
+* **This is called *function scope***
+* **DEMO THE CODE BELOW**
 
 ```python
 a = "Hello"
 
-def my_fn(a):
-  a = "Goodbye"
-  
-my_fn(a)  
+print(a)
+```
+
+* This code defines a variable `a` and gives it a value "Hello"
+* **NOW DECLARE A FUNCTION (IN THE SAME CELL) AND CALL IT**
+
+```python
+a = "Hello"
+
+def my_fn():
+    a = "Goodbye"
+    return a
+
+a = my_fn()
 print(a)
 ```
 
 * To move values to and from functions, you should generally `return` them from the function
-* **Demo code**
+* **COMPLETE THE CODE EXAMPLE IN THE CELL**
 
 ```python
 a = "Hello"
@@ -236,6 +255,8 @@ print(a)
 **SLIDE** EXERCISE 02
 
 * Solution: `1: 7 3` (this differs from that on the SWC page)
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** ANALYSIS

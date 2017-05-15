@@ -185,6 +185,8 @@ print(outer("helium"))
 hm
 ```
 
+![progress check](images/red_green_sticky.png)
+
 ## Scope
 
 * Variables defined within a function, including parameters, are not 'visible' outside the function
@@ -224,6 +226,7 @@ print(b, a)
 3. `3 3`
 4. `7 7`
 
+![progress check](images/red_green_sticky.png)
 
 # ANALYSIS
 
