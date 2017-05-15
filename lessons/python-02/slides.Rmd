@@ -234,15 +234,8 @@ print(b, a)
 
 * Now we can write functions
 * Let's make the inflammation analysis easier to reuse: one function per operation
-
-```python
-%pylab inline
-
-import matplotlib.pyplot
-import numpy as np
-import os
-import seaborn
-```
+* Open the `files.ipynb` notebook from the first lesson
+* **What operations should be put into functions?**
 
 ## `analyse()`
 
@@ -293,17 +286,25 @@ def detect_problems(data):
 * Loop over the files and `analyse()` and `detect_problems()`
 
 ```python
-filenames = [os.path.join('data', f) for f in os.listdir('data')
-             if f.startswith('inflammation')]
-             
-for fname in filenames:
-    data = np.loadtxt(fname, delimiter=",")
-    print(fname)
-    analyse(data)
-    detect_problems(data)       
+for file in files:
+    print(file)
+    data = numpy.loadtxt(fname=file, delimiter=',')
+    detect_problems(data)
+    analyse(data)         
 ```
 
-**LIVE DEMO**
+![progress check](images/red_green_sticky.png)
+
+## Good code pays off
+
+### Why should I bother?
+
+* After 6 months, the referee report arrives and you need to rerun experiments
+* Another student is continuing the project
+* Some random person reads your article and asks for the code
+* Helps spot errors quickly
+* Clarifies structure in your mind as well as in the code
+* Saves you time in the long run! ("Future You" will back this up)
 
 # TESTING AND DOCUMENTATION
 

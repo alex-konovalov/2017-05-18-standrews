@@ -254,9 +254,14 @@ print(a)
 ----
 **SLIDE** EXERCISE 02
 
+* **PUT THE SLIDES ON SCREEN**
+* **MCQ: put coloured stickies up**
+
 * Solution: `1: 7 3` (this differs from that on the SWC page)
 
 ![progress check](images/red_green_sticky.png)
+
+* **PUT THE NOTEBOOK BACK ON SCREEN WHEN DONE**
 
 ----
 **SLIDE** ANALYSIS
@@ -264,24 +269,18 @@ print(a)
 ----
 **SLIDE** TIDYING UP
 
-* Now we can write functions
-* Let's make the inflammation analysis easier to reuse
-* **Do the imports!**
-
-```python
-%pylab inline
-
-import matplotlib.pyplot
-import numpy as np
-import os
-import seaborn
-```
+* Now we can write functions, **let's make the inflammation analysis easier to reuse**
+* **ONE FUNCTION PER OPERATION**
+* **OPEN UP THE `FILES.IPYNB` NOTEBOOK FROM YESTERDAY
+* **RESTART AND RUN ALL CELLS**
+* **GUIDE THE STUDENTS THROUGH THE CODE LOGIC: TWO SECTIONS - ANALYSE AND DETECT PROBLEMS**
 
 ----
 **SLIDE** `ANALYSE()`
 
-* We'll write a function called `analyse()` that plots the data
-* **Demo code**
+* We'll write **a function that plots the data**
+* **WRITE THE FUNCTION BELOW IN THE SAME CELL, WITH COPY AND PASTE**
+* **SPLIT CELLS SO THAT THE FUNCTION AND LOOP ARE SEPARATE**
 
 ```python
 def analyze(data):
@@ -304,14 +303,13 @@ def analyze(data):
     matplotlib.pyplot.show()
 ```
 
+**RUN THE CELL AND SHOW THAT THE OUTPUT IS THE SAME**
+
 ----
 **SLIDE** `DETECT_PROBLEMS()`
 
-* We noticed before that some data was questionable
-* This function spots problems with the data:
-  * The first datapoint is 0, and the 20th is 20
-  * The sum of all minima is zero
-* **Demo code**
+* We'll have **a function that checks the data for problems**
+*  * **Demo code**
 
 ```python
 def detect_problems(data):
@@ -323,29 +321,45 @@ def detect_problems(data):
         print('Seems OK!')
 ```
 
+**RUN THE CELL AND SHOW THAT THE OUTPUT IS THE SAME**
+
 ----
 **SLIDE** CODE REUSE
 
-* Now we can identify the input files, then apply one function per action in a loop:
-  * Load the data with `np.loadtxt()`
+* **The logic of the code is now easier to understand**
+* We identify the input files, then apply one function per action in a loop:
   * Print the filename
-  * `analyse()` the data
+  * Load the data with `np.loadtxt()`
   * `detect_problems()` in the data
-* **Demo code**
+  * `analyse()` the data
+
 
 ```python
-filenames = [os.path.join('data', f) for f in os.listdir('data')
-             if f.startswith('inflammation')]
-for fname in filenames:
-    data = np.loadtxt(fname, delimiter=",")
-    print(fname)
-    analyse(data)
-    detect_problems(data)       
+for file in files:
+    print(file)
+    data = numpy.loadtxt(fname=file, delimiter=',')
+    detect_problems(data)
+    analyse(data)    
 ```
 
+* **THIS HAS ADVANTAGES**
 * **The code is much shorter (as we read it, here)**
 * **The function names are human-readable and descriptive**
 * **It is much easier to see what the code is doing**
+
+![progress check](images/red_green_sticky.png)
+
+----
+**SLIDE** GOOD CODE PAYS OFF
+
+* **YOU MAY BE ASKING YOURSELF WHY YOU WANT TO BOTHER WITH THIS**
+
+* After 6 months, the referee report arrives and you need to rerun experiments
+* Another student is continuing the project
+* Some random person reads your article and asks for the code
+* Helps spot errors quickly
+* Clarifies structure in your mind as well as in the code
+* Saves you time in the long run! ("Future You" will back this up)
 
 ----
 **SLIDE** TESTING AND DOCUMENTATION
