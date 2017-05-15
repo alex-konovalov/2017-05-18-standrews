@@ -12,38 +12,48 @@ output:
 
 # Introduction
 
-## Goal 1
+## Etherpad
 
-* **To learn the basic concepts of programming**
+Please use the Etherpad to take notes/share code, ask questions and explore
 
-We use `Python` for this:
+* [http://pad.software-carpentry.org/2017-05-18-standrews](http://pad.software-carpentry.org/2017-05-18-standrews)
 
-* we need *something* ;)
-* free, well-documented, cross-platform
-* widely-used
+## Why are we here?
 
-**Use what your colleagues (tend to) use**
+### Learn basic concepts of programming
 
-## Goal 2
+* **How to solve problems in your research by…**
+  * Building functions
+  * Automating tasks
+* **Good Coding Practice**
+  * Functions
+  * Defensive Programming
 
-* **To analyse and visualise experimental data**
+## XKCD
+
+<img src="images/good_code.png" height="500px" />
+
+## What are we doing?
+
+### Analysing experimental data
 
 * Effectiveness of a new treatment for arthritis
 * Several patients, recording inflammation on each day
 * Tabular (comma-separated) data
 
-**We can do this with a little programming**
+### We're going to improve our code
 
-* Why programming? **AUTOMATION**
+* **AUTOMATION**, **REUSE**, **SHARING**
+* **FUNCTIONS**, **DOCUMENTATION**
+* **DEFENSIVE PROGRAMMING**
 
 # Setup
 
-## Setting up - 1
+## Setting up
 
 Before we begin… 
 
-* **make a neat working environment**
-* obtain data
+* **return to our neat working environment**
 
 ```bash
 cd ~/Desktop
@@ -51,8 +61,6 @@ cd python-novice-inflammation
 ```
 
 **LIVE DEMO**
-
-# Getting Started
 
 ## Starting `Jupyter`
 
@@ -66,11 +74,8 @@ jupyter notebook
 
 <img src="images/jupyter_landing.png" />
 
-## Create a new notebook
 
-<img src="images/new_notebook_menu.png" height="150px" />
-<img src="images/empty_notebook.png" height="150px" />
-<img src="images/functions_notebook.png" height="200px" />
+# FUNCTIONS
 
 ## Motivation
 
@@ -80,9 +85,7 @@ jupyter notebook
 * **BUT** the code is long and complicated
 * It's not flexible enough to deal with thousands of files
 * We can't modify it easily 
-* **SO** we need to package our code for reuse: **FUNCTIONS**
-
-# FUNCTIONS
+* **SO** we will package our code for reuse: **FUNCTIONS**
 
 ## What is a function?
 
@@ -107,6 +110,21 @@ $$f(x) = ((x - 32) \times \frac{5}{9}) + 273.15$$
 
 **LIVE DEMO**
 
+## Create a new notebook
+
+<img src="images/new_notebook_menu.png" height="150px" />
+<img src="images/empty_notebook.png" height="150px" />
+<img src="images/functions_notebook.png" height="200px" />
+
+## Create the function
+
+* `fahr_to_kelvin()` to convert Fahrenheit to Kelvin
+
+$$f(x) = ((x - 32) \times \frac{5}{9}) + 273.15$$
+
+<img src="images/python-function.svg" height="300px" />
+
+
 ## Calling the function
 
 * Calling `fahr_to_kelvin()` is the same as calling any other function
@@ -116,12 +134,22 @@ print('freezing point of water:', fahr_to_kelvin(32))
 print('boiling point of water:', fahr_to_kelvin(212))
 ```
 
-**LIVE DEMO**
+![progress check](images/red_green_sticky.png)
+
+## Create a new function
+
+```python
+def kelvin_to_celsius(temp):
+  return temp - 273.15
+```
+
+```python
+print('freezing point of water', kelvin_to_celsius(273.15))
+```
 
 ## Composing functions
 
 * Composing `Python` functions works like mathematical functions: $y = f(g(x))$
-* Suppose there's a function converting K to C: `kelvin_to_celsius()`
 * We could convert F (`temp_f`) to C (`temp_c`) by executing the code:
 
 ```python
@@ -156,6 +184,8 @@ Can you write a function called `outer()` that:
 print(outer("helium"))
 hm
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ## Scope
 
@@ -196,6 +226,7 @@ print(b, a)
 3. `3 3`
 4. `7 7`
 
+![progress check](images/red_green_sticky.png)
 
 # ANALYSIS
 
@@ -203,15 +234,8 @@ print(b, a)
 
 * Now we can write functions
 * Let's make the inflammation analysis easier to reuse: one function per operation
-
-```python
-%pylab inline
-
-import matplotlib.pyplot
-import numpy as np
-import os
-import seaborn
-```
+* Open the `files.ipynb` notebook from the first lesson
+* **What operations should be put into functions?**
 
 ## `analyse()`
 
@@ -262,28 +286,40 @@ def detect_problems(data):
 * Loop over the files and `analyse()` and `detect_problems()`
 
 ```python
-filenames = [os.path.join('data', f) for f in os.listdir('data')
-             if f.startswith('inflammation')]
-             
-for fname in filenames:
-    data = np.loadtxt(fname, delimiter=",")
-    print(fname)
-    analyse(data)
-    detect_problems(data)       
+for file in files:
+    print(file)
+    data = numpy.loadtxt(fname=file, delimiter=',')
+    detect_problems(data)
+    analyse(data)         
 ```
 
-**LIVE DEMO**
+![progress check](images/red_green_sticky.png)
+
+## Good code pays off
+
+### Why should I bother?
+
+* After 6 months, the referee report arrives and you need to rerun experiments
+* Another student is continuing the project
+* Some random person reads your article and asks for the code
+* Helps spot errors quickly
+* Clarifies structure in your mind as well as in the code
+* Saves you time in the long run! ("Future You" will back this up)
 
 # TESTING AND DOCUMENTATION
 
 ## Motivation
 
 * Once written, functions are reused
-* Functions are reused without further checks
+* Functions might be reused without further checks
 * When functions are written:
     * test for correctness 
     * document their function
 * Example: centring a numerical array
+
+## Create a New Notebook
+
+* Add the function
 
 ```python
 def centre(data, desired):
@@ -333,6 +369,25 @@ print('std dev before and after:', numpy.std(data), numpy.std(centred))
 
 **LIVE DEMO**
 
+## Default arguments
+
+* The `centre()` function *requires* two arguments
+* We can specify a *default* argument in how we define the function
+
+```python
+def centre(data, desired=0.0):
+    """Returns the array in data, recentered around the desired value.
+    
+    Example: centre([1, 2, 3], 0) => [-1, 0, 1]
+    """
+    return (data - np.mean(data)) + desired
+    centre(data, 0.0)
+    centre(data, desired=0.0)
+    centre(data)
+```
+
+**LIVE DEMO**
+
 ## Documenting functions
 
 * Writing comments in the code (using the hash `#`) is a good thing
@@ -350,24 +405,6 @@ help(centre)
 
 **LIVE DEMO**
 
-## Default arguments
-
-* The `centre()` function *requires* two arguments
-* We can specify a *default* argument in how we define the function
-
-```python
-def centre(data, desired=0.0):
-    """Returns the array in data, recentered around the desired value.
-    
-    Example: centre([1, 2, 3], 0) => [-1, 0, 1]
-    """
-    return (data - np.mean(data)) + desired
-centre(data, 0.0)
-centre(data, desired=0.0)
-centre(data)
-```
-
-**LIVE DEMO**
 
 ## <img src="images/exercise.png" height="75px" /> Exercise 03 (15min)
 
@@ -377,6 +414,9 @@ Can you write a function called `rescale()` that
 * returns an array with values scaled in the range [0.0, 1.0]
 * has an informative docstring
 * **HINT:** If `L` and `H` are the lowest and highest values in the original array, then the replacement for a value `v` should be `(v-L) / (H-L)`.
+
+![progress check](images/red_green_sticky.png)
+
 
 # ERRORS AND EXCEPTIONS
 
@@ -533,12 +573,14 @@ IndexError: list index out of range
 ```python
 for number in range(10):
     # use a if the number is a multiple of 3, otherwise use b
-    if (Number % 3) == 0:
+    if (Number % 3) = 0:
         message = message + a
     else:
         message = message + "b"
 print(message)
 ```
+
+![progress check](images/red_green_sticky.png)
 
 # DEFENSIVE PROGRAMMING
 
@@ -558,7 +600,7 @@ print(message)
 ## Assertions
 
 * Assertions are a `Pythonic` way to see if code runs correctly
-    * 80-90% of the `Firefox` source code is assertions!
+    * 10-20% of the `Firefox` source code is checks on the rest of the code!
 * We `assert` that a *condition* is `True`
     * If it's `True`, the code may be correct
     * If it's `False`, the code is **not** correct
@@ -580,3 +622,166 @@ print('total is:', total)
 
 **QUESTION:** What does this assertion do?
 
+## When to use assertions
+
+* *preconditions* - must be true at the start of an operation
+* *postcondition* - guaranteed to be true when operation completes
+* *invariant* - something true at a particular point in code
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dx) / dy
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+## Preconditions
+
+* must be true at the start of an operation or function
+* Here, we want to ensure that `rect` has four values
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    assert len(rect) == 4, "Rectangle must have four co-ordinates"
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dx) / dy
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+## Postconditions
+
+* must be true at the end of an operation or function.
+* Here, we want to assert that the upper x and y values are in the range [0, 1]
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    assert len(rect) == 4, "Rectangle must have four co-ordinates"
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dy) / dx
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    assert 0 < upper_x <= 1.0, "Calculated upper x-coordinate invalid"
+    assert 0 < upper_y <= 1.0, "Calculated upper y-coordinate invalid"    
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+## Notes on assertions
+
+* Assertions help understand programs: they declare what the program should be doing
+* Assertions help the person reading the program match their understanding of the code to what the code expects
+* *Fail early, fail often*
+* Turn bugs into assertions or tests: if you've made the mistake once, you might make it again
+
+# Test-driven development
+
+## A problem
+
+### We want to write a function…
+* Input: a set of ranges (s0, e0), (s1, e1), …
+* Output: the largest range included in all the input ranges
+  
+<img src="images/python-overlapping-ranges.svg" height="300px" />
+
+## A novice's approach
+
+1. Write a function: `range_overlap()`
+2. Call the function interactively on two or three test inputs
+3. If the answer is wrong, fix the function
+
+### Is there anything wrong with this?
+
+## A programmer's approach
+
+1. Write a short function for each test **first**
+2. Write a `range_overlap()` function that should pass those tests
+3. If any answers are wrong, fix it and re-run the test functions
+
+### Why do it this way?
+
+## Test functions
+
+* Here are three test functions for a hypothetical `range_overlap()` function
+
+1. single range returns itself
+2. simple overlap of two ranges
+3. simple overlap of three ranges
+
+```python
+assert range_overlap([ (0.0, 1.0) ]) == (0.0, 1.0)
+assert range_overlap([ (2.0, 3.0), (2.0, 4.0) ]) == (2.0, 3.0)
+assert range_overlap([ (0.0, 1.0), (0.0, 2.0), (-1.0, 1.0) ]) == (0.0, 1.0)
+```
+
+### What are we missing?
+
+## Make the test function
+
+* Wrap the tests in a single function
+
+```python
+def test_range_overlap():
+    assert range_overlap([(0.0, 1.0)]) == (0.0, 1.0)
+    assert range_overlap([(2.0, 3.0), (2.0, 4.0)]) == (2.0, 3.0)
+    assert range_overlap([(0.0, 1.0), (0.0, 2.0), (-1.0, 1.0)]) == (0.0, 1.0)
+    assert range_overlap([(0.0, 1.0), (5.0, 6.0)]) == None
+    assert range_overlap([(0.0, 1.0), (1.0, 2.0)]) == None
+```
+
+## Write `range_overlap()`
+
+```python
+def range_overlap(ranges):
+    """Return common overlap among a set of (low, high) ranges."""
+    lowest = 0.0
+    highest = 1.0
+    for (low, high) in ranges:
+        lowest = max(lowest, low)
+        highest = min(highest, high)
+    return (lowest, highest)
+```
+
+* Test with `test_range_overlap()`
+
+## <img src="images/exercise.png" height="75px" /> Exercise 05 (15min)
+
+Add the test:
+
+```python
+assert range_overlap([]) == None
+```
+
+Can you fix `range_overlap()`?
+
+![progress check](images/red_green_sticky.png)
