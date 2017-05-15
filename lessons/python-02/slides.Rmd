@@ -369,6 +369,25 @@ print('std dev before and after:', numpy.std(data), numpy.std(centred))
 
 **LIVE DEMO**
 
+## Default arguments
+
+* The `centre()` function *requires* two arguments
+* We can specify a *default* argument in how we define the function
+
+```python
+def centre(data, desired=0.0):
+    """Returns the array in data, recentered around the desired value.
+    
+    Example: centre([1, 2, 3], 0) => [-1, 0, 1]
+    """
+    return (data - np.mean(data)) + desired
+    centre(data, 0.0)
+    centre(data, desired=0.0)
+    centre(data)
+```
+
+**LIVE DEMO**
+
 ## Documenting functions
 
 * Writing comments in the code (using the hash `#`) is a good thing
@@ -386,24 +405,6 @@ help(centre)
 
 **LIVE DEMO**
 
-## Default arguments
-
-* The `centre()` function *requires* two arguments
-* We can specify a *default* argument in how we define the function
-
-```python
-def centre(data, desired=0.0):
-    """Returns the array in data, recentered around the desired value.
-    
-    Example: centre([1, 2, 3], 0) => [-1, 0, 1]
-    """
-    return (data - np.mean(data)) + desired
-centre(data, 0.0)
-centre(data, desired=0.0)
-centre(data)
-```
-
-**LIVE DEMO**
 
 ## <img src="images/exercise.png" height="75px" /> Exercise 03 (15min)
 
@@ -413,6 +414,9 @@ Can you write a function called `rescale()` that
 * returns an array with values scaled in the range [0.0, 1.0]
 * has an informative docstring
 * **HINT:** If `L` and `H` are the lowest and highest values in the original array, then the replacement for a value `v` should be `(v-L) / (H-L)`.
+
+![progress check](images/red_green_sticky.png)
+
 
 # ERRORS AND EXCEPTIONS
 

@@ -475,6 +475,33 @@ print('std dev before and after:', numpy.std(data), numpy.std(centred))
 * **The function is probably OK, as-is**
 
 ----
+**SLIDE** DEFAULT ARGUMENTS
+
+* So far we have named the two arguments in our `centre()` function
+* We need to specify both of them when we call the function
+* **Demo code**
+
+```python
+centre([1, 2, 3], 0)
+```
+
+* We **can set a *default* value for function arguments** when we define the function
+* Set defaults **by assigning a value in the function declaration**, as follows:
+
+```python
+def centre(data, desired=0.0):
+    """Returns the array in data, recentered around the desired value."""
+    return (data - np.mean(data)) + desired
+```
+
+* The change we've made is to set `desired=0.0` in the function *prototype*.
+* Now, by default, the function will recentre the passed data to zero, without us having to specify that:
+
+```python
+centre([1, 2, 3])
+```
+
+----
 **SLIDE** DOCUMENTING FUNCTIONS
 
 * **ADD TEXT TO THE NOTEBOOK**
@@ -541,44 +568,17 @@ def centre(data, desired):
 * **DEMONSTRATE THE CHANGE**
 
 ----
-**SLIDE** DEFAULT ARGUMENTS
-
-* So far we have named the two arguments in our `centre()` function
-* We need to specify both of them when we call the function
-* **Demo code**
-
-```python
-centre([1, 2, 3], 0)
-```
-
-* We can set a *default* value for function arguments when we define the function, by assigning a value in the function declaration, as follows:
-
-```python
-def centre(data, desired=0.0):
-    """Returns the array in data, recentered around the desired value.
-    
-    Example: centre([1, 2, 3], 0) => [-1, 0, 1]
-    """
-    return (data - np.mean(data)) + desired
-```
-
-* The change we've made is to set `desired=0.0` in the function *prototype*.
-* Now, by default, the function will recentre the passed data to zero, without us having to specify that:
-
-```python
-centre([1, 2, 3])
-```
-
-----
 **SLIDE** EXERCISE 03
 
 ```python
 def rescale(data):
     """Returns input array rescaled to [0.0, 0.1]."""
-    l = np.min(data)
-    h = np.max(data)
-    return (data - L) / (H - L)
+    l = numpy.min(data)
+    h = numpy.max(data)
+    return (data - l) / (h - l)
 ```
+
+![progress check](images/red_green_sticky.png)
 
 ----
 **SLIDE** ERRORS AND EXCEPTIONS
