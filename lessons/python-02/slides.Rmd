@@ -600,7 +600,7 @@ print(message)
 ## Assertions
 
 * Assertions are a `Pythonic` way to see if code runs correctly
-    * 80-90% of the `Firefox` source code is assertions!
+    * 10-20% of the `Firefox` source code is checks on the rest of the code!
 * We `assert` that a *condition* is `True`
     * If it's `True`, the code may be correct
     * If it's `False`, the code is **not** correct
