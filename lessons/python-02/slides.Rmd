@@ -311,11 +311,15 @@ for file in files:
 ## Motivation
 
 * Once written, functions are reused
-* Functions are reused without further checks
+* Functions might be reused without further checks
 * When functions are written:
     * test for correctness 
     * document their function
 * Example: centring a numerical array
+
+## Create a New Notebook
+
+* Add the function
 
 ```python
 def centre(data, desired):

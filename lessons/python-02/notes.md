@@ -352,6 +352,7 @@ for file in files:
 ----
 **SLIDE** GOOD CODE PAYS OFF
 
+* **PUT SLIDES ON SCREEN**
 * **YOU MAY BE ASKING YOURSELF WHY YOU WANT TO BOTHER WITH THIS**
 
 * After 6 months, the referee report arrives and you need to rerun experiments
@@ -369,10 +370,34 @@ for file in files:
 
 * Once a useful function is written, it gets reused over and over, often without further checking
 * When you write a function you should:
-  * Test output for correctness
-  * Document the expected function
+  * **Test output for correctness**
+  * **Document the expected function**
 * We'll demonstrate this with a function to centre a numerical array
-* **Demo code**
+
+----
+**SLIDE** CREATE A NEW NOTEBOOK
+
+* **New notebook called `testing`**
+* **ADD AN INTRO IN MARKDOWN**
+
+```markdown
+# Testing and Documentation
+
+When writing a function, we should
+
+* test output for correctness
+* document the expected function
+```
+
+* **ADD IMPORTS**
+
+```python
+import numpy
+```
+
+* **Write the test function**
+* When doing some analyses, such as PCA, we might want to recentre and normalise our dataset.
+* Let's write a function to recentre an array of data, like the inflammation data.
 
 ```python
 def centre(data, desired):
@@ -382,59 +407,93 @@ def centre(data, desired):
 ----
 **SLIDE** TEST DATASETS
 
+* **ASK THE LEARNERS HOW WE CAN CHECK THAT THE FUNCTION WORKS IN THE WAY WE INTEND**
+
 * We could try `centre()` on our real data, but we *don't know what the answer should be!**
-* We'll use `numpy`'s `zeros()` function to generate an input set where we know the answer
-* **Demo code**
+* We'll use `numpy`'s `zeros()` function to generate an **input set where we know the answer**
+* **SHOW THE TEST DATA**
 
 ```python
 z = np.zeros((2, 2))
-print(centre(z, 3.0))
+z
 ```
 
-* If this works, we'll try it on real data
+* **Let's recentre the data at the value 2**
+
+```python
+centre(z, 3.0)
+```
+
+* **This works, so we'll try it on real data**
 
 
 ----
 **SLIDE** REAL DATA
 
-* **Demo code**
-
+* **LOAD THE DATA**
+* 
 ```python
 data = numpy.loadtxt(fname='data/inflammation-01.csv', delimiter=',')
-print(centre(data, 0))
 ```
 
-* This looks OK, but how would we know it worked?
+* **Let's recentre the data to zero**
+
+```python
+centre(data, 0))
+```
+
+* This looks OK, but **how would we know it worked?**
 
 ----
 **SLIDE** CHECK PROPERTIES
 
-* We can check properties of the original and centred data
+* **ASK LEARNERS HOW THEY COULD VERIFY THE FUNCTION WORKED AS INTENDED**
+* We can **check properties of the original and centred data**
   * `mean`, `min`, `max`, `std`
-* We'd expect the mean of the new dataset to be approximately `0.0`
-* The variance of the dataset should be unchanged.
-* Also, the range (`max` - `min`) should be unchanged.
-* **Demo code**
+
+```python
+print('original min, mean, and max are:', numpy.min(data), numpy.mean(data), numpy.max(data))
+```
+  
+* We'd expect the **mean of the new dataset to be approximately `0.0`**
+* Also, the **range (`max` - `min`) should be unchanged.**
 
 ```python
 centred = centre(data, 0)
-print('original min, mean, and max are:', np.min(data), np.mean(data), np.max(data))
-print('min, mean, and max of centered data are:', np.min(centred),
-      np.mean(centred), np.max(centred))
-print('std dev before and after:', np.std(data), np.std(centred))      
+print('min, mean, and max of centered data are:', numpy.min(centred),
+      numpy.mean(centred), numpy.max(centred))  
+```
+
+* The limits seem OK, but has the *shape* of the data distribution changed?
+* The **variance of the dataset should be unchanged.**
+
+```python
+print('std dev before and after:', numpy.std(data), numpy.std(centred))    
 ```
 
 * The range and variance are as expected, but the mean is not quite `0.0`
-* The function is probably OK, as-is
+* **The function is probably OK, as-is**
 
 ----
 **SLIDE** DOCUMENTING FUNCTIONS
 
-* We can document what our function does by writing comments in the code, and this is a good thing.
-* But Python allows us to document what a function does directly in the function using a *docstring*.
-* This is a string that is put in a specific place in the function definition, and it has special properties that are useful.
-* To add a docstring to our centre() function, we add a string immediately after the function declaration
-* **Demo code**
+* **ADD TEXT TO THE NOTEBOOK**
+
+```markdown
+## Documentation
+
+We can document what our code is meant to do in several ways
+
+* writing comments in the code
+* writing docstrings
+* writing documentation documents
+```
+
+* We can document what our function does by **writing comments in the code**, and this is a good thing.
+* But Python allows us to **document what a function does directly in the function** using a *docstring*.
+* This is a string that is put in a **specific place in the function definition, and it has special properties that are useful**.
+* To add a docstring to our `centre()` function, we add a string immediately after the function declaration
+* **ADD DOCSTRING TO EXISTING FUNCTION AND RUN CELL**
 
 ```python
 def centre(data, desired):
@@ -442,23 +501,44 @@ def centre(data, desired):
     return (data - numpy.mean(data)) + desired
 ```
 
-* This documents the function directly in the source code, and it also hooks that documentation into `Python`'s `help` system.
+* **RESTART KERNEL AND RUN ALL**
+* This documents the function directly in the source code, and it also **hooks that documentation into `Python`'s `help` system.**
 * We can ask for help on any function using the `help()` function:
+* built-in function
+
+```python
+help(print)
+```
+
+* module function
+
+```python
+help(numpy.mean)
+```
+
+* and **if you write it** your own functions
 
 ```python
 help(centre)
 ```
 
+* **SHOW LEARNERS HOW DETAILED THE BUILTIN AND NUMPY HELP IS**
 * Using the triple quotes (""") allows us to use a multi-line string to describe the function:
+* **ADD EXTRA DOCUMENTATION**
 
 ```python
 def centre(data, desired):
-    """Returns the array in data, recentered around the desired value.
+    """Returns the array in data, recentred around the desired value.
     
-    Example: centre([1, 2, 3], 0) => [-1, 0, 1]
+    Example
+    -------
+    >>> centre([1, 2, 3], 0)
+    [-1, 0, 1]
     """
-    return (data - np.mean(data)) + desired
+    return (data - numpy.mean(data)) + desired
 ```
+
+* **DEMONSTRATE THE CHANGE**
 
 ----
 **SLIDE** DEFAULT ARGUMENTS
