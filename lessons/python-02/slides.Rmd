@@ -622,3 +622,84 @@ print('total is:', total)
 
 **QUESTION:** What does this assertion do?
 
+## When to use assertions
+
+* *preconditions* - must be true at the start of an operation
+* *postcondition* - guaranteed to be true when operation completes
+* *invariant* - something true at a particular point in code
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dx) / dy
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+## Preconditions
+
+* must be true at the start of an operation or function
+* Here, we want to ensure that `rect` has four values
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    assert len(rect) == 4, "Rectangle must have four co-ordinates"
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dx) / dy
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+## Postconditions
+
+* must be true at the end of an operation or function.
+* Here, we want to assert that the upper x and y values are in the range [0, 1]
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    assert len(rect) == 4, "Rectangle must have four co-ordinates"
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dy) / dx
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    assert 0 < upper_x <= 1.0, "Calculated upper x-coordinate invalid"
+    assert 0 < upper_y <= 1.0, "Calculated upper y-coordinate invalid"    
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+## Notes on assertions
+
+* Assertions help understand programs: they declare what the program should be doing
+* Assertions help the person reading the program match their understanding of the code to what the code expects
+* *Fail early, fail often*
+* Turn bugs into assertions or tests: if you've made the mistake once, you might make it again

@@ -808,29 +808,46 @@ print(message)
 ----
 **SLIDE** CREATE A NEW NOTEBOOK
 
+* **Call it `defensive`**
+* **ADD INTRO IN MARKDOWN**
+
+```markdown
+# Defensive Programming
+
+*Defensive programming* is the practice of expecting your code to have mistakes, and guarding against them.
+```
+
 ----
 **SLIDE** DEFENSIVE PROGRAMMING
 
-* So far we have focused on the basic tools of writing a program: variables, lists, loops, conditionals, and functions.
+* So far **we have focused on the basic tools** of writing a program: variables, lists, loops, conditionals, and functions.
 * We haven't looked very much at whether a program is getting the right answer (and whether it continues to get the right answer as we change it).
-* **It's all very well having some code, but if it doesn't give the right answer it can be damaging, or useless**
+* **It's all very well having some code, but if it doesn't give the right answer it can be damaging, or worse than useless**
 * **Defensive programming** is the practice of expecting your code to have mistakes, and guarding against them.
-* To do this, we will write some code that *checks its own operation*.
-* This is generally good practice, that speeds up software development and helps ensure that your code is doing what you intend.
+* To do this, we will write some **code that *checks its own operation*.**
+* This is generally good practice, speeds up software development, and helps ensure that your code is doing what you intend.
 
 ----
 **SLIDE** ASSERTIONS
 
-* Assertions are a `Pythonic` way to see if code runs correctly
+* **ADD INTRODUCTORY TEXT**
+
+```markdown
+## Assertions
+
+Assertions are a pythonic way to see if a program's state is correct.
+
+``python
+assert <condition>, "Some text describing the problem"
+``
+```
+
+* **Assertions** are a `Pythonic` way to see if code runs correctly
     * 10-20% of the `Firefox` source code is assertions/checks on the rest of the code!
 * We `assert` that a *condition* is `True`
     * If it's `True`, the code may be correct
     * If it's `False`, the code is **not** correct
 * The syntax for an assertion is that we `assert` some `<condition>` is `True`, and if it's not, an error is thrown (`AssertionError`), with some text explaining the problem.
-    
-```python
-assert <condition>, "Some text describing the problem"
-```
 
 ----
 **SLIDE** EXAMPLE ASSERTION
@@ -846,7 +863,7 @@ for n in numbers:
 print('total is:', total)
 ```
 
-* **Demo code**
+* **EXECUTE CELL**
 
 ```python
 ---------------------------------------------------------------------------
@@ -861,5 +878,161 @@ AssertionError                            Traceback (most recent call last)
 AssertionError: Data should only contain positive values
 ```
 
-* The traceback tells us which *assertion* failed.
+* The **traceback tells us there is an `AssertionErroe` and highlights which *assertion* failed.**
 
+----
+* **SLIDE** WHEN TO USE ASSERTIONS
+
+* **Assertions are useful in three circumstances:**
+* *preconditions* - must be true at the start of an operation
+* *postcondition* - something guaranteed to be true when an operation completes
+* *invariant* - something always true at a particular point in code
+* **PUT EXAMPLE CODE IN NEW CELL**
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dy) / dx
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+* **Test with some values - in the same cell**
+
+```python
+normalise_rectangle((1.0, 1.0, 4.0, 4.0))
+normalise_rectangle((1.0, 1.0, 4.0, 6.0))
+```
+
+* **DO ALL INPUTS MAKE SENSE?**
+
+```python
+normalise_rectangle((6.0, 4.0, 1.0, 1.0))
+normalise_rectangle((6.0, 4.0, 1.0))
+```
+
+* **ASK LEARNERS WHAT SORT OF CHECKS WE NEED TO MAKE**
+* **Input type** - 4 values, all numbers
+* **x0 < x1; y0 < y1** - lower left corner is identified first
+* **output values less than or equal to 1** - correct result returned
+
+----
+**SLIDE** PRECONDITIONS
+
+* **Preconditions** must be true at the start of an operation or function
+* Here, we want to ensure that `rect` has four values
+* **MAKE CHANGE IN CELL**
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    assert len(rect) == 4, "Rectangle must have four co-ordinates"
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dy) / dx
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+* **TEST FAILING INPUT AND SHOW ASSERTIONERROR**
+
+```python
+normalise_rectangle((6.0, 4.0, 1.0))
+```
+
+* **SHOW ANOTHER PROBLEM**
+
+```python
+normalise_rectangle((6.0, 4.0, 1.0, -0.5))
+```
+
+----
+**SLIDE** POSTCONDITIONS
+
+* **Postconditions** must be true at the end of an operation or function.
+* Here, we want to assert that the upper x and y values are in the range [0, 1]
+* **MAKE CHANGE IN CELL**
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    assert len(rect) == 4, "Rectangle must have four co-ordinates"
+    x0, y0, x1, y1 = rect
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dy) / dx
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    assert 0 < upper_x <= 1.0, "Calculated upper x-coordinate invalid"
+    assert 0 < upper_y <= 1.0, "Calculated upper y-coordinate invalid"    
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+* **TEST FAILING INPUT TO SHOW ASSERTIONERROR**
+
+```python
+normalise_rectangle((6.0, 4.0, 1.0, -0.5))
+```
+
+* **This isn't our code's fault!**
+* The problem is that the input values have the upper-right corner below the lower left corner
+* We need to add another *precondition*
+
+```python
+def normalise_rectangle(rect):
+    """Normalises a rectangle to the origin, longest axis 1.0 units."""
+    assert len(rect) == 4, "Rectangle must have four co-ordinates"
+    x0, y0, x1, y1 = rect
+    assert x0 < x1, "Invalid x-coordinates"
+    assert y0 < y1, "Invalid y-coordinates"
+    
+    dx = x1 - x0
+    dy = y1 - y0
+    
+    if dx > dy:
+        scaled = float(dy) / dx
+        upper_x, upper_y = 1.0, scaled
+    else:
+        scaled = float(dx) / dy
+        upper_x, upper_y = scaled, 1.0
+        
+    assert 0 < upper_x <= 1.0, "Calculated upper x-coordinate invalid"
+    assert 0 < upper_y <= 1.0, "Calculated upper y-coordinate invalid"    
+        
+    return (0, 0, upper_x, upper_y)
+```
+
+* **DEMONSTRATE THE ERROR THAT'S RAISED**
+
+----
+**SLIDE** NOTES ON ASSERTIONS
+
+* Assertions help understand programs: they declare what the program should be doing
+* Assertions help the person reading the program match their understanding of the code to what the code expects
+* *Fail early, fail often*
+* Turn bugs into assertions or tests: if you've made the mistake once, you might make it again
