@@ -91,47 +91,80 @@ These notes are a guide to the speaker, as they present the material.
 * **You've already been using functions in this course: `print()`, `numpy.max()`, etc.**
 
 ----
-**SLIDE** CREATE A NEW NOTEBOOK **DEMO**
-
-
-----
 **SLIDE** MY FIRST FUNCTION
 
+* **TALK ABOUT THE FUNCTION AND ITS PARTS BEFORE CREATING IT**
 * We'll write a function to convert Fahrenheit to Kelvin, called `fahr_to_kelvin()`
-* The mathematical function is described:
+* **Describe the mathematical function**:
   * This function takes `x`, subtracts 32, multiplies by 5/9, and adds 273.15
-* In `Python` this translates to the code below
+* In `Python` this **translates to the code below**:
+  * The function **performs a calculation, which is *returned* by the `return` statement**.
+  * The value of **the variable `temp` is taken through the same calculation as in the mathematical function**, and is then *return*ed.
   * Functions are *defined* by the `def` keyword
   * The name of the function follows the `def` keyword (equivalent to `f` in the mathematical example)
+  * The first line ends in a colon, just like a `for` loop or `if` statement.
+  * The code, or *body* of the function is indented, just like a `for` loop or `if` statement.
   * The *parameters* or *inputs* to the function are then defined in parentheses. These get a variable name **which only exists within the function**. Here, there is one parameter, called `temp`.
-  * The function performs a calculation, which is *returned* by the `return` statement.
-  * The value of `temp` is taken through the same calculation as in the mathematical function, and is then *return*ed.
-* **Demo code**
 
 ----
-**SLIDE** Calling the function
+**SLIDE** CREATE A NEW NOTEBOOK **DEMO**
 
-* We call `fahr_to_kelvin` in exactly the same way we call any other function we've seen so far
+* **PUT THE NOTEBOOK ON SCREEN**
+
+* We'll create a new notebook to play with some functions
+* Call the notebook `functions`
+* **Add a header**
+
+```markdown
+# Functions
+
+Functions are pieces of code that take an input and return an output. They enable us to break our code into logical chunks that are easier to understand and maintain.
+```
+
+----
+**SLIDE** CREATE THE FUNCTION
+
+* **WRITE THE FUNCTION IN THE NOTEBOOK**
+
+```python
+```
+
+----
+**SLIDE** CALLING THE FUNCTION
+
+* We **call `fahr_to_kelvin` in exactly the same way we call any other function we've seen** so far
+* e.g. `print()` or `numpy.mean()`
 
 ```python
 print('freezing point of water:', fahr_to_kelvin(32))
 print('boiling point of water:', fahr_to_kelvin(212))
 ```
 
-----
-**SLIDE** Composing functions
+![progress check](images/red_green_sticky.png)
 
-* Composing `Python` functions works just like mathematical functions: `y = f(g(x))`
-* Suppose we have a function that converts Kelvin to Celsius, called `kelvin_to_celsius()`
-* **Demo code**
+----
+**SLIDE** CREATE A NEW FUNCTION
+
+* **ASK THE LEARNERS HOW WE WOULD CREATE A NEW FUNCTION TO CONVERT KELVIN TO CELSIUS**
+* **Walk through the process, being prompted**
 
 ```python
-def kelvin_to_celsius(temp_k):
-    return temp_k - 273.15
-print('absolute zero in Celsius:', kelvin_to_celsius(0.0))
+def kelvin_to_celsius(temp):
+  return temp - 273.15
 ```
 
-* We could convert a temperature in fahrenheit (`temp_f`) to a temperature in celsius (`temp_c`) by executing the code:
+* **ASK THE LEARNERS HOW TO CALL THE FUNCTION**
+
+```python
+print('freezing point of water', kelvin_to_celsius(273.15))
+```
+
+----
+**SLIDE** COMPOSING FUNCTIONS
+
+* **Composing `Python` functions works just like mathematical functions**: `y = f(g(x))`
+* **ASK HOW WE CAN CONVERT FAHRENHEIT TO CELSIUS WITH OUR EXISTING FUNCTIONS**
+* We could convert a temperature in fahrenheit (`temp_f`) to a temperature in celsius (`temp_c`) by **executing the code**:
 
 ```python
 temp_f = 212.0
@@ -142,24 +175,32 @@ print(temp_c)
 ----
 **SLIDE** NEW FUNCTIONS FROM OLD
 
-* We can wrap this composed function inside a new function: `fahr_to_celsius`:
-* **Demo code**
+* **ASK LEARNERS HOW WE CAN TURN THIS INTO A NEW FUNCTION: `fahr_to_celsius()`:
 
 ```python
 def fahr_to_celsius(temp_f):
     return kelvin_to_celsius(fahr_to_kelvin(temp_f))
+```
+
+* We can call this just like any other function
+   
+```python 
 print('freezing point of water in Celsius:', fahr_to_celsius(32.0))
 ```
 
-* **This is how programs are built: combining small bits into larger bits until the function we want is obtained**
+* **THIS IS HOW PROGRAMS ARE BUILT: COMBINING SMALL CHUNKS OF CODE INTO LARGER BITS UNTIL WE GET THE RESULT WE WANT**
 
 ----
 **SLIDE** EXERCISE 01
+
+* **SHOW THE SLIDES FOR THE EXERCISE**
 
 ```python
 def outer(s)
     return s[0] + s[-1]
 ```
+
+* **RETURN TO THE NOTEBOOK**
 
 ----
 **SLIDE** SCOPE

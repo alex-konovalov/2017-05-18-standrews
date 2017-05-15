@@ -100,12 +100,6 @@ $$y = f(x)$$
 * The output $y$ depends in some way on the value of $x$ - defined by $f()$.
 * **Not all functions in code take an input, or produce a usable output, but the principle is generally the same.**
 
-## Create a new notebook
-
-<img src="images/new_notebook_menu.png" height="150px" />
-<img src="images/empty_notebook.png" height="150px" />
-<img src="images/functions_notebook.png" height="200px" />
-
 ## My first function
 
 * `fahr_to_kelvin()` to convert Fahrenheit to Kelvin
@@ -116,6 +110,21 @@ $$f(x) = ((x - 32) \times \frac{5}{9}) + 273.15$$
 
 **LIVE DEMO**
 
+## Create a new notebook
+
+<img src="images/new_notebook_menu.png" height="150px" />
+<img src="images/empty_notebook.png" height="150px" />
+<img src="images/functions_notebook.png" height="200px" />
+
+## Create the function
+
+* `fahr_to_kelvin()` to convert Fahrenheit to Kelvin
+
+$$f(x) = ((x - 32) \times \frac{5}{9}) + 273.15$$
+
+<img src="images/python-function.svg" height="300px" />
+
+
 ## Calling the function
 
 * Calling `fahr_to_kelvin()` is the same as calling any other function
@@ -125,12 +134,22 @@ print('freezing point of water:', fahr_to_kelvin(32))
 print('boiling point of water:', fahr_to_kelvin(212))
 ```
 
-**LIVE DEMO**
+![progress check](images/red_green_sticky.png)
+
+## Create a new function
+
+```python
+def kelvin_to_celsius(temp):
+  return temp - 273.15
+```
+
+```python
+print('freezing point of water', kelvin_to_celsius(273.15))
+```
 
 ## Composing functions
 
 * Composing `Python` functions works like mathematical functions: $y = f(g(x))$
-* Suppose there's a function converting K to C: `kelvin_to_celsius()`
 * We could convert F (`temp_f`) to C (`temp_c`) by executing the code:
 
 ```python
