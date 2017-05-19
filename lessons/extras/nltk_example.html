@@ -11791,6 +11791,13 @@ div#notebook {
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="NLTK-example"><code>NLTK</code> example<a class="anchor-link" href="#NLTK-example">&#182;</a></h1><p>This notebook is an additional example to cover some (very) basic text-processing.</p>
 <p><em>Caveat</em>: I am not a natural languages person, so the analysis may make no academic sense! ;)</p>
+<h2 id="Table-of-contents">Table of contents<a class="anchor-link" href="#Table-of-contents">&#182;</a></h2><ol>
+<li><a href="#using">Using <code>nltk</code></a></li>
+<li><a href="#visualisation">Visualisation</a></li>
+<li><a href="#example"><code>nltk</code> analysis example</a></li>
+<li><a href="#function">Making a function</a></li>
+<li><a href="#languages">Other languages</a></li>
+</ol>
 
 </div>
 </div>
@@ -11826,6 +11833,7 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="using"></a></p>
 <h2 id="Using-nltk">Using <code>nltk</code><a class="anchor-link" href="#Using-nltk">&#182;</a></h2><h3 id="Downloading-example-datasets">Downloading example datasets<a class="anchor-link" href="#Downloading-example-datasets">&#182;</a></h3><p>We almost immediately depart from the SWC lesson, because we need to deal with specific functions of <code>nltk</code> (as opposed to general programming principles). However, what we learned in the SWC lesson is still relevant, here.</p>
 <p>We access functions in the <code>nltk</code> package with <em>dotted notation</em>, just like the functions we saw in <code>matplotlib</code>. The first function we'll use is one that downloads text corpora, so we have some examples to work with.</p>
 <p>This function is <code>nltk.download()</code>, and we can pass it the name of a specific corpus, such as <code>gutenberg</code>.</p>
@@ -12249,6 +12257,7 @@ slice from 1400 to 1500: [&#39;a&#39;, &#39;house&#39;, &#39;of&#39;, &#39;her&#
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="visualisation"></a></p>
 <h2 id="Visualisation">Visualisation<a class="anchor-link" href="#Visualisation">&#182;</a></h2><p>We can plot statistics relating to the text, using <code>matplotlib</code> and <code>seaborn</code>, as we did in the SWC lesson.</p>
 <p>Firstly, we'll take the length of all tokens in the text and put that information in a list called <code>token_len</code> (and print the first few values):</p>
 
@@ -12345,7 +12354,7 @@ slice from 1400 to 1500: [&#39;a&#39;, &#39;house&#39;, &#39;of&#39;, &#39;her&#
 
 
 <div class="output_text output_subarea output_execute_result">
-<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x10d3deef0&gt;</pre>
+<pre>&lt;matplotlib.axes._subplots.AxesSubplot at 0x1152930f0&gt;</pre>
 </div>
 
 </div>
@@ -12969,6 +12978,7 @@ CmYAAAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="example"></a></p>
 <h2 id="An-nltk-analysis-example">An <code>nltk</code> analysis example<a class="anchor-link" href="#An-nltk-analysis-example">&#182;</a></h2><p>This sort of 'analysis' is rather simplistic, and <code>nltk</code> provides more meaningful analyses that are accessed through the <code>nltk</code> functions. These have particular syntax and expect a specific kind of input.</p>
 <p>For example, <code>nltk</code> will calculate the conditional frequency distribution of target words, using the <code>class</code> (which we don't cover in SWC!) <code>nltk.ConditionalFreqDist</code>.</p>
 <p>To see what it requires to work, we can use the <code>help()</code> function, as below - luckily, the <code>nltk</code> documentation is quite thorough, if a little technical:</p>
@@ -12981,269 +12991,10 @@ CmYAAAAASUVORK5CYII=
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">help</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">ConditionalFreqDist</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1">#help(nltk.ConditionalFreqDist)</span>
 </pre></div>
 
 </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-<div class="prompt"></div>
-
-<div class="output_subarea output_stream output_stdout output_text">
-<pre>Help on class ConditionalFreqDist in module nltk.probability:
-
-class ConditionalFreqDist(collections.defaultdict)
- |  A collection of frequency distributions for a single experiment
- |  run under different conditions.  Conditional frequency
- |  distributions are used to record the number of times each sample
- |  occurred, given the condition under which the experiment was run.
- |  For example, a conditional frequency distribution could be used to
- |  record the frequency of each word (type) in a document, given its
- |  length.  Formally, a conditional frequency distribution can be
- |  defined as a function that maps from each condition to the
- |  FreqDist for the experiment under that condition.
- |  
- |  Conditional frequency distributions are typically constructed by
- |  repeatedly running an experiment under a variety of conditions,
- |  and incrementing the sample outcome counts for the appropriate
- |  conditions.  For example, the following code will produce a
- |  conditional frequency distribution that encodes how often each
- |  word type occurs, given the length of that word type:
- |  
- |      &gt;&gt;&gt; from nltk.probability import ConditionalFreqDist
- |      &gt;&gt;&gt; from nltk.tokenize import word_tokenize
- |      &gt;&gt;&gt; sent = &#34;the the the dog dog some other words that we do not care about&#34;
- |      &gt;&gt;&gt; cfdist = ConditionalFreqDist()
- |      &gt;&gt;&gt; for word in word_tokenize(sent):
- |      ...     condition = len(word)
- |      ...     cfdist[condition][word] += 1
- |  
- |  An equivalent way to do this is with the initializer:
- |  
- |      &gt;&gt;&gt; cfdist = ConditionalFreqDist((len(word), word) for word in word_tokenize(sent))
- |  
- |  The frequency distribution for each condition is accessed using
- |  the indexing operator:
- |  
- |      &gt;&gt;&gt; cfdist[3]
- |      FreqDist({&#39;the&#39;: 3, &#39;dog&#39;: 2, &#39;not&#39;: 1})
- |      &gt;&gt;&gt; cfdist[3].freq(&#39;the&#39;)
- |      0.5
- |      &gt;&gt;&gt; cfdist[3][&#39;dog&#39;]
- |      2
- |  
- |  When the indexing operator is used to access the frequency
- |  distribution for a condition that has not been accessed before,
- |  ``ConditionalFreqDist`` creates a new empty FreqDist for that
- |  condition.
- |  
- |  Method resolution order:
- |      ConditionalFreqDist
- |      collections.defaultdict
- |      builtins.dict
- |      builtins.object
- |  
- |  Methods defined here:
- |  
- |  N(self)
- |      Return the total number of sample outcomes that have been
- |      recorded by this ``ConditionalFreqDist``.
- |      
- |      :rtype: int
- |  
- |  __add__(self, other)
- |      Add counts from two ConditionalFreqDists.
- |  
- |  __and__(self, other)
- |      Intersection is the minimum of corresponding counts.
- |  
- |  __ge__(self, other)
- |      Return self&gt;=value.
- |  
- |  __gt__(self, other)
- |      Return self&gt;value.
- |  
- |  __init__(self, cond_samples=None)
- |      Construct a new empty conditional frequency distribution.  In
- |      particular, the count for every sample, under every condition,
- |      is zero.
- |      
- |      :param cond_samples: The samples to initialize the conditional
- |          frequency distribution with
- |      :type cond_samples: Sequence of (condition, sample) tuples
- |  
- |  __le__(self, other)
- |      Return self&lt;=value.
- |  
- |  __lt__(self, other)
- |      Return self&lt;value.
- |  
- |  __or__(self, other)
- |      Union is the maximum of value in either of the input counters.
- |  
- |  __reduce__(self)
- |      Return state information for pickling.
- |  
- |  __repr__(self)
- |      Return a string representation of this ``ConditionalFreqDist``.
- |      
- |      :rtype: str
- |  
- |  __sub__(self, other)
- |      Subtract count, but keep only results with positive counts.
- |  
- |  __unicode__ = __str__(self, /)
- |      Return str(self).
- |  
- |  conditions(self)
- |      Return a list of the conditions that have been accessed for
- |      this ``ConditionalFreqDist``.  Use the indexing operator to
- |      access the frequency distribution for a given condition.
- |      Note that the frequency distributions for some conditions
- |      may contain zero sample outcomes.
- |      
- |      :rtype: list
- |  
- |  plot(self, *args, **kwargs)
- |      Plot the given samples from the conditional frequency distribution.
- |      For a cumulative plot, specify cumulative=True.
- |      (Requires Matplotlib to be installed.)
- |      
- |      :param samples: The samples to plot
- |      :type samples: list
- |      :param title: The title for the graph
- |      :type title: str
- |      :param conditions: The conditions to plot (default is all)
- |      :type conditions: list
- |  
- |  tabulate(self, *args, **kwargs)
- |      Tabulate the given samples from the conditional frequency distribution.
- |      
- |      :param samples: The samples to plot
- |      :type samples: list
- |      :param conditions: The conditions to plot (default is all)
- |      :type conditions: list
- |      :param cumulative: A flag to specify whether the freqs are cumulative (default = False)
- |      :type title: bool
- |  
- |  unicode_repr = __repr__(self)
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors defined here:
- |  
- |  __dict__
- |      dictionary for instance variables (if defined)
- |  
- |  __weakref__
- |      list of weak references to the object (if defined)
- |  
- |  ----------------------------------------------------------------------
- |  Methods inherited from collections.defaultdict:
- |  
- |  __copy__(...)
- |      D.copy() -&gt; a shallow copy of D.
- |  
- |  __getattribute__(self, name, /)
- |      Return getattr(self, name).
- |  
- |  __missing__(...)
- |      __missing__(key) # Called by __getitem__ for missing key; pseudo-code:
- |      if self.default_factory is None: raise KeyError((key,))
- |      self[key] = value = self.default_factory()
- |      return value
- |  
- |  copy(...)
- |      D.copy() -&gt; a shallow copy of D.
- |  
- |  ----------------------------------------------------------------------
- |  Data descriptors inherited from collections.defaultdict:
- |  
- |  default_factory
- |      Factory for default value called by __missing__().
- |  
- |  ----------------------------------------------------------------------
- |  Methods inherited from builtins.dict:
- |  
- |  __contains__(self, key, /)
- |      True if D has a key k, else False.
- |  
- |  __delitem__(self, key, /)
- |      Delete self[key].
- |  
- |  __eq__(self, value, /)
- |      Return self==value.
- |  
- |  __getitem__(...)
- |      x.__getitem__(y) &lt;==&gt; x[y]
- |  
- |  __iter__(self, /)
- |      Implement iter(self).
- |  
- |  __len__(self, /)
- |      Return len(self).
- |  
- |  __ne__(self, value, /)
- |      Return self!=value.
- |  
- |  __new__(*args, **kwargs) from builtins.type
- |      Create and return a new object.  See help(type) for accurate signature.
- |  
- |  __setitem__(self, key, value, /)
- |      Set self[key] to value.
- |  
- |  __sizeof__(...)
- |      D.__sizeof__() -&gt; size of D in memory, in bytes
- |  
- |  clear(...)
- |      D.clear() -&gt; None.  Remove all items from D.
- |  
- |  fromkeys(iterable, value=None, /) from builtins.type
- |      Returns a new dict with keys from iterable and values equal to value.
- |  
- |  get(...)
- |      D.get(k[,d]) -&gt; D[k] if k in D, else d.  d defaults to None.
- |  
- |  items(...)
- |      D.items() -&gt; a set-like object providing a view on D&#39;s items
- |  
- |  keys(...)
- |      D.keys() -&gt; a set-like object providing a view on D&#39;s keys
- |  
- |  pop(...)
- |      D.pop(k[,d]) -&gt; v, remove specified key and return the corresponding value.
- |      If key is not found, d is returned if given, otherwise KeyError is raised
- |  
- |  popitem(...)
- |      D.popitem() -&gt; (k, v), remove and return some (key, value) pair as a
- |      2-tuple; but raise KeyError if D is empty.
- |  
- |  setdefault(...)
- |      D.setdefault(k[,d]) -&gt; D.get(k,d), also set D[k]=d if k not in D
- |  
- |  update(...)
- |      D.update([E, ]**F) -&gt; None.  Update D from dict/iterable E and F.
- |      If E is present and has a .keys() method, then does:  for k in E: D[k] = E[k]
- |      If E is present and lacks a .keys() method, then does:  for k, v in E: D[k] = v
- |      In either case, this is followed by: for k in F:  D[k] = F[k]
- |  
- |  values(...)
- |      D.values() -&gt; an object providing a view on D&#39;s values
- |  
- |  ----------------------------------------------------------------------
- |  Data and other attributes inherited from builtins.dict:
- |  
- |  __hash__ = None
-
-</pre>
-</div>
-</div>
-
 </div>
 </div>
 
@@ -13324,7 +13075,7 @@ tuple: (1, 2, 3)
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>To get our list of tuples, we need to preprocess the data a little.</p>
-<p>We're going to analyses all the texts in the Gutenberg corpus, so we loop over each text, and get the words with the <code>.words()</code> function:</p>
+<p>We're going to analyse all the texts in the Gutenberg corpus, so we loop over each text, and get the words with the <code>.words()</code> function:</p>
 <div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">text</span> <span class="ow">in</span> <span class="n">gutenberg</span><span class="o">.</span><span class="n">fileids</span><span class="p">():</span>
     <span class="n">words</span> <span class="o">=</span> <span class="n">gutenberg</span><span class="o">.</span><span class="n">words</span><span class="p">(</span><span class="n">text</span><span class="p">)</span>
 </pre></div>
@@ -14222,6 +13973,7 @@ z3u8lAF/AAAAAElFTkSuQmCC
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="function"></a></p>
 <h2 id="Making-this-into-a-function">Making this into a function<a class="anchor-link" href="#Making-this-into-a-function">&#182;</a></h2><p>We can wrap this <code>nltk</code> analysis into a function, where we pass the target words we'd like to plot, and the function produces a graph, as above.</p>
 <p>We'll call the function <code>plot_cfd()</code>, and have it take as its first argument a list of words. As a second optional argument, we can pass a corpus - but we'll make this default to <code>gutenberg</code>.</p>
 <p>One subtlety here is that we want to match the case of words from the text, and the targets, so we convert all the target words to lower-case, too.</p>
@@ -16918,6 +16670,7 @@ AAAASUVORK5CYII=
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<p><a id="languages"></a></p>
 <h2 id="Other-languages">Other languages<a class="anchor-link" href="#Other-languages">&#182;</a></h2><p><code>nltk</code> provides corpora in other languages, and these need to be downloaded, e.g:</p>
 
 </div>
